@@ -1,15 +1,9 @@
-# Portal Institucional — IFTS N°29
+# Sanity Clean Content Studio
 
-Plataforma web institucional desarrollada con Next.js y Sanity CMS.
+Congratulations, you have now installed the Sanity Content Studio, an open-source real-time content editing environment connected to the Sanity backend.
 
-## Documentación
+Now you can do the following things:
 
-Toda la documentación del proyecto está en la [Wiki](https://github.com/SchallmoserJuan/ifts29-portal/wiki).
-
-## Setup
-
-Ver [Configuración del entorno local](../../wiki/Home#configuración-del-entorno-local) en la wiki.
-
-## Stack
-
-Next.js · Tailwind CSS · Sanity.io · Vercel
+- [Read “getting started” in the docs](https://www.sanity.io/docs/introduction/getting-started?utm_source=readme)
+- [Join the Sanity community](https://www.sanity.io/community/join?utm_source=readme)
+- [Extend and build plugins](https://www.sanity.io/docs/content-studio/extending?utm_source=readme)
