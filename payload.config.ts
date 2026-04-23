@@ -35,6 +35,7 @@ export default buildConfig({
     outputFile: path.resolve(dirname, 'src/payload-types.ts'),
   },
   db: sqliteAdapter({
+    push: true,
     client: {
       url: process.env.DATABASE_URL || 'file:./ifts29.db',
       authToken: process.env.DATABASE_AUTH_TOKEN || undefined,
