@@ -37,8 +37,8 @@ export default buildConfig({
   db: sqliteAdapter({
     client: {
       url: process.env.DATABASE_URL || 'file:./ifts29.db',
+      authToken: process.env.DATABASE_AUTH_TOKEN || undefined,
     },
-    wal: true,
   }),
   sharp,
 })
