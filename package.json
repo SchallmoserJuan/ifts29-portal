@@ -5,35 +5,37 @@
   "main": "package.json",
   "license": "MIT",
   "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build",
+    "dev": "next dev",
+    "build": "next build --webpack",
     "start": "next start",
-    "deploy": "sanity deploy",
-    "deploy-graphql": "sanity graphql deploy",
-    "studio": "sanity dev",
-    "lint": "next lint"
+    "lint": "eslint .",
+    "payload": "payload",
+    "generate:types": "payload generate:types"
   },
   "keywords": [
-    "sanity"
+    "payload",
+    "nextjs",
+    "ifts29"
   ],
   "dependencies": {
+    "@payloadcms/db-sqlite": "^3.84.0",
+    "@payloadcms/next": "^3.84.0",
+    "@payloadcms/richtext-lexical": "^3.84.0",
     "next": "16.2.4",
-    "@sanity/vision": "^5.21.0",
+    "payload": "^3.84.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
-    "sanity": "^5.21.0",
-    "styled-components": "^6.1.18"
+    "sharp": "^0.34.5"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
-    "@types/react-dom": "^19",
-    "eslint-config-next": "16.2.4",
-    "tailwindcss": "^4",
-    "@sanity/eslint-config-studio": "^6.0.0",
     "@types/react": "^19.2.14",
+    "@types/react-dom": "^19",
     "eslint": "^9.28",
+    "eslint-config-next": "16.2.4",
     "prettier": "^3.5",
+    "tailwindcss": "^4",
     "typescript": "^5.8"
   },
   "prettier": {
