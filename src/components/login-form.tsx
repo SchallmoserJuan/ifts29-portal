@@ -1,0 +1,88 @@
+'use client'
+
+import { useRouter } from 'next/navigation'
+import { useState, useTransition } from 'react'
+
+export function LoginForm() {
+  const router = useRouter()
+  const [error, setError] = useState<string | null>(null)
+  const [isPending, startTransition] = useTransition()
+
+  const onSubmit = async (formData: FormData) => {
+    setError(null)
+
+    const response = await fetch('/api/users/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      credentials: 'include',
+      body: JSON.stringify({
+        email: formData.get('email'),
+        password: formData.get('password'),
+      }),
+    })
+
+    if (!response.ok) {
+      const body = await response.json().catch(() => null)
+      setError(body?.errors?.[0]?.message || 'No se pudo iniciar sesion.')
+      return
+    }
+
+    const data = await response.json()
+
+    startTransition(() => {
+      if (data?.user?.role === 'student') {
+        router.push('/portal/biblioteca')
+      } else {
+        router.push('/portal')
+      }
+
+      router.refresh()
+    })
+  }
+
+  return (
+    <form
+      action={(formData) => {
+        void onSubmit(formData)
+      }}
+      className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm"
+    >
+      <div className="space-y-5">
+        <div>
+          <label htmlFor="email" className="mb-2 block text-sm font-medium text-slate-900">
+            Email
+          </label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            required
+            className="w-full rounded-2xl border border-slate-300 px-4 py-3 outline-none transition focus:border-amber-500"
+          />
+        </div>
+        <div>
+          <label htmlFor="password" className="mb-2 block text-sm font-medium text-slate-900">
+            Contrasena
+          </label>
+          <input
+            id="password"
+            name="password"
+            type="password"
+            required
+            className="w-full rounded-2xl border border-slate-300 px-4 py-3 outline-none transition focus:border-amber-500"
+          />
+        </div>
+        {error ? <p className="text-sm text-red-600">{error}</p> : null}
+        <button
+          type="submit"
+          disabled={isPending}
+          className="w-full rounded-2xl bg-slate-950 px-4 py-3 text-sm font-semibold text-white transition hover:bg-slate-800 disabled:opacity-70"
+        >
+          {isPending ? 'Ingresando...' : 'Ingresar'}
+        </button>
+      </div>
+    </form>
+  )
+}

@@ -1,9 +1,51 @@
-# Sanity Clean Content Studio
+# Portal IFTS 29
 
-Congratulations, you have now installed the Sanity Content Studio, an open-source real-time content editing environment connected to the Sanity backend.
+Portal institucional del IFTS 29 construido con `Next.js` y `Payload CMS`.
 
-Now you can do the following things:
+## Stack
 
-- [Read “getting started” in the docs](https://www.sanity.io/docs/introduction/getting-started?utm_source=readme)
-- [Join the Sanity community](https://www.sanity.io/community/join?utm_source=readme)
-- [Extend and build plugins](https://www.sanity.io/docs/content-studio/extending?utm_source=readme)
+- `Next.js 16`
+- `Payload CMS 3`
+- `SQLite` para desarrollo local
+- `Tailwind CSS 4`
+
+## Variables de entorno
+
+Crear `.env.local` a partir de este ejemplo:
+
+```env
+PAYLOAD_SECRET=desarrollo-super-seguro-cambiar-en-produccion
+DATABASE_URL=file:./ifts29.db
+```
+
+## Scripts
+
+- `npm run dev`: levanta la app y el panel de Payload
+- `npm run build`: build de producción
+- `npm run lint`: chequeo estático
+- `npm run generate:types`: genera tipos de Payload
+
+## Rutas principales
+
+- `/`: home pública
+- `/institucional`: contenido institucional
+- `/carreras`: oferta académica
+- `/noticias`: novedades
+- `/login`: login del portal
+- `/portal`: dashboard por rol
+- `/portal/biblioteca`: biblioteca privada
+- `/admin`: panel de Payload
+
+## Roles
+
+- `student`: alumno con acceso a biblioteca
+- `teacher`: edición de contenido académico y noticias
+- `admin`: acceso total, usuarios y configuración
+
+## Primer uso
+
+1. Configurar `.env.local`
+2. Ejecutar `npm install`
+3. Ejecutar `npm run dev`
+4. Entrar a `/admin`
+5. Crear el primer usuario administrador
