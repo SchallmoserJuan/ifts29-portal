@@ -43,71 +43,91 @@ export const getInstitutionalContent = cache(async () => {
 export const getCareers = cache(async () => {
   const payload = await getPayloadClient()
 
-  const result = await payload.find({
-    collection: 'careers',
-    depth: 1,
-    limit: 20,
-    sort: 'name',
-  })
+  try {
+    const result = await payload.find({
+      collection: 'careers',
+      depth: 1,
+      limit: 20,
+      sort: 'name',
+    })
 
-  return (result.docs.length > 0 ? result.docs : defaultCareers) as CareerItem[]
+    return (result.docs.length > 0 ? result.docs : defaultCareers) as CareerItem[]
+  } catch {
+    return defaultCareers
+  }
 })
 
 export const getCareerBySlug = cache(async (slug: string) => {
   const payload = await getPayloadClient()
 
-  const result = await payload.find({
-    collection: 'careers',
-    limit: 1,
-    where: {
-      slug: {
-        equals: slug,
+  try {
+    const result = await payload.find({
+      collection: 'careers',
+      limit: 1,
+      where: {
+        slug: {
+          equals: slug,
+        },
       },
-    },
-  })
+    })
 
-  return (result.docs[0] || defaultCareers.find((career) => career.slug === slug) || null) as CareerItem | null
+    return (result.docs[0] || defaultCareers.find((career) => career.slug === slug) || null) as CareerItem | null
+  } catch {
+    return defaultCareers.find((career) => career.slug === slug) || null
+  }
 })
 
 export const getNewsList = cache(async () => {
   const payload = await getPayloadClient()
 
-  const result = await payload.find({
-    collection: 'news',
-    depth: 1,
-    limit: 20,
-    sort: '-publishedAt',
-  })
+  try {
+    const result = await payload.find({
+      collection: 'news',
+      depth: 1,
+      limit: 20,
+      sort: '-publishedAt',
+    })
 
-  return (result.docs.length > 0 ? result.docs : defaultNews) as NewsItem[]
+    return (result.docs.length > 0 ? result.docs : defaultNews) as NewsItem[]
+  } catch {
+    return defaultNews
+  }
 })
 
 export const getNewsBySlug = cache(async (slug: string) => {
   const payload = await getPayloadClient()
 
-  const result = await payload.find({
-    collection: 'news',
-    limit: 1,
-    where: {
-      slug: {
-        equals: slug,
+  try {
+    const result = await payload.find({
+      collection: 'news',
+      limit: 1,
+      where: {
+        slug: {
+          equals: slug,
+        },
       },
-    },
-  })
+    })
 
-  return (result.docs[0] || defaultNews.find((item) => item.slug === slug) || null) as NewsItem | null
+    return (result.docs[0] || defaultNews.find((item) => item.slug === slug) || null) as NewsItem | null
+  } catch {
+    return defaultNews.find((item) => item.slug === slug) || null
+  }
 })
 
 export const getLibraryDocuments = cache(async (user: AppUser) => {
   const payload = await getPayloadClient()
 
-  const result = await payload.find({
-    collection: 'documents',
-    depth: 1,
-    limit: 30,
-    sort: '-updatedAt',
-    user,
-  })
+  try {
+    const result = await payload.find({
+      collection: 'documents',
+      depth: 1,
+      limit: 30,
+      sort: '-updatedAt',
+      user,
+    })
 
-  return result.docs as DocumentItem[]
+    return result.docs as DocumentItem[]
+  } catch {
+    return [] as DocumentItem[]
+  }
 })
