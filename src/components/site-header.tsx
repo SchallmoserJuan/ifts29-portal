@@ -1,7 +1,8 @@
 import Link from 'next/link'
 
-import { SiteBrand } from '@/src/components/site-brand'
-import { getSiteSettings } from '@/src/lib/content'
+import {MobileMenu} from '@/src/components/mobile-menu'
+import {SiteBrand} from '@/src/components/site-brand'
+import {getSiteSettings} from '@/src/lib/content'
 
 export async function SiteHeader() {
   const settings = await getSiteSettings()
@@ -37,12 +38,7 @@ export async function SiteHeader() {
           <p>{settings.tagline}</p>
         </div>
         <div className="lg:hidden">
-          <Link
-            href="/login"
-            className="rounded-md bg-[#0a2e57] px-4 py-3 text-sm font-semibold text-white transition hover:bg-[#0d3a6b]"
-          >
-            Menu
-          </Link>
+          <MobileMenu links={links} />
         </div>
       </div>
       <div className="border-t border-slate-200/70 bg-[#dcecff]/35">
