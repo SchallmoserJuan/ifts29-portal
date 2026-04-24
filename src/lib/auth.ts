@@ -5,11 +5,15 @@ import { getPayloadClient } from '@/src/lib/payload'
 import type { AppUser } from '@/src/types/app'
 
 export const getCurrentUser = async () => {
-  const payload = await getPayloadClient()
-  const headers = await getHeaders()
-  const { user } = await payload.auth({ headers })
+  try {
+    const payload = await getPayloadClient()
+    const headers = await getHeaders()
+    const { user } = await payload.auth({ headers })
 
-  return (user as AppUser | null) ?? null
+    return (user as AppUser | null) ?? null
+  } catch {
+    return null
+  }
 }
 
 export const requireUser = async () => {
