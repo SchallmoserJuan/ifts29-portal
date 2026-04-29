@@ -1,5 +1,5 @@
 import Link from 'next/link'
-
+import Image from 'next/image'
 import { PageShell } from '@/src/components/page-shell'
 
 export const dynamic = 'force-dynamic'
@@ -26,19 +26,22 @@ const excellenceCards = [
   {
     title: 'Oferta academica',
     description: 'Explora carreras tecnicas con una presentacion mas clara y accesible.',
-    href: '/carreras',
+    href: '/careers',
+    image: 'https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     cta: 'Ver carreras',
   },
   {
     title: 'Biblioteca virtual',
-    description: 'Accede a documentos, guias y material del portal segun tu rol y tus permisos.',
-    href: '/portal/biblioteca',
+    description: 'Access documents, guides and portal material based on your role and permissions.',
+    href: '/portal/library',
+    image: 'https://images.unsplash.com/photo-1585066437529-9f6a2061652b?q=80&w=1032&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     cta: 'Abrir biblioteca',
   },
   {
     title: 'Informacion institucional',
     description: 'Consulta historia, mision y vision del instituto desde una experiencia mas consistente.',
-    href: '/institucional',
+    href: '/institutional',
+    image: 'https://plus.unsplash.com/premium_photo-1682125773446-259ce64f9dd7?q=80&w=871&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     cta: 'Conocer mas',
   },
 ]
@@ -46,15 +49,18 @@ const excellenceCards = [
 const graduateStories = [
   {
     title: 'Trayectorias tecnicas',
-    description: 'Historias que muestran como la formacion tecnica se transforma en oportunidades reales.',
+    description: 'Stories that show how technical training is transformed into real opportunities.',
+    image: 'https://plus.unsplash.com/premium_photo-1664372145591-f7cc308ff5da?q=80&w=396&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
   },
   {
     title: 'Practicas y proyectos',
-    description: 'Espacios donde la cursada se conecta con experiencias concretas y colaborativas.',
+    description: 'Spaces where the course connects with concrete and collaborative experiences.',
+    image: 'https://images.unsplash.com/photo-1631624215749-b10b3dd7bca7?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
   },
   {
     title: 'Comunidad profesional',
-    description: 'Una presencia digital pensada para acompanar desde el ingreso hasta el egreso.',
+    description: 'A digital presence designed to accompany you from entry to exit.',
+    image: 'https://plus.unsplash.com/premium_photo-1661488246595-7f21bf98b7cb?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
   },
 ]
 
@@ -147,11 +153,17 @@ export default function HomePage() {
           <div className="mt-8 grid gap-6 lg:grid-cols-3">
             {excellenceCards.map((card) => (
               <article key={card.title} className="overflow-hidden rounded-xl bg-white shadow-sm">
-                <div className="flex h-56 items-center justify-center bg-slate-200">
-                  <div className="flex h-16 w-16 items-center justify-center border-4 border-white/80 text-4xl text-white/80">
-                    ×
-                  </div>
-                </div>
+ 
+                <div className="relative h-56 w-full overflow-hidden bg-slate-200">
+                      <Image 
+                        src={card.image} 
+                        alt={card.title}
+                        fill
+                        className="object-cover z-10"
+                        unoptimized 
+                      />
+                    </div>
+
                 <div className="space-y-4 p-6">
                   <h3 className="text-xl font-semibold text-slate-950">{card.title}</h3>
                   <p className="text-sm leading-7 text-slate-600">{card.description}</p>
@@ -181,10 +193,14 @@ export default function HomePage() {
           <div className="mt-8 grid gap-6 lg:grid-cols-3">
             {graduateStories.map((story) => (
               <article key={story.title} className="overflow-hidden rounded-xl bg-white text-slate-950 shadow-sm">
-                <div className="flex h-56 items-center justify-center bg-slate-200">
-                  <div className="flex h-16 w-16 items-center justify-center border-4 border-white/80 text-4xl text-white/80">
-                    ×
-                  </div>
+                <div className="relative h-56 w-full overflow-hidden bg-slate-100">
+                        <Image 
+                          src={story.image} 
+                          alt={story.title}
+                          fill
+                          className="object-cover z-10"
+                          unoptimized 
+                        />
                 </div>
                 <div className="space-y-4 p-6">
                   <h3 className="text-xl font-semibold">{story.title}</h3>
