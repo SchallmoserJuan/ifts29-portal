@@ -1,6 +1,9 @@
 import type { CollectionConfig } from 'payload'
 
 import { canDeleteContent, canManageContent, publicRead } from '@/src/access'
+ 
+//* Aquí es donde Payload gestiona las imágenes.
+
 
 export const Media: CollectionConfig = {
   slug: 'media',
