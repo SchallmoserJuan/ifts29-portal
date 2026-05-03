@@ -1,22 +1,23 @@
 'use client'
 
 import Link from 'next/link'
-import {useEffect, useRef, useState} from 'react'
-import {createPortal} from 'react-dom'
+import { useEffect, useRef, useState } from 'react'
+import { createPortal } from 'react-dom'
+import { usePathname } from 'next/navigation'
 
-type NavLink = {href: string; label: string}
+type NavLink = { href: string; label: string }
 
-export function MobileMenu({links}: {links: NavLink[]}) {
+export function MobileMenu({ links }: { links: NavLink[] }) {
   const [open, setOpen] = useState(false)
   const [mounted, setMounted] = useState(false)
   const drawerRef = useRef<HTMLDivElement>(null)
 
-  // Ensure portal target exists (client-only)
+  const pathname = usePathname()
+
   useEffect(() => {
     setMounted(true)
   }, [])
 
-  // Lock body scroll while the drawer is open
   useEffect(() => {
     if (open) {
       document.body.style.overflow = 'hidden'
@@ -28,7 +29,6 @@ export function MobileMenu({links}: {links: NavLink[]}) {
     }
   }, [open])
 
-  // Close on Escape
   useEffect(() => {
     function handleKey(e: KeyboardEvent) {
       if (e.key === 'Escape') setOpen(false)
@@ -41,7 +41,6 @@ export function MobileMenu({links}: {links: NavLink[]}) {
 
   const overlay = (
     <>
-      {/* Backdrop */}
       <div
         className={`fixed inset-0 z-[9998] bg-black/40 backdrop-blur-sm transition-opacity duration-300 ${
           open ? 'opacity-100' : 'pointer-events-none opacity-0'
@@ -50,16 +49,16 @@ export function MobileMenu({links}: {links: NavLink[]}) {
         aria-hidden="true"
       />
 
-      {/* Drawer panel */}
       <div
         ref={drawerRef}
         className={`fixed right-0 top-0 z-[9999] flex h-dvh w-[280px] max-w-[85vw] flex-col bg-white shadow-2xl transition-transform duration-300 ease-out ${
           open ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
-        {/* Drawer header */}
         <div className="flex items-center justify-between border-b border-slate-200 px-5 py-4">
-          <span className="text-sm font-bold tracking-wide text-[#0a2e57]">Menú</span>
+          <span className="text-sm font-bold tracking-wide text-[#0a2e57]">
+            Menú
+          </span>
           <button
             type="button"
             aria-label="Cerrar menú"
@@ -83,26 +82,36 @@ export function MobileMenu({links}: {links: NavLink[]}) {
           </button>
         </div>
 
-        {/* Navigation links */}
         <nav className="flex flex-1 flex-col gap-1 overflow-y-auto px-4 py-4">
-          {links.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              onClick={() => setOpen(false)}
-              className="rounded-lg px-4 py-3 text-sm font-semibold text-slate-700 transition hover:bg-[#dcecff]/60 hover:text-[#0a2e57]"
-            >
-              {link.label}
-            </Link>
-          ))}
+          {links.map((link) => {
+            const isActive = pathname.startsWith(link.href)
+
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={() => setOpen(false)}
+                className={`rounded-lg px-4 py-3 text-sm font-semibold transition ${
+                  isActive
+                    ? 'bg-[#0a2e57] text-white'
+                    : 'text-slate-700 hover:bg-[#dcecff]/60 hover:text-[#0a2e57]'
+                }`}
+              >
+                {link.label}
+              </Link>
+            )
+          })}
         </nav>
 
-        {/* Login CTA at the bottom */}
         <div className="border-t border-slate-200 px-4 py-4">
           <Link
             href="/login"
             onClick={() => setOpen(false)}
-            className="block rounded-md bg-[#0a2e57] px-5 py-3 text-center text-sm font-semibold text-white transition hover:bg-[#0d3a6b]"
+            className={`block rounded-md px-5 py-3 text-center text-sm font-semibold transition ${
+              pathname.startsWith('/login')
+                ? 'bg-[#0a2e57] text-white'
+                : 'bg-[#0a2e57] text-white hover:bg-[#0d3a6b]'
+            }`}
           >
             Ingresar
           </Link>
@@ -113,7 +122,6 @@ export function MobileMenu({links}: {links: NavLink[]}) {
 
   return (
     <>
-      {/* Hamburger button — stays in the header flow */}
       <button
         type="button"
         aria-label={open ? 'Cerrar menú' : 'Abrir menú'}
@@ -138,7 +146,6 @@ export function MobileMenu({links}: {links: NavLink[]}) {
         />
       </button>
 
-      {/* Portal: backdrop + drawer render at document.body level */}
       {mounted && createPortal(overlay, document.body)}
     </>
   )

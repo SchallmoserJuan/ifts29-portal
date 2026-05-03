@@ -3,6 +3,7 @@ import Link from 'next/link'
 import {MobileMenu} from '@/src/components/mobile-menu'
 import {SiteBrand} from '@/src/components/site-brand'
 import {getSiteSettings} from '@/src/lib/content'
+import { NavLinks } from '@/src/components/nav-links'
 
 export async function SiteHeader() {
   const settings = await getSiteSettings()
@@ -18,15 +19,7 @@ export async function SiteHeader() {
       <div className="mx-auto flex w-full max-w-[1400px] items-center justify-between gap-6 px-4 py-4 sm:px-6 lg:px-10">
         <SiteBrand dark />
         <nav className="hidden items-center gap-3 lg:flex">
-          {links.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="rounded-md bg-[#0a2e57] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#0d3a6b]"
-            >
-              {link.label}
-            </Link>
-          ))}
+          <NavLinks links={links} />
           <Link
             href="/login"
             className="rounded-md border border-[#0a2e57] px-5 py-3 text-sm font-semibold text-[#0a2e57] transition hover:bg-[#0a2e57] hover:text-white"
