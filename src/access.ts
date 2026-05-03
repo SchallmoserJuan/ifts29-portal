@@ -14,7 +14,7 @@ export const canManageUsers: Access = ({ req }) => isAdmin(req.user as Partial<A
 
 export const canManageContent: Access = ({ req }) => isStaff(req.user as Partial<AppUser> | null)
 
-export const canDeleteContent: Access = ({ req }) => isAdmin(req.user as Partial<AppUser> | null)
+export const canDeleteContent: Access = ({ req }) => isStaff(req.user as Partial<AppUser> | null)
 
 export const publicRead: Access = () => true
 
