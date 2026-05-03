@@ -49,3 +49,22 @@ DATABASE_URL=file:./ifts29.db
 3. Ejecutar `npm run dev`
 4. Entrar a `/admin`
 5. Crear el primer usuario administrador
+
+---
+
+## Diagramas
+
+La documentación visual del sistema se encuentra en [`documents/Diagramas.pdf`](documents/Diagramas.pdf).
+
+| Diagrama | Descripción |
+|---------|------------|
+| 🎯 Casos de uso | Interacciones entre actores y el sistema |
+| 📦 Clases | Estructura de objetos y relaciones |
+| ↻ Secuencia | Flujo de mensajes entre componentes |
+| 🔄 Actividades | Procesos y flujos de trabajo |
+| 📊 Estados | Transiciones de estado de entidades |
+| 🧩 Componentes | Arquitectura modular del sistema |
+| ☁️ Despliegue | Infrastructura y distribución |
+| 🔗 Entidad-Relación | Modelo de datos y relaciones |
+
+Para visualizar los diagramas, abrir el archivo PDF con cualquier visor de documentos.
