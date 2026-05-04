@@ -1,8 +1,8 @@
 import { cache } from 'react'
 
-import { defaultCareers, defaultInstitutional, defaultNews, defaultSettings } from '@/src/data/defaults'
+import { defaultCareers, defaultCompanies, defaultEvents, defaultInstitutional, defaultNews, defaultProjects, defaultSettings } from '@/src/data/defaults'
 import { getPayloadClient } from '@/src/lib/payload'
-import type { CareerItem, DocumentItem, InstitutionalContentData, NewsItem, SiteSettingsData } from '@/src/types/content'
+import type { CareerItem, CompanyItem, DocumentItem, EventItem, InstitutionalContentData, NewsItem, ProjectItem, SiteSettingsData } from '@/src/types/content'
 import type { AppUser } from '@/src/types/app'
 
 export const getSiteSettings = cache(async () => {
@@ -129,5 +129,56 @@ export const getLibraryDocuments = cache(async (user: AppUser) => {
     return result.docs as DocumentItem[]
   } catch {
     return [] as DocumentItem[]
+  }
+})
+
+export const getEventsList = cache(async () => {
+  const payload = await getPayloadClient()
+
+  try {
+    const result = await payload.find({
+      collection: 'events',
+      depth: 1,
+      limit: 10,
+      sort: 'date',
+    })
+
+    return (result.docs.length > 0 ? result.docs : defaultEvents) as EventItem[]
+  } catch {
+    return defaultEvents
+  }
+})
+
+export const getProjectsList = cache(async () => {
+  const payload = await getPayloadClient()
+
+  try {
+    const result = await payload.find({
+      collection: 'projects',
+      depth: 1,
+      limit: 10,
+      sort: '-publishedAt',
+    })
+
+    return (result.docs.length > 0 ? result.docs : defaultProjects) as ProjectItem[]
+  } catch {
+    return defaultProjects
+  }
+})
+
+export const getCompaniesList = cache(async () => {
+  const payload = await getPayloadClient()
+
+  try {
+    const result = await payload.find({
+      collection: 'companies',
+      depth: 1,
+      limit: 10,
+      sort: 'name',
+    })
+
+    return (result.docs.length > 0 ? result.docs : defaultCompanies) as CompanyItem[]
+  } catch {
+    return defaultCompanies
   }
 })

@@ -37,41 +37,41 @@ export function NewsCard({ news }: { news: NewsItem }) {
 
   return (
     <article className="news-card group flex flex-col overflow-hidden cursor-pointer">
-      <div className="relative aspect-[3/2] w-full overflow-hidden bg-slate-200">
-        <Image
-          src={imageUrl}
-          alt={news.title}
-          fill
-          className="object-cover"
-          unoptimized
-        />
-        <div className="absolute left-3 top-3 flex items-center gap-2 rounded-md bg-[#f7ee66] px-2.5 py-1.5 text-xs font-medium text-[#002649] backdrop-blur-sm">
-          <time>{formatDate(news.publishedAt)}</time>
-          <span className="text-[#002649]">•</span>
-          <span>{readTime}</span>
+      <Link href={`/noticias/${news.slug}`} className="flex flex-col h-full">
+        <div className="relative aspect-[3/2] w-full overflow-hidden bg-slate-200 rounded-lg">
+          <Image
+            src={imageUrl}
+            alt={news.title}
+            fill
+            className="object-cover"
+            unoptimized
+          />
+          <div className="absolute left-3 top-3 flex items-center gap-2 rounded-md bg-[#f7ee66] px-2.5 py-1.5 text-xs font-medium text-[#002649] backdrop-blur-sm">
+            <time>{formatDate(news.publishedAt)}</time>
+            <span className="text-[#002649]">•</span>
+            <span>{readTime}</span>
+          </div>
         </div>
-      </div>
 
-      <div className="flex flex-1 flex-col pt-4">
-        <Link href={`/noticias/${news.slug}`}>
+        <div className="flex flex-1 flex-col pt-4">
           <h3 className="text-[27px] leading-[33px] font-medium text-[#1e3e8a]">
             <span className="news-card-underline">{news.title}</span>
           </h3>
-        </Link>
 
-        <div className="mt-3 flex flex-wrap gap-2">
-          {(news.tags ? news.tags.split(';') : [categoryLabels[news.category] || news.category])
-            .slice(0, 3)
-            .map((tag, index) => (
-              <span
-                key={index}
-                className="rounded-full bg-[#214ca0]/10 px-3 py-1 text-xs font-medium text-[#214ca0]"
-              >
-                {typeof tag === 'string' ? tag.trim() : tag}
-              </span>
-            ))}
+          <div className="mt-3 flex flex-wrap gap-2">
+            {(news.tags ? news.tags.split(';') : [categoryLabels[news.category] || news.category])
+              .slice(0, 3)
+              .map((tag, index) => (
+                <span
+                  key={index}
+                  className="rounded-full bg-[#214ca0]/10 px-3 py-1 text-xs font-medium text-[#214ca0]"
+                >
+                  {typeof tag === 'string' ? tag.trim() : tag}
+                </span>
+              ))}
+          </div>
         </div>
-      </div>
+      </Link>
     </article>
   )
 }
