@@ -76,6 +76,20 @@ button {
   background-size: 100% 2px;
 }
 
+.news-card-underline-dark {
+  text-decoration: none;
+  background-image: linear-gradient(white, white);
+  background-position: 0% 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 2px;
+  transition: background-size 300ms ease;
+  display: inline;
+}
+
+.news-card-underline-dark:hover {
+  background-size: 100% 2px;
+}
+
 .rich-text-content h1,
 .rich-text-content h2,
 .rich-text-content h3,

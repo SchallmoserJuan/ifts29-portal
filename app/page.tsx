@@ -179,7 +179,7 @@ export default async function HomePage() {
 
           <div className="mt-8 grid gap-6 lg:grid-cols-3">
             {latestNews.map((item) => (
-              <NewsCard key={item.id} news={item} />
+              <NewsCard key={item.id} news={item} variant="dark" />
             ))}
           </div>
         </div>

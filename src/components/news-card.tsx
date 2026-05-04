@@ -31,9 +31,19 @@ function calculateReadTime(content: unknown): string {
   return `${minutes} min`
 }
 
-export function NewsCard({ news }: { news: NewsItem }) {
+interface NewsCardProps {
+  news: NewsItem
+  variant?: 'default' | 'dark'
+}
+
+export function NewsCard({ news, variant = 'default' }: NewsCardProps) {
   const imageUrl = news.heroImage?.url || FALLBACK_IMAGE
   const readTime = calculateReadTime(news.content)
+
+  const isDark = variant === 'dark'
+  const titleColor = isDark ? 'text-white' : 'text-[#1e3e8a]'
+  const tagBg = isDark ? 'bg-white/10' : 'bg-[#214ca0]/10'
+  const tagColor = isDark ? 'text-white/80' : 'text-[#214ca0]'
 
   return (
     <article className="news-card group flex flex-col overflow-hidden cursor-pointer">
@@ -54,8 +64,8 @@ export function NewsCard({ news }: { news: NewsItem }) {
         </div>
 
         <div className="flex flex-1 flex-col pt-4">
-          <h3 className="text-[27px] leading-[33px] font-medium text-[#1e3e8a]">
-            <span className="news-card-underline">{news.title}</span>
+          <h3 className={`text-[27px] leading-[33px] font-medium ${titleColor}`}>
+            <span className={isDark ? 'news-card-underline-dark' : 'news-card-underline'}>{news.title}</span>
           </h3>
 
           <div className="mt-3 flex flex-wrap gap-2">
@@ -64,7 +74,7 @@ export function NewsCard({ news }: { news: NewsItem }) {
               .map((tag, index) => (
                 <span
                   key={index}
-                  className="rounded-full bg-[#214ca0]/10 px-3 py-1 text-xs font-medium text-[#214ca0]"
+                  className={`rounded-full px-3 py-1 text-xs font-medium ${tagBg} ${tagColor}`}
                 >
                   {typeof tag === 'string' ? tag.trim() : tag}
                 </span>
