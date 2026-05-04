@@ -71,6 +71,14 @@ export const News: CollectionConfig = {
       defaultValue: false,
     },
     {
+      name: 'tags',
+      label: 'Tags',
+      type: 'text',
+      admin: {
+        description: 'Separados por punto y coma (;)',
+      },
+    },
+    {
       name: 'heroImage',
       label: 'Imagen principal',
       type: 'relationship',

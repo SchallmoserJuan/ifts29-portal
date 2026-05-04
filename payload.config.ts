@@ -8,9 +8,12 @@ import { buildConfig } from 'payload'
 import sharp from 'sharp'
 
 import { Careers } from './src/collections/Careers'
+import { Companies } from './src/collections/Companies'
 import { Documents } from './src/collections/Documents'
+import { Events } from './src/collections/Events'
 import { Media } from './src/collections/Media'
 import { News } from './src/collections/News'
+import { Projects } from './src/collections/Projects'
 import { Users } from './src/collections/Users'
 import { InstitutionalContent } from './src/globals/InstitutionalContent'
 import { SiteSettings } from './src/globals/SiteSettings'
@@ -28,7 +31,7 @@ export default buildConfig({
       titleSuffix: ' - IFTS 29',
     },
   },
-  collections: [Users, Media, Careers, News, Documents],
+  collections: [Users, Media, Careers, News, Documents, Events, Projects, Companies],
   globals: [SiteSettings, InstitutionalContent],
   plugins: [
     vercelBlobStorage({

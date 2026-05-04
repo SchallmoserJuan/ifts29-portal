@@ -18,6 +18,8 @@
     "ifts29"
   ],
   "dependencies": {
+    "@fontsource/dm-sans": "^5.2.8",
+    "@fontsource/playfair-display": "^5.2.8",
     "@payloadcms/db-sqlite": "^3.84.0",
     "@payloadcms/next": "^3.84.0",
     "@payloadcms/richtext-lexical": "^3.84.0",

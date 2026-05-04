@@ -3,9 +3,8 @@
 :root {
   --background: #f8f7f4;
   --foreground: #0f172a;
-}
-
-@theme inline {
+  --font-body: 'DM Sans', sans-serif;
+  --font-heading: 'Playfair Display', serif;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
 }
@@ -22,7 +21,16 @@ html {
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: var(--font-body);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
 }
 
 a {
@@ -34,4 +42,149 @@ textarea,
 select,
 button {
   color-scheme: light;
+}
+
+.news-card-underline {
+  text-decoration: none;
+  background-image: linear-gradient(#1e3e8a, #1e3e8a);
+  background-position: 0% 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 2px;
+  transition: background-size 300ms ease;
+  display: inline;
+}
+
+.news-card:hover .news-card-underline {
+  background-size: 100% 2px;
+}
+
+.news-card-underline:hover {
+  background-size: 100% 2px;
+}
+
+.tag-underline {
+  text-decoration: none;
+  background-image: linear-gradient(#002649, #002649);
+  background-position: 0% 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 2px;
+  transition: background-size 300ms ease;
+  display: inline;
+}
+
+.tag-underline:hover {
+  background-size: 100% 2px;
+}
+
+.news-card-underline-dark {
+  text-decoration: none;
+  background-image: linear-gradient(white, white);
+  background-position: 0% 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 2px;
+  transition: background-size 300ms ease;
+  display: inline;
+}
+
+.news-card-underline-dark:hover {
+  background-size: 100% 2px;
+}
+
+.news-card:hover .news-card-underline-dark {
+  background-size: 100% 2px;
+}
+
+.rich-text-content h1,
+.rich-text-content h2,
+.rich-text-content h3,
+.rich-text-content h4,
+.rich-text-content h5,
+.rich-text-content h6 {
+  font-family: "Playfair Display", serif;
+  font-weight: 600;
+  color: #072c57;
+  margin-top: 24px;
+  margin-bottom: 12px;
+}
+
+.rich-text-content h1 { font-size: 36px; }
+.rich-text-content h2 { font-size: 28px; }
+.rich-text-content h3 { font-size: 24px; }
+.rich-text-content h4 { font-size: 20px; }
+.rich-text-content h5 { font-size: 18px; }
+.rich-text-content h6 { font-size: 16px; }
+
+.rich-text-content blockquote {
+  border-left: 4px solid #072c57;
+  padding-left: 20px;
+  margin: 20px 0;
+  font-style: italic;
+  background-color: #f8f9fa;
+  padding: 16px 20px;
+  color: #61615f;
+}
+
+.rich-text-content code {
+  background-color: #f3f4f6;
+  padding: 2px 6px;
+  color: #b53a3a;
+  border-radius: 4px;
+  font-family: "Fira Code", "Consolas", monospace;
+  font-size: 0.9em;
+}
+
+.rich-text-content pre {
+  background-color: #f3f4f6;
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin: 20px 0;
+  font-family: "Fira Code", "Consolas", monospace;
+  font-size: 16px;
+}
+
+.rich-text-content pre code {
+  background: none;
+  padding: 0;
+  font-size: inherit;
+}
+
+.rich-text-content ul {
+  list-style-type: disc;
+  padding-left: 24px;
+  margin: 16px 0;
+}
+
+.rich-text-content ul li {
+  margin-bottom: 8px;
+  padding-left: 8px;
+}
+
+.rich-text-content ul li::marker {
+  color: #072c57;
+}
+
+.rich-text-content ol {
+  list-style-type: decimal;
+  padding-left: 24px;
+  margin: 16px 0;
+}
+
+.rich-text-content ol li {
+  margin-bottom: 8px;
+  padding-left: 8px;
+}
+
+.rich-text-content ol li::marker {
+  color: #072c57;
+  font-weight: 600;
+}
+
+.rich-text-content p {
+  margin-bottom: 16px;
+}
+
+.rich-text-content a {
+  color: #214ca0;
+  text-decoration: underline;
 }
