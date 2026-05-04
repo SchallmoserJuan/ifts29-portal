@@ -26,7 +26,7 @@ export function EventsCard({ event }: { event: EventItem }) {
   const { day, month, time } = formatEventDate(event.date)
 
   return (
-    <article className="group flex flex-col overflow-hidden cursor-pointer">
+    <article className="news-card group flex flex-col overflow-hidden cursor-pointer">
       <Link href={event.link || '#'} className="flex flex-col h-full">
         <div className="relative aspect-[3/2] w-full overflow-hidden bg-slate-200">
           <Image

@@ -34,7 +34,7 @@ export function ProjectsSection({ projects }: { projects: ProjectItem[] }) {
             const tags = item.tags ? item.tags.split(';').slice(0, 3) : [categoryLabels[item.category] || item.category]
 
             return (
-              <article key={item.id} className="group flex flex-col overflow-hidden cursor-pointer">
+              <article key={item.id} className="news-card group flex flex-col overflow-hidden cursor-pointer">
                 <Link href={`/proyectos/${item.slug}`} className="flex flex-col h-full">
                   <div className="relative aspect-[16/10] w-full overflow-hidden bg-slate-200">
                     <Image
