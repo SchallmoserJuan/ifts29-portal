@@ -1,6 +1,9 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { PageShell } from '@/src/components/page-shell'
+import { NewsCard } from '@/src/components/news-card'
+import { getNewsList } from '@/src/lib/content'
+import type { NewsItem } from '@/src/types/content'
 
 export const dynamic = 'force-dynamic'
 
@@ -46,25 +49,9 @@ const excellenceCards = [
   },
 ]
 
-const graduateStories = [
-  {
-    title: 'Trayectorias tecnicas',
-    description: 'Stories that show how technical training is transformed into real opportunities.',
-    image: 'https://plus.unsplash.com/premium_photo-1664372145591-f7cc308ff5da?q=80&w=396&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  },
-  {
-    title: 'Practicas y proyectos',
-    description: 'Spaces where the course connects with concrete and collaborative experiences.',
-    image: 'https://images.unsplash.com/photo-1631624215749-b10b3dd7bca7?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  },
-  {
-    title: 'Comunidad profesional',
-    description: 'A digital presence designed to accompany you from entry to exit.',
-    image: 'https://plus.unsplash.com/premium_photo-1661488246595-7f21bf98b7cb?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  },
-]
-
-export default function HomePage() {
+export default async function HomePage() {
+  const news = await getNewsList()
+  const latestNews = news.slice(0, 3) as NewsItem[]
   return (
     <PageShell>
       <section
@@ -181,7 +168,7 @@ export default function HomePage() {
       <section className="bg-[#072c57] py-16 text-white sm:py-20">
         <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-10">
           <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
-            <h2 className="text-4xl font-medium">Historias de graduados</h2>
+            <h2 className="text-4xl font-medium">Ultimas noticias</h2>
             <Link
               href="/noticias"
               className="inline-flex items-center justify-center rounded-md border border-[#28c2f3] px-6 py-3 text-sm font-medium text-[#28c2f3] transition hover:bg-[#28c2f3] hover:text-[#072c57]"
@@ -191,26 +178,8 @@ export default function HomePage() {
           </div>
 
           <div className="mt-8 grid gap-6 lg:grid-cols-3">
-            {graduateStories.map((story) => (
-              <article key={story.title} className="overflow-hidden rounded-xl bg-white text-slate-950 shadow-sm">
-                <div className="relative h-56 w-full overflow-hidden bg-slate-100">
-                        <Image 
-                          src={story.image} 
-                          alt={story.title}
-                          fill
-                          className="object-cover z-10"
-                          unoptimized 
-                        />
-                </div>
-                <div className="space-y-4 p-6">
-                  <h3 className="text-xl font-semibold">{story.title}</h3>
-                  <p className="text-sm leading-7 text-slate-600">{story.description}</p>
-                  <Link href="/noticias" className="inline-flex items-center gap-3 text-base text-slate-700">
-                    More Info
-                    <span aria-hidden="true">→</span>
-                  </Link>
-                </div>
-              </article>
+            {latestNews.map((item) => (
+              <NewsCard key={item.id} news={item} />
             ))}
           </div>
         </div>

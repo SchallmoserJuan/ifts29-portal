@@ -31,6 +31,12 @@ export type NewsItem = {
   category: string
   publishedAt: string
   content?: unknown
+  featured?: boolean
+  tags?: string
+  heroImage?: {
+    url: string
+    alt?: string
+  }
 }
 
 export type DocumentItem = {
