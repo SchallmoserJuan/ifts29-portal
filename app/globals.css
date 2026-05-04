@@ -85,8 +85,8 @@ button {
   font-family: "Playfair Display", serif;
   font-weight: 600;
   color: #072c57;
-  margin-top: 32px;
-  margin-bottom: 16px;
+  margin-top: 24px;
+  margin-bottom: 12px;
 }
 
 .rich-text-content h1 { font-size: 36px; }
