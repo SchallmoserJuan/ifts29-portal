@@ -6,7 +6,7 @@ export function CompaniesSection({ companies }: { companies: CompanyItem[] }) {
   if (companies.length === 0) return null
 
   return (
-    <section className="bg-zinc-50 py-16 sm:py-20">
+    <section className="bg-[#dfecf9] py-16 sm:py-20">
       <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-10">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <h2 className="text-[53px] leading-[64px] font-medium text-[#1e3e8a]">Convenios con empresas</h2>
