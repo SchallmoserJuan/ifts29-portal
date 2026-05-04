@@ -42,11 +42,11 @@ export function NewsHero({ news }: { news: NewsItem }) {
             <time className="text-sm text-slate-200">{formatDate(news.publishedAt)}</time>
           </div>
 
-          <h1 className="mt-6 text-4xl font-semibold tracking-tight sm:text-5xl lg:text-6xl">
+          <h1 className="mt-6 text-[53px] leading-[64px] font-medium text-white">
             {news.title}
           </h1>
 
-          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-slate-100">
+          <p className="mt-6 max-w-2xl text-[22px] leading-[35px] font-normal text-white">
             {news.summary}
           </p>
 

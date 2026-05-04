@@ -6,10 +6,10 @@ export function NewsSection({ news }: { news: NewsItem[] }) {
   if (news.length === 0) return null
 
   return (
-    <section className="bg-slate-50 py-16 sm:py-20">
+    <section className="bg-white py-16 sm:py-20">
       <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-10">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-          <h2 className="text-3xl font-semibold text-slate-950">Ultimas noticias e investigaciones</h2>
+          <h2 className="text-[53px] leading-[64px] font-medium text-[#1e3e8a]">Ultimas noticias e investigaciones</h2>
           <Link
             href="/noticias"
             className="inline-flex items-center gap-2 text-sm font-semibold text-[#214ca0] transition hover:text-[#2a5fc7]"

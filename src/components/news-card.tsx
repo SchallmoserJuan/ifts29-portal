@@ -1,3 +1,5 @@
+'use client'
+
 import Link from 'next/link'
 import Image from 'next/image'
 import type { NewsItem } from '@/src/types/content'
@@ -34,40 +36,40 @@ export function NewsCard({ news }: { news: NewsItem }) {
   const readTime = calculateReadTime(news.content)
 
   return (
-    <article className="group flex flex-col overflow-hidden rounded-xl bg-white shadow-sm transition-shadow hover:shadow-md">
-      <div className="relative aspect-[16/10] w-full overflow-hidden bg-slate-200">
+    <article className="news-card group flex flex-col overflow-hidden cursor-pointer">
+      <div className="relative aspect-[3/2] w-full overflow-hidden bg-slate-200">
         <Image
           src={imageUrl}
           alt={news.title}
           fill
-          className="object-cover transition-transform duration-300 group-hover:scale-105"
+          className="object-cover"
           unoptimized
         />
-        <div className="absolute left-3 top-3 flex items-center gap-2 rounded-md bg-[#072c57]/90 px-2.5 py-1.5 text-xs font-medium text-white backdrop-blur-sm">
+        <div className="absolute left-3 top-3 flex items-center gap-2 rounded-md bg-[#f7ee66] px-2.5 py-1.5 text-xs font-medium text-[#002649] backdrop-blur-sm">
           <time>{formatDate(news.publishedAt)}</time>
-          <span className="text-slate-400">•</span>
+          <span className="text-[#002649]">•</span>
           <span>{readTime}</span>
         </div>
       </div>
 
-      <div className="flex flex-1 flex-col p-5">
+      <div className="flex flex-1 flex-col pt-4">
         <Link href={`/noticias/${news.slug}`}>
-          <h3 className="text-lg font-semibold text-slate-950 transition-colors group-hover:text-[#214ca0]">
-            {news.title}
+          <h3 className="text-[27px] leading-[33px] font-medium text-[#1e3e8a]">
+            <span className="news-card-underline">{news.title}</span>
           </h3>
         </Link>
 
         <div className="mt-3 flex flex-wrap gap-2">
-          {news.tags
-            ? news.tags.split(';').map((tag, index) => (
-                <span
-                  key={index}
-                  className="rounded-full bg-[#214ca0]/10 px-3 py-1 text-xs font-medium text-[#214ca0]"
-                >
-                  {tag.trim()}
-                </span>
-              ))
-            : categoryLabels[news.category] || news.category}
+          {(news.tags ? news.tags.split(';') : [categoryLabels[news.category] || news.category])
+            .slice(0, 3)
+            .map((tag, index) => (
+              <span
+                key={index}
+                className="rounded-full bg-[#214ca0]/10 px-3 py-1 text-xs font-medium text-[#214ca0]"
+              >
+                {typeof tag === 'string' ? tag.trim() : tag}
+              </span>
+            ))}
         </div>
       </div>
     </article>
