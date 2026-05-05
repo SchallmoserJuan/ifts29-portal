@@ -1,3 +1,9 @@
+/*
+ * Componente SiteBrand
+ * Refactorizado para el Issue #47: Se elimina el bloque de texto 
+ * para dejar únicamente el logo visual.
+ */
+
 import Link from 'next/link'
 
 export function SiteBrand({ dark = false }: { dark?: boolean }) {
@@ -17,10 +23,6 @@ export function SiteBrand({ dark = false }: { dark?: boolean }) {
             29
           </span>
         </span>
-      </div>
-      <div className={dark ? 'text-slate-950' : 'text-white'}>
-        <p className="text-lg font-semibold tracking-tight">IFTS N° 29</p>
-        <p className={`text-xs ${dark ? 'text-slate-500' : 'text-slate-200'}`}>Instituto de Formacion Tecnica</p>
       </div>
     </Link>
   )
