@@ -20,12 +20,9 @@ export function NavbarClient({ children }: NavbarClientProps) {
   const pathname = usePathname()
   const isHome = pathname === '/'
 
+  // Mantenemos la lógica de transparencia para TODO el sitio para que el Navbar se integre con el color del header/hero de cada sección
   return (
-    <header className={`fixed top-0 z-50 w-full transition-all duration-300 ${
-      isHome 
-        ? 'bg-transparent border-none' 
-        : 'bg-[#002147] border-b border-slate-200/20'
-    }`}>
+    <header className="fixed top-0 z-50 w-full bg-transparent border-none transition-all duration-300">
       {children}
     </header>
   )
