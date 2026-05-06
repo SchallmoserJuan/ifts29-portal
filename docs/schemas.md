@@ -1,19 +1,19 @@
-# 📚 Documentación de Schemas - PayloadCMS
+#  Documentación de Schemas - PayloadCMS
 
-## 📌 Descripción
+##  Descripción
 
 Este documento describe los tipos de contenido definidos en PayloadCMS, incluyendo collections y globals.  
 Se detallan los campos, tipos, validaciones, relaciones y reglas de acceso.
 
 ---
 
-# 🧩 Collections
+#  Collections
 
-## 👤 Users
+##  Users
 
 Colección de usuarios autenticados del sistema con control de acceso basado en roles.
 
-### 📌 Configuración general
+###  Configuración general
 
 - **Slug:** `users`
 - **Autenticación:** habilitada (`auth`)
@@ -22,7 +22,7 @@ Colección de usuarios autenticados del sistema con control de acceso basado en 
 
 ---
 
-### 🔐 Autenticación
+###  Autenticación
 
 | Configuración        | Valor |
 |---------------------|------|
@@ -32,7 +32,7 @@ Colección de usuarios autenticados del sistema con control de acceso basado en 
 
 ---
 
-### 🔑 Control de acceso
+###  Control de acceso
 
 | Acción   | Regla |
 |----------|------|
@@ -45,7 +45,7 @@ Colección de usuarios autenticados del sistema con control de acceso basado en 
 
 ---
 
-### 📄 Campos
+###  Campos
 
 | Campo      | Tipo          | Requerido | Descripción |
 |------------|--------------|----------|-------------|
@@ -57,7 +57,7 @@ Colección de usuarios autenticados del sistema con control de acceso basado en 
 
 ---
 
-### 🎯 Opciones de `role`
+###  Opciones de `role`
 
 - `admin` → Administrador  
 - `teacher` → Profesor  
@@ -65,21 +65,21 @@ Colección de usuarios autenticados del sistema con control de acceso basado en 
 
 ---
 
-### 🧠 Lógica de interfaz (Admin UI)
+###  Lógica de interfaz (Admin UI)
 
 El campo `career` solo se muestra cuando el rol es `student`:
 
 ```ts
 condition: (_, siblingData) => siblingData?.role === 'student'
 
-🔗 Relaciones
+ Relaciones
 career → Careers (muchos a uno)
-⚠️ Validaciones
+ Validaciones
 firstName obligatorio
 lastName obligatorio
 role obligatorio
 email único (gestionado por Payload)
-🧠 Notas técnicas
+ Notas técnicas
 El campo email es gestionado automáticamente por el sistema de autenticación de Payload.
 Se implementa control de acceso granular mediante funciones externas.
 Se aplica seguridad adicional con limitación de intentos de login.
