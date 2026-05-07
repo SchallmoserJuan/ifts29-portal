@@ -19,6 +19,7 @@
     "ifts29"
   ],
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "@fontsource/dm-sans": "^5.2.8",
     "@fontsource/playfair-display": "^5.2.8",
     "@payloadcms/db-sqlite": "^3.84.0",
