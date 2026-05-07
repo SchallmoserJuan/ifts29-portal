@@ -42,7 +42,7 @@ export async function SiteHeader() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="px-3 py-1 text-sm font-semibold text-white transition hover:text-slate-300"
+                className="px-3 py-1 text-sm font-semibold text-white navbar-underline"
               >
                 {link.label}
               </Link>
@@ -53,12 +53,12 @@ export async function SiteHeader() {
           <div className="hidden lg:flex items-center gap-2 bg-[#002147] px-4 py-1.5 rounded-sm shadow-md">
             <Link
               href="/login"
-              className="px-3 py-1 text-sm font-semibold text-white border-r border-white/20 transition hover:text-slate-300"
+              className="px-3 py-1 text-sm font-semibold text-white border-r border-white/20 navbar-underline"
             >
               Login
             </Link>
             
-            <button className="flex items-center gap-2 px-3 py-1 text-sm font-semibold text-white transition hover:text-slate-300">
+            <button className="flex items-center gap-1 px-2 py-1 text-sm font-semibold text-white navbar-underline-inline whitespace-nowrap">
               <span>Menu</span>
               <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
