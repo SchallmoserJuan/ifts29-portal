@@ -7,16 +7,19 @@ export async function GET() {
     const user = await getCurrentUser()
 
     if (!user) {
-      return NextResponse.json({ authenticated: false })
+      return NextResponse.json({ user: null })
     }
 
     return NextResponse.json({
-      authenticated: true,
-      role: user.role,
-      firstName: user.firstName,
-      lastName: user.lastName,
+      user: {
+        id: user.id,
+        email: user.email,
+        role: user.role,
+        firstName: user.firstName,
+        lastName: user.lastName,
+      },
     })
   } catch {
-    return NextResponse.json({ authenticated: false })
+    return NextResponse.json({ user: null })
   }
 }

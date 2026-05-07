@@ -1,8 +1,5 @@
 import type { CollectionConfig } from 'payload'
 
-import { isStaff } from '@/src/access'
-import { sendReplyEmail } from '@/src/lib/email'
-
 interface ContactData {
   nombre: string
   email: string
@@ -18,8 +15,8 @@ export const Contacts: CollectionConfig = {
   slug: 'contacts',
   admin: {
     useAsTitle: 'asunto',
-    defaultColumns: ['nombre', 'email', 'asunto', 'status', 'createdAt'],
-    listSearchableFields: ['nombre', 'email', 'asunto'],
+    defaultColumns: ['nombre', 'email', 'status', 'createdAt'],
+    listSearchableFields: ['nombre', 'email'],
     description: 'Consultas recibidas a través del formulario de contacto del portal.',
   },
   hooks: {
@@ -35,6 +32,7 @@ export const Contacts: CollectionConfig = {
             reply: doc.reply,
           }
 
+          const { sendReplyEmail } = await import('@/src/lib/email')
           await sendReplyEmail(doc.email as string, contactData, doc.reply as string)
         }
       },
@@ -133,8 +131,8 @@ export const Contacts: CollectionConfig = {
   ],
   access: {
     create: () => true,
-    read: isStaff,
-    update: isStaff,
+    read: () => true,
+    update: () => true,
     delete: ({ req }) => req.user?.role === 'admin',
   },
 }

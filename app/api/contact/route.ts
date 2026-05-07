@@ -1,58 +1,67 @@
-// This path will receive the POST, validate that the data does not arrive empty and connect with the email service.-
+import { NextResponse } from 'next/server'
 
-// Acá es donde aplicamos el manejo de errores para que, si el servicio de mail se cae, el sitio no tire un error 500, sino que le avise al usuario que el mensaje no se pudo enviar, pero que el sitio sigue funcionando.-
+import { getPayloadClient } from '@/src/lib/payload'
 
-import { NextResponse } from 'next/server';
-
-/**
- * API ROUTE: /api/contact
- * Este archivo maneja la lógica de servidor para el procesamiento de mensajes.
- * Implementamos el método POST para recibir de forma segura los datos del formulario.
- */
-export async function POST(request: Request) {
+export async function POST(req: Request) {
   try {
-    // 1. Recepción de datos:
-    // Convertimos el cuerpo de la petición (ReadableStream) a un objeto JSON usable.
-    const body = await request.json();
-    const { nombre, email, asunto, mensaje } = body;
+    const body = await req.json()
+    const { nombre, email, asunto, mensaje } = body
 
-    // 2. Validación Server-Side:
-    // Aunque el frontend valida, el backend siempre debe verificar que los datos existan.
-    // Si falta algún campo, devolvemos un error 400 (Bad Request).
     if (!nombre || !email || !asunto || !mensaje) {
       return NextResponse.json(
-        { error: 'Validación fallida: Todos los campos son requeridos.' },
+        { error: 'Faltan campos requeridos' },
         { status: 400 }
-      );
+      )
     }
 
-    // 3. Simulación de Integración con Servicio de Email:
-    // Aquí es donde se conectaría con servicios como Resend, SendGrid o Nodemailer.
-    // Usamos variables de entorno (process.env) para mantener las credenciales seguras.
-    console.log(`[MAIL SERVER] Nuevo mensaje de: ${nombre} <${email}>`);
-    console.log(`[MAIL SERVER] Asunto: ${asunto}`);
+    console.log('[contact API] Creating contact:', { nombre, email, asunto })
 
-    /** 
-     * El manejo de error se gestiona mediante el bloque try/catch.
-     * Si la conexión con el servicio de mail fallara, el flujo saltaría al catch
-     * impidiendo que la aplicación colapse.
-     */
+    const payload = await getPayloadClient()
 
-    // 4. Respuesta de Éxito:
-    // Retornamos un JSON con código 200 para avisar al frontend que la operación fue exitosa.
-    return NextResponse.json(
-      { message: '¡Consulta recibida con éxito!' },
-      { status: 200 }
-    );
+    let contact
+    try {
+      contact = await payload.create({
+        collection: 'contacts',
+        data: {
+          nombre,
+          email,
+          asunto,
+          mensaje,
+          status: 'new',
+        },
+      })
+      console.log('[contact API] Contact created:', contact.id)
+    } catch (contactError) {
+      console.error('[contact API] Error creating contact:', contactError)
+      return NextResponse.json(
+        { error: 'Error al crear el contacto', detail: String(contactError) },
+        { status: 500 }
+      )
+    }
 
+    const truncatedMessage = mensaje.length > 100 ? mensaje.substring(0, 100) + '...' : mensaje
+
+    try {
+      const notification = await payload.create({
+        collection: 'notifications',
+        data: {
+          type: 'contact_received',
+          title: `Nuevo contacto: ${asunto}`,
+          message: truncatedMessage,
+          relatedContact: contact.id,
+        },
+      })
+      console.log('[contact API] Notification created:', notification.id)
+    } catch (notifyError) {
+      console.error('[contact API] Error creating notification:', notifyError)
+    }
+
+    return NextResponse.json({ success: true, contactId: contact.id })
   } catch (error) {
-    // 5. Gestión de Errores Críticos:
-    // Capturamos cualquier fallo inesperado y devolvemos un código 500.
-    console.error('ERROR_CONTACT_API:', error);
-    
+    console.error('[contact API] Unexpected error:', error)
     return NextResponse.json(
-      { error: 'Lo sentimos, el servicio de mensajería no está disponible temporalmente.' },
+      { error: 'Error al crear el contacto' },
       { status: 500 }
-    );
+    )
   }
 }
