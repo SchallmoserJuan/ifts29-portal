@@ -4,7 +4,7 @@ import { PageShell } from '@/src/components/page-shell'
 import { NewsCard } from '@/src/components/news-card'
 import { getNewsList } from '@/src/lib/content'
 import type { NewsItem } from '@/src/types/content'
-
+import { HomeHero } from '@/src/components/home-hero'
 export const dynamic = 'force-dynamic'
 
 const communityCards = [
@@ -54,17 +54,12 @@ export default async function HomePage() {
   const latestNews = news.slice(0, 3) as NewsItem[]
   return (
     <PageShell>
-      <section
-        className="relative isolate overflow-hidden bg-slate-950 text-white"
-        style={{
-          backgroundImage:
-            "linear-gradient(180deg, rgba(4,34,68,0.30) 0%, rgba(4,34,68,0.55) 54%, rgba(4,34,68,0.78) 100%), url('https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=1800&q=80')",
-          backgroundPosition: 'center',
-          backgroundSize: 'cover',
-        }}
-      >
+      <HomeHero>
         <div className="absolute inset-0 bg-gradient-to-b from-sky-100/25 via-transparent to-slate-950/35" />
-        <div className="relative mx-auto flex min-h-[760px] w-full max-w-[1400px] flex-col px-4 pb-12 pt-20 sm:px-6 lg:px-10">
+
+        {/* pt-24 compensa el header absolute que flota encima */}
+        <div className="relative mx-auto flex min-h-[760px] w-full max-w-[1400px] flex-col px-4 pb-12 pt-24 sm:px-6 lg:px-10">
+          
           <div className="mt-auto max-w-3xl pb-10">
             <p className="text-sm uppercase tracking-[0.34em] text-sky-100/80">Sitio institucional</p>
             <h1 className="mt-4 text-5xl font-semibold tracking-tight sm:text-6xl">IFTS N° 29</h1>
@@ -75,7 +70,7 @@ export default async function HomePage() {
             </p>
           </div>
 
-          <div className="rounded-[28px] bg-[#072c57] p-6 shadow-2xl shadow-slate-950/30 sm:p-8">
+           <div className="rounded-[28px] bg-[#072c57] p-6 shadow-2xl shadow-slate-950/30 sm:p-8">
             <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
               <div className="max-w-md">
                 <p className="text-3xl leading-tight text-white">Busca nuestras opciones ahora.</p>
@@ -99,7 +94,7 @@ export default async function HomePage() {
             </div>
           </div>
         </div>
-      </section>
+      </HomeHero>
 
       <section className="bg-[#072c57] py-16 text-white sm:py-20">
         <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-10">

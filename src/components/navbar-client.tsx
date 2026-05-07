@@ -11,18 +11,25 @@
 'use client'
 import { usePathname } from 'next/navigation'
 import { ReactNode } from 'react'
+import { useHero } from './hero-context'
 
 interface NavbarClientProps {
   children: ReactNode
 }
 
 export function NavbarClient({ children }: NavbarClientProps) {
-  const pathname = usePathname()
-  const isHome = pathname === '/'
+  const { hasImageHero } = useHero()
 
-  // Mantenemos la lógica de transparencia para TODO el sitio para que el Navbar se integre con el color del header/hero de cada sección
   return (
-    <header className="fixed top-0 z-50 w-full bg-transparent border-none transition-all duration-300">
+    <header
+      className={`
+        top-0 z-50 w-full transition-all duration-300
+        ${hasImageHero
+          ? 'absolute bg-transparent border-b border-white/10'
+          : 'relative bg-[#072c57] border-b border-slate-600'
+        }
+      `}
+    >
       {children}
     </header>
   )
