@@ -31,9 +31,13 @@ export async function POST(req: Request, { params }: { params: Params }) {
       return NextResponse.json({ error: 'No related contact' }, { status: 400 })
     }
 
+    const contactId = typeof notification.relatedContact === 'object'
+      ? (notification.relatedContact as any).id
+      : notification.relatedContact
+
     const contact = await payload.findByID({
       collection: 'contacts',
-      id: notification.relatedContact,
+      id: contactId,
     })
 
     if (contact.status === 'responding' && contact.respondingBy && contact.respondingBy !== user.id) {
@@ -45,10 +49,10 @@ export async function POST(req: Request, { params }: { params: Params }) {
 
     await payload.update({
       collection: 'contacts',
-      id: notification.relatedContact,
+      id: contactId,
       data: {
         status: 'responding',
-        respondingBy: user.id,
+        respondingBy: typeof user.id === 'string' ? parseInt(user.id) : user.id,
         respondingAt: new Date().toISOString(),
       },
     })
@@ -64,7 +68,7 @@ export async function POST(req: Request, { params }: { params: Params }) {
 
     return NextResponse.json({
       success: true,
-      contactId: notification.relatedContact,
+      contactId,
     })
   } catch (error) {
     console.error('Error responding to notification:', error)
