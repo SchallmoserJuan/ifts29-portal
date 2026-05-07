@@ -23,7 +23,7 @@ export function NavbarClient({ children }: NavbarClientProps) {
   return (
     <header
       className={`
-        top-0 z-50 w-full transition-all duration-300
+        top-0 z-50 w-full
         ${hasImageHero
           ? 'absolute bg-transparent border-b border-white/10'
           : 'relative bg-[#072c57] border-b border-slate-600'

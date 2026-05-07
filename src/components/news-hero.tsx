@@ -1,5 +1,9 @@
+'use client'
+
+import { useEffect } from 'react'
 import Link from 'next/link'
 import type { NewsItem } from '@/src/types/content'
+import { useHero } from './hero-context'
 
 const FALLBACK_IMAGE = 'https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=1800&q=80'
 
@@ -21,6 +25,13 @@ function formatDate(dateString: string): string {
 
 export function NewsHero({ news }: { news: NewsItem }) {
   const imageUrl = news.heroImage?.url || FALLBACK_IMAGE
+  const { setHasImageHero } = useHero()
+
+  useEffect(() => {
+    setHasImageHero(true)
+    return () => setHasImageHero(false)
+  }, [setHasImageHero])
+
 
   return (
     <section
