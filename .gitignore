@@ -1,0 +1,10 @@
+.env
+.env.local
+.next/
+node_modules
+ifts29.db
+ifts29.db-wal
+ifts29.db-shm
+next-env.d.ts
+tsconfig.tsbuildinfo
+README.md
