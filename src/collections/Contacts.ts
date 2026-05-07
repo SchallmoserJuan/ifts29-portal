@@ -1,16 +1,5 @@
 import type { CollectionConfig } from 'payload'
 
-interface ContactData {
-  nombre: string
-  email: string
-  asunto: string
-  mensaje: string
-  status: string
-  reply?: string | null
-  repliedAt?: string | null
-  repliedBy?: string | null
-}
-
 export const Contacts: CollectionConfig = {
   slug: 'contacts',
   admin: {
@@ -18,25 +7,6 @@ export const Contacts: CollectionConfig = {
     defaultColumns: ['nombre', 'email', 'status', 'createdAt'],
     listSearchableFields: ['nombre', 'email'],
     description: 'Consultas recibidas a través del formulario de contacto del portal.',
-  },
-  hooks: {
-    afterChange: [
-      async ({ doc, operation }) => {
-        if (operation === 'update' && doc.status === 'replied' && doc.reply) {
-          const contactData: ContactData = {
-            nombre: doc.nombre as string,
-            email: doc.email as string,
-            asunto: doc.asunto as string,
-            mensaje: doc.mensaje as string,
-            status: doc.status as string,
-            reply: doc.reply,
-          }
-
-          const { sendReplyEmail } = await import('@/src/lib/email')
-          await sendReplyEmail(doc.email as string, contactData, doc.reply as string)
-        }
-      },
-    ],
   },
   fields: [
     {
