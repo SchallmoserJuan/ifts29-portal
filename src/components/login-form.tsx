@@ -2,9 +2,11 @@
 
 import { useRouter } from 'next/navigation'
 import { useState, useTransition } from 'react'
+import { useAuth } from '@/src/context/auth-context'
 
 export function LoginForm() {
   const router = useRouter()
+  const { setUser } = useAuth()
   const [error, setError] = useState<string | null>(null)
   const [isPending, startTransition] = useTransition()
 
@@ -31,14 +33,16 @@ export function LoginForm() {
 
     const data = await response.json()
 
+    if (data?.user) {
+      setUser(data.user as any)
+    }
+
     startTransition(() => {
       if (data?.user?.role === 'student') {
         router.push('/portal/biblioteca')
       } else {
         router.push('/portal')
       }
-
-      router.refresh()
     })
   }
 

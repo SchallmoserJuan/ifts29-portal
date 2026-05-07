@@ -1,13 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import { usePathname } from 'next/navigation'
-
-interface UserInfo {
-  role?: 'admin' | 'teacher' | 'student'
-  firstName?: string | null
-  lastName?: string | null
-}
+import { useAuth } from '@/src/context/auth-context'
 
 const roleConfig = {
   admin: {
@@ -43,25 +36,7 @@ const roleConfig = {
 }
 
 export function UserNavInfo() {
-  const [user, setUser] = useState<UserInfo | null>(null)
-  const [isLoading, setIsLoading] = useState(true)
-  const pathname = usePathname()
-
-  useEffect(() => {
-    fetch('/api/users/me', { credentials: 'include' })
-      .then(res => res.json())
-      .then(data => {
-        if (data.user) {
-          setUser(data.user)
-        }
-      })
-      .catch(() => {
-        setUser(null)
-      })
-      .finally(() => {
-        setIsLoading(false)
-      })
-  }, [pathname])
+  const { user, isLoading } = useAuth()
 
   if (isLoading || !user?.role) {
     return null

@@ -16,6 +16,7 @@ import { getSiteSettings } from '@/src/lib/content'
 import { NavbarClient } from './navbar-client'
 import { AuthNavLink } from './auth-nav-link'
 import { UserNavInfo } from './user-nav-info'
+import { PortalNavLink } from './portal-nav-link'
 
 export async function SiteHeader() {
   // Obtención de datos del servidor (CMS)
@@ -53,6 +54,7 @@ export async function SiteHeader() {
 
           {/* GRUPO 2: Acciones (Fondo azul oscuro, separado por gap-4) */}
           <div className="hidden lg:flex items-center gap-2 bg-[#072c57] px-2 py-1.5 rounded-sm shadow-md border border-slate-600">
+            <PortalNavLink />
             <UserNavInfo />
             <AuthNavLink />
 

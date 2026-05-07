@@ -1,52 +1,10 @@
 'use client'
 
-import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { useRouter, usePathname } from 'next/navigation'
-
-interface AuthResponse {
-  user?: {
-    id: number | string
-    email: string
-    role: 'admin' | 'teacher' | 'student'
-    firstName?: string | null
-    lastName?: string | null
-  }
-}
+import { useAuth } from '@/src/context/auth-context'
 
 export function AuthNavLink() {
-  const [user, setUser] = useState<AuthResponse['user'] | null>(null)
-  const [isLoading, setIsLoading] = useState(true)
-  const router = useRouter()
-  const pathname = usePathname()
-
-  useEffect(() => {
-    fetch('/api/users/me', { credentials: 'include' })
-      .then(res => res.json())
-      .then(data => {
-        setUser(data.user || null)
-      })
-      .catch(() => {
-        setUser(null)
-      })
-      .finally(() => {
-        setIsLoading(false)
-      })
-  }, [pathname])
-
-  async function handleLogout() {
-    try {
-      await fetch('/api/users/logout', {
-        method: 'POST',
-        credentials: 'include',
-      })
-      setUser(null)
-      router.push('/')
-      router.refresh()
-    } catch (error) {
-      console.error('Logout error:', error)
-    }
-  }
+  const { user, isLoading, logout } = useAuth()
 
   if (isLoading) {
     return (
@@ -67,7 +25,7 @@ export function AuthNavLink() {
 
   return (
     <button
-      onClick={handleLogout}
+      onClick={logout}
       className="px-3 py-1 text-sm font-semibold text-white border-r border-white/20 cursor-pointer"
     >
       Salir
