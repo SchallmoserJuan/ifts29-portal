@@ -1,6 +1,7 @@
 import Link from 'next/link'
 
 import { LogoutButton } from '@/src/components/logout-button'
+import { NotificationsCard } from '@/src/components/notifications-card'
 import { PageHero } from '@/src/components/page-hero'
 import { PageShell } from '@/src/components/page-shell'
 import { requireUser } from '@/src/lib/auth'
@@ -47,15 +48,18 @@ export default async function PortalPage() {
           </article>
 
           {(user.role === 'teacher' || user.role === 'admin') && (
-            <article className="rounded-3xl border border-[#b8d2f1] bg-white p-6 shadow-sm">
-              <h2 className="text-2xl font-semibold text-slate-950">Gestion de contenido</h2>
-              <p className="mt-3 text-slate-600">
-                Acceso al panel para crear o editar noticias, carreras, documentos y media.
-              </p>
-              <Link href="/admin" className="mt-6 inline-flex text-sm font-semibold text-[#214ca0]">
-                Abrir Payload
-              </Link>
-            </article>
+            <>
+              <NotificationsCard />
+              <article className="rounded-3xl border border-[#b8d2f1] bg-white p-6 shadow-sm">
+                <h2 className="text-2xl font-semibold text-slate-950">Gestion de contenido</h2>
+                <p className="mt-3 text-slate-600">
+                  Acceso al panel para crear o editar noticias, carreras, documentos y media.
+                </p>
+                <Link href="/admin" className="mt-6 inline-flex text-sm font-semibold text-[#214ca0]">
+                  Abrir Payload
+                </Link>
+              </article>
+            </>
           )}
 
           {user.role === 'admin' && (

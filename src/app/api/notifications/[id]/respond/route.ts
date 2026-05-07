@@ -1,0 +1,73 @@
+import { NextResponse } from 'next/server'
+
+import { getPayloadClient } from '@/src/lib/payload'
+import { getCurrentUser } from '@/src/lib/auth'
+import { isStaff } from '@/src/access'
+
+type Params = Promise<{ id: string }>
+
+export async function POST(req: Request, { params }: { params: Params }) {
+  try {
+    const user = await getCurrentUser()
+
+    if (!user || !isStaff(user)) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    }
+
+    const { id } = await params
+
+    const payload = await getPayloadClient()
+
+    const notification = await payload.findByID({
+      collection: 'notifications',
+      id,
+    })
+
+    if (!notification) {
+      return NextResponse.json({ error: 'Notification not found' }, { status: 404 })
+    }
+
+    if (!notification.relatedContact) {
+      return NextResponse.json({ error: 'No related contact' }, { status: 400 })
+    }
+
+    const contact = await payload.findByID({
+      collection: 'contacts',
+      id: notification.relatedContact,
+    })
+
+    if (contact.status === 'responding' && contact.respondingBy && contact.respondingBy !== user.id) {
+      return NextResponse.json(
+        { error: 'Este contacto ya está siendo respondido por otro usuario' },
+        { status: 409 }
+      )
+    }
+
+    await payload.update({
+      collection: 'contacts',
+      id: notification.relatedContact,
+      data: {
+        status: 'responding',
+        respondingBy: user.id,
+        respondingAt: new Date().toISOString(),
+      },
+    })
+
+    await payload.update({
+      collection: 'notifications',
+      id,
+      data: {
+        read: true,
+        readAt: new Date().toISOString(),
+      },
+    })
+
+    return NextResponse.json({
+      success: true,
+      contactId: notification.relatedContact,
+    })
+  } catch (error) {
+    console.error('Error responding to notification:', error)
+    return NextResponse.json({ error: 'Error al procesar' }, { status: 500 })
+  }
+}
