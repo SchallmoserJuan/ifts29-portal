@@ -37,33 +37,35 @@ export async function SiteHeader() {
         <div className="flex items-center gap-4">
           
           {/* GRUPO 1: Navegación Principal (Fondo azul oscuro) */}
-          <nav className="hidden lg:flex items-center gap-2 bg-[#002147] px-4 py-1.5 rounded-sm shadow-md">
+          <nav className="hidden lg:flex items-center gap-2 bg-[#072c57] px-4 py-1.5 rounded-sm shadow-md">
             {links.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="px-3 py-1 text-sm font-semibold text-white navbar-underline"
+                className="px-3 py-1 text-sm font-semibold text-white"
               >
-                {link.label}
+                <span className="navbar-underline">{link.label}</span>
               </Link>
             ))}
           </nav>
 
           {/* GRUPO 2: Acciones (Fondo azul oscuro, separado por gap-4) */}
-          <div className="hidden lg:flex items-center gap-2 bg-[#002147] px-4 py-1.5 rounded-sm shadow-md">
+          <div className="hidden lg:flex items-center gap-2 bg-[#072c57] px-2 py-1.5 rounded-sm shadow-md">
             <Link
               href="/login"
-              className="px-3 py-1 text-sm font-semibold text-white border-r border-white/20 navbar-underline"
+              className="px-3 py-1 text-sm font-semibold text-white border-r border-white/20"
             >
-              Login
+              <span className="navbar-underline">Entrar</span>
             </Link>
             
-            <button className="flex items-center gap-1 px-2 py-1 text-sm font-semibold text-white navbar-underline-inline whitespace-nowrap">
-              <span>Menu</span>
+            <Link
+              href="/menu"
+              className="flex items-center gap-1 px-2 py-1 text-sm font-semibold text-white whitespace-nowrap">
+              <span className="navbar-underline">Menu</span>
               <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
               </svg>
-            </button>
+            </Link>
           </div>
 
           {/* MENÚ MÓVIL (Solo visible en pantallas chicas) */}

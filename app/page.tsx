@@ -75,7 +75,7 @@ export default async function HomePage() {
               <div className="max-w-md">
                 <p className="text-3xl leading-tight text-white">Busca nuestras opciones ahora.</p>
                 <p className="mt-3 text-sm text-slate-200">
-                  Navega rapidamente por carreras, noticias, institucional y acceso al portal.
+                  Navega rapidamente por el portal.
                 </p>
               </div>
               <div className="flex w-full max-w-3xl flex-col gap-3 sm:flex-row">
