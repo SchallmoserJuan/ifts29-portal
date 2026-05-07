@@ -37,7 +37,7 @@ export async function SiteHeader() {
         <div className="flex items-center gap-4">
           
           {/* GRUPO 1: Navegación Principal (Fondo azul oscuro) */}
-          <nav className="hidden lg:flex items-center gap-2 bg-[#072c57] px-4 py-1.5 rounded-sm shadow-md">
+          <nav className="hidden lg:flex items-center gap-2 bg-[#072c57] px-4 py-1.5 rounded-sm shadow-md border border-slate-600">
             {links.map((link) => (
               <Link
                 key={link.href}
@@ -50,7 +50,7 @@ export async function SiteHeader() {
           </nav>
 
           {/* GRUPO 2: Acciones (Fondo azul oscuro, separado por gap-4) */}
-          <div className="hidden lg:flex items-center gap-2 bg-[#072c57] px-2 py-1.5 rounded-sm shadow-md">
+          <div className="hidden lg:flex items-center gap-2 bg-[#072c57] px-2 py-1.5 rounded-sm shadow-md border border-slate-600">
             <Link
               href="/login"
               className="px-3 py-1 text-sm font-semibold text-white border-r border-white/20"
