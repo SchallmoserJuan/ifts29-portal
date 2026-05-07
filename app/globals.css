@@ -94,6 +94,34 @@ button {
   background-size: 100% 2px;
 }
 
+.navbar-underline {
+  text-decoration: none;
+  background-image: linear-gradient(white, white);
+  background-position: 0% 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 2px;
+  transition: background-size 300ms ease;
+  display: inline;
+}
+
+.navbar-underline:hover {
+  background-size: 100% 2px;
+}
+
+.navbar-underline-inline {
+  text-decoration: none;
+  background-image: linear-gradient(white, white);
+  background-position: 0% 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 2px;
+  transition: background-size 300ms ease;
+  display: inline-flex;
+}
+
+.navbar-underline-inline:hover {
+  background-size: 100% 2px;
+}
+
 .rich-text-content h1,
 .rich-text-content h2,
 .rich-text-content h3,
