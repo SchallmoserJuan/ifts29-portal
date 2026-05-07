@@ -1,5 +1,6 @@
 import { SiteBrand } from '@/src/components/site-brand'
 import { getSiteSettings } from '@/src/lib/content'
+import Link from 'next/link'
 
 const footerLinks = [
   {
@@ -54,6 +55,15 @@ export async function SiteFooter() {
             <p>{settings.address}</p>
             <p>{settings.phone}</p>
             <p>{settings.contactEmail}</p>
+            <div className="pt-2">
+                  <Link 
+                    href="/contacto" 
+                    className="group relative block w-fit font-bold text-blue-800 hover:text-blue-600"
+                  >
+                    Escribinos una consulta
+                    <span className="absolute bottom-0 left-0 h-[1px] w-0 bg-blue-800 transition-all duration-300 group-hover:w-full" />
+                  </Link>
+                </div>
           </div>
 
           {footerLinks.map((column) => (
