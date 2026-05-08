@@ -9,19 +9,15 @@ const easing: [number, number, number, number] = [0.22, 1, 0.36, 1]
 
 export function CareerHero({ career }: { career: CareerItem }) {
   return (
-    <section className="relative flex min-h-[67vh] w-full flex-col justify-end bg-[#072c57] text-white">
+    <section className="relative flex min-h-[66vh] w-full flex-col justify-end bg-[#072c57] text-white">
       <div className="relative mx-auto w-full max-w-[1400px] px-4 pb-18 sm:px-6 lg:px-10">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, ease: easing }}
-          className="max-w-4xl"
+        <motion.div className="max-w-4xl"
         >
           <span className="inline-block text-xs font-semibold uppercase tracking-[0.28em] text-[#28c2f3]">
             {careerHero.label}
           </span>
 
-          <h1 className="mt-6 text-4xl font-medium leading-[1.1] tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl">
+          <h1 className="mt-6 text-4xl font-semibold leading-[1.1] tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl">
             {careerHero.headline}
           </h1>
 
@@ -51,7 +47,7 @@ export function CareerHero({ career }: { career: CareerItem }) {
               href="#plan-de-estudios"
               className="inline-flex items-center gap-2 rounded-sm bg-[#28c2f3] px-7 py-3.5 text-sm font-semibold text-[#072c57] transition hover:bg-[#52d0f7]"
             >
-              {careerHero.ctaPrimary}
+              <span className="tag-underline">{careerHero.ctaPrimary}</span>
               <span aria-hidden="true">↓</span>
             </Link>
             <a
@@ -60,7 +56,8 @@ export function CareerHero({ career }: { career: CareerItem }) {
               rel="noreferrer"
               className="inline-flex items-center gap-2 border border-white/30 px-7 py-3.5 text-sm font-medium text-white transition hover:border-white hover:bg-white/5"
             >
-              {careerHero.ctaSecondary}
+              <span className="navbar-underline">{careerHero.ctaSecondary}
+              </span>
               <span aria-hidden="true">→</span>
             </a>
           </div>

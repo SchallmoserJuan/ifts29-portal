@@ -1,8 +1,8 @@
-'use client'
-
 import Link from 'next/link'
 import Image from 'next/image'
+import { Calendar, Clock } from 'lucide-react'
 import type { NewsItem } from '@/src/types/content'
+import { TechBadge } from './tech-badge'
 
 const FALLBACK_IMAGE = 'https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=600&q=80'
 
@@ -24,7 +24,6 @@ function formatDate(dateString: string): string {
 
 function calculateReadTime(content: unknown): string {
   if (!content || typeof content !== 'object') return '5 min'
-
   const contentStr = JSON.stringify(content)
   const wordCount = contentStr.split(/\s+/).length
   const minutes = Math.max(1, Math.ceil(wordCount / 200))
@@ -42,42 +41,47 @@ export function NewsCard({ news, variant = 'default' }: NewsCardProps) {
 
   const isDark = variant === 'dark'
   const titleColor = isDark ? 'text-white' : 'text-[#1e3e8a]'
-  const tagBg = isDark ? 'bg-white/10' : 'bg-[#214ca0]/10'
-  const tagColor = isDark ? 'text-white/80' : 'text-[#214ca0]'
 
   return (
-    <article className="news-card group flex flex-col overflow-hidden cursor-pointer">
+    <article className="news-card group flex flex-col overflow-hidden transition-all duration-500">
       <Link href={`/noticias/${news.slug}`} className="flex flex-col h-full">
-        <div className="relative aspect-[3/2] w-full overflow-hidden bg-slate-200 rounded-lg">
+        {/* Image */}
+        <div className="relative aspect-[3/2] w-full rounded overflow-hidden">
           <Image
             src={imageUrl}
             alt={news.title}
             fill
-            className="object-cover"
+            className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
             unoptimized
           />
-          <div className="absolute left-3 top-3 flex items-center gap-2 rounded-md bg-[#f7ee66] px-2.5 py-1.5 text-xs font-medium text-[#002649] backdrop-blur-sm">
+          {/* Date & read time badge */}
+          <div className="absolute left-3 top-3 flex items-center gap-2 rounded bg-[#f7ee66] px-2.5 py-1.5 text-xs font-medium text-[#002649] shadow-sm">
+            <Calendar className="h-3 w-3" />
             <time>{formatDate(news.publishedAt)}</time>
-            <span className="text-[#002649]">•</span>
-            <span>{readTime}</span>
+            <span>•</span>
+            <span className="inline-flex items-center gap-1">
+              <Clock className="h-3 w-3" />
+              {readTime}
+            </span>
           </div>
         </div>
 
-        <div className="flex flex-1 flex-col pt-4">
-          <h3 className={`text-[27px] leading-[33px] font-medium ${titleColor}`}>
-            <span className={isDark ? 'news-card-underline-dark' : 'news-card-underline'}>{news.title}</span>
+        {/* Content */}
+        <div className="flex flex-1 flex-col mt-4">
+          <h3 className={`text-2xl font-miedum leading-snug ${titleColor}`}>
+            <span className={isDark ? 'news-card-underline-dark' : 'news-card-underline'}>
+              {news.title}
+            </span>
           </h3>
 
-          <div className="mt-3 flex flex-wrap gap-2">
+          {/* Tags */}
+          <div className="mt-4 flex flex-wrap gap-2">
             {(news.tags ? news.tags.split(';') : [categoryLabels[news.category] || news.category])
               .slice(0, 3)
               .map((tag, index) => (
-                <span
-                  key={index}
-                  className={`rounded-full px-3 py-1 text-xs font-medium ${tagBg} ${tagColor}`}
-                >
+                <TechBadge key={index} variant="default">
                   {typeof tag === 'string' ? tag.trim() : tag}
-                </span>
+                </TechBadge>
               ))}
           </div>
         </div>

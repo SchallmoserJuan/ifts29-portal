@@ -1,8 +1,8 @@
-'use client'
-
 import Link from 'next/link'
 import Image from 'next/image'
+import { MapPin, Clock } from 'lucide-react'
 import type { EventItem } from '@/src/types/content'
+import { TechBadge } from './tech-badge'
 
 const FALLBACK_IMAGE = 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=600&q=80'
 
@@ -10,6 +10,12 @@ const locationLabels: Record<string, string> = {
   presencial: 'Presencial',
   virtual: 'Virtual',
   hibrido: 'Hibrido',
+}
+
+const locationBadgeVariant: Record<string, 'default' | 'accent'> = {
+  presencial: 'accent',
+  virtual: 'default',
+  hibrido: 'accent',
 }
 
 function formatEventDate(dateString: string): { day: string; month: string; time: string } {
@@ -26,44 +32,54 @@ export function EventsCard({ event }: { event: EventItem }) {
   const { day, month, time } = formatEventDate(event.date)
 
   return (
-    <article className="news-card group flex flex-col overflow-hidden cursor-pointer">
-      <Link href={event.link || '#'} className="flex flex-col h-full">
-        <div className="relative aspect-[3/2] w-full overflow-hidden bg-slate-200">
+    <article className="news-card group flex h-full flex-col overflow-hidden rounded-2xl border border-slate-100 border-l-4 border-l-transparent bg-white shadow-sm transition-all duration-500 hover:-translate-y-0.5 hover:shadow-lg hover:border-l-[#28c2f3] sm:flex-row">
+      <Link href={event.link || '#'} className="flex h-full flex-col sm:flex-row w-full">
+        {/* Date block */}
+        <div className="flex items-center justify-center bg-[#072c57] px-6 py-5 sm:w-28 sm:flex-col sm:px-0 sm:py-6 shrink-0">
+          <span className="text-3xl font-bold leading-none text-white sm:text-4xl">{day}</span>
+          <span className="ml-2 text-xs font-semibold uppercase tracking-widest text-[#28c2f3] sm:ml-0 sm:mt-1.5">
+            {month}
+          </span>
+        </div>
+
+        {/* Image */}
+        <div className="relative aspect-[16/9] w-full overflow-hidden sm:aspect-square sm:w-44 shrink-0">
           <Image
             src={imageUrl}
             alt={event.title}
             fill
-            className="object-cover"
+            className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
             unoptimized
           />
-          <div className="absolute left-3 top-3 flex flex-col items-center rounded-md bg-[#072c57] px-3 py-2 text-center text-white backdrop-blur-sm">
-            <span className="text-xl font-bold leading-none">{day}</span>
-            <span className="text-xs font-medium leading-none">{month}</span>
-          </div>
           {event.location && (
-            <div className="absolute right-3 top-3 rounded-full bg-[#28c2f3] px-3 py-1 text-xs font-medium text-[#072c57]">
-              {locationLabels[event.location] || event.location}
+            <div className="absolute left-3 top-3">
+              <span className="inline-flex items-center rounded-lg bg-white/90 px-2.5 py-1 text-xs font-semibold text-[#072c57] shadow-sm backdrop-blur-sm">
+                {locationLabels[event.location] || event.location}
+              </span>
             </div>
           )}
         </div>
 
-        <div className="flex flex-1 flex-col pt-4">
-          <h3 className="text-[27px] leading-[33px] font-medium text-[#1e3e8a]">
+        {/* Content */}
+        <div className="flex flex-1 flex-col justify-center p-5 sm:p-6">
+          <h3 className="text-lg font-semibold leading-snug text-slate-900 sm:text-xl">
             <span className="news-card-underline">{event.title}</span>
           </h3>
 
-          <p className="mt-2 text-sm text-slate-600 line-clamp-2">{event.description}</p>
+          <p className="mt-2 text-sm leading-relaxed text-slate-500 line-clamp-2">
+            {event.description}
+          </p>
 
-          <div className="mt-3 flex items-center gap-2 text-xs text-slate-500">
-            <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            <span>{time}</span>
+          <div className="mt-4 flex flex-wrap items-center gap-4 text-xs text-slate-400">
+            <span className="inline-flex items-center gap-1.5">
+              <Clock className="h-3.5 w-3.5" />
+              {time}
+            </span>
             {event.address && (
-              <>
-                <span className="text-slate-300">|</span>
-                <span className="truncate">{event.address}</span>
-              </>
+              <span className="inline-flex items-center gap-1.5">
+                <MapPin className="h-3.5 w-3.5" />
+                <span className="truncate max-w-[180px]">{event.address}</span>
+              </span>
             )}
           </div>
         </div>
