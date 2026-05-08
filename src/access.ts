@@ -7,6 +7,11 @@ export const isTeacher = (user?: Partial<AppUser> | null) => user?.role === 'tea
 export const isStudent = (user?: Partial<AppUser> | null) => user?.role === 'student'
 export const isStaff = (user?: Partial<AppUser> | null) => isAdmin(user) || isTeacher(user)
 
+export const canAccessNotifications: Access = ({ req }) => {
+  const user = req.user as Partial<AppUser> | null
+  return isStaff(user)
+}
+
 export const canAccessAdmin = ({ req }: { req: { user?: unknown } }) =>
   isStaff(req.user as Partial<AppUser> | null)
 

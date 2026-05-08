@@ -8,6 +8,7 @@ import '@fontsource/playfair-display/500.css'
 import '@fontsource/playfair-display/600.css'
 import '@fontsource/playfair-display/700.css'
 
+import { AuthProvider } from '@/src/context/auth-context'
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -22,7 +23,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
-      <body className="min-h-screen bg-stone-50 text-slate-950 antialiased">{children}</body>
+      <body className="min-h-screen bg-stone-50 text-slate-950 antialiased">
+        <AuthProvider>{children}</AuthProvider>
+      </body>
     </html>
   )
 }

@@ -14,6 +14,9 @@ import { MobileMenu } from '@/src/components/mobile-menu'
 import { SiteBrand } from '@/src/components/site-brand'
 import { getSiteSettings } from '@/src/lib/content'
 import { NavbarClient } from './navbar-client'
+import { AuthNavLink } from './auth-nav-link'
+import { UserNavInfo } from './user-nav-info'
+import { PortalNavLink } from './portal-nav-link'
 
 export async function SiteHeader() {
   // Obtención de datos del servidor (CMS)
@@ -51,13 +54,10 @@ export async function SiteHeader() {
 
           {/* GRUPO 2: Acciones (Fondo azul oscuro, separado por gap-4) */}
           <div className="hidden lg:flex items-center gap-2 bg-[#072c57] px-2 py-1.5 rounded-sm shadow-md border border-slate-600">
-            <Link
-              href="/login"
-              className="px-3 py-1 text-sm font-semibold text-white border-r border-white/20"
-            >
-              <span className="navbar-underline">Entrar</span>
-            </Link>
-            
+            <PortalNavLink />
+            <UserNavInfo />
+            <AuthNavLink />
+
             <Link
               href="/menu"
               className="flex items-center gap-1 px-2 py-1 text-sm font-semibold text-white whitespace-nowrap">

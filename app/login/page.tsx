@@ -1,11 +1,19 @@
 import Link from 'next/link'
+import { redirect } from 'next/navigation'
 
 import { LoginForm } from '@/src/components/login-form'
 import { PageShell } from '@/src/components/page-shell'
+import { getCurrentUser } from '@/src/lib/auth'
 
 export const dynamic = 'force-dynamic'
 
-export default function LoginPage() {
+export default async function LoginPage() {
+  const user = await getCurrentUser()
+
+  if (user) {
+    redirect('/portal')
+  }
+
   return (
     <PageShell>
       <section className="mx-auto grid min-h-[70vh] w-full max-w-[1400px] gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:px-10">
