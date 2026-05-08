@@ -36,16 +36,10 @@ export function InstitutionalHero() {
   }, [setHasImageHero])
 
   return (
-    <section className="relative flex min-h-[85vh] flex-col justify-end overflow-hidden">
+    <section className="relative flex min-h-[65vh] flex-col justify-end overflow-hidden">
       <div
-        className="absolute inset-0 bg-cover bg-center"
-        style={{
-          backgroundImage:
-            "url('https://images.unsplash.com/photo-1736451497343-6053161bcdde?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
-        }}
+        className="absolute inset-0 bg-cover bg-center bg-[#072c57]"
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-[#00152b] via-[#00152b]/60 to-[#00152b]/30" />
-
       <motion.div
         variants={containerVariants}
         initial="hidden"

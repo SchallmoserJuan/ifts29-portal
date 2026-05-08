@@ -35,7 +35,7 @@ export function NewsHero({ news }: { news: NewsItem }) {
 
   return (
     <section
-      className="relative min-h-[700px] w-full overflow-hidden text-white"
+      className="relative min-h-[65vh] w-full overflow-hidden text-white"
       style={{
         backgroundImage: `linear-gradient(180deg, rgba(7,44,87,0.15) 0%, rgba(7,44,87,0.65) 50%, rgba(7,44,87,0.85) 100%), url('${imageUrl}')`,
         backgroundPosition: 'center',
@@ -44,7 +44,7 @@ export function NewsHero({ news }: { news: NewsItem }) {
       }}
     >
       <div className="absolute inset-0 bg-gradient-to-b from-sky-100/10 via-transparent to-slate-950/20" />
-      <div className="relative mx-auto flex min-h-[700px] w-full max-w-[1400px] flex-col px-4 py-16 sm:px-6 lg:px-10">
+      <div className="relative mx-auto flex min-h-[697px] w-full max-w-[1400px] flex-col px-4 py-16 sm:px-6 lg:px-10">
         <div className="mt-auto max-w-4xl">
           <div className="flex items-center gap-4">
             <span className="rounded-full bg-[#28c2f3] px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-[#072c57]">
