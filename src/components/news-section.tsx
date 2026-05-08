@@ -1,29 +1,27 @@
-import Link from 'next/link'
 import { NewsCard } from '@/src/components/news-card'
+import { SectionHeader } from '@/src/components/section-header'
+import { StaggerContainer, StaggerItem } from '@/src/components/animated-section'
 import type { NewsItem } from '@/src/types/content'
 
 export function NewsSection({ news }: { news: NewsItem[] }) {
   if (news.length === 0) return null
 
   return (
-    <section className="bg-zinc-50 py-16 sm:py-20">
-      <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-10">
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-          <h2 className="text-[53px] leading-[64px] font-medium text-[#1e3e8a]">Ultimas noticias e investigaciones</h2>
-          <Link
-            href="/noticias"
-            className="inline-flex items-center gap-2 text-sm font-semibold text-[#214ca0] transition hover:text-[#2a5fc7]"
-          >
-            Ver todas las noticias
-            <span aria-hidden="true">→</span>
-          </Link>
-        </div>
+    <section className="bg-[#f8f7f4] py-20">
+      <div className="mx-auto w-full max-w-7xl px-6 sm:px-8 lg:px-12">
+        <SectionHeader
+          title="Ultimas noticias e investigaciones"
+          href="/noticias"
+          linkText="Ver todas las noticias"
+        />
 
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {news.slice(0, 4).map((item) => (
-            <NewsCard key={item.id} news={item} />
+        <StaggerContainer className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          {news.slice(0, 3).map((item) => (
+            <StaggerItem key={item.id}>
+              <NewsCard news={item} />
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
       </div>
     </section>
   )

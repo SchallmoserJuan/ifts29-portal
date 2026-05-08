@@ -168,7 +168,8 @@ export default async function HomePage() {
               href="/noticias"
               className="inline-flex items-center justify-center rounded-md border border-[#28c2f3] px-6 py-3 text-sm font-medium text-[#28c2f3] transition hover:bg-[#28c2f3] hover:text-[#072c57]"
             >
-              + Ver noticias
+              <span className="tag-underline">Ver noticias</span>
+              
             </Link>
           </div>
 
