@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56">
+  <!-- Top-left: I -->
+  <rect x="0" y="0" width="28" height="28" fill="#1772b7"/>
+  <text x="14" y="14" dominant-baseline="central" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-weight="bold" font-size="14">I</text>
+  
+  <!-- Top-right: F -->
+  <rect x="28" y="0" width="28" height="28" fill="#108b63"/>
+  <text x="42" y="14" dominant-baseline="central" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-weight="bold" font-size="14">F</text>
+  
+  <!-- Bottom-left: T -->
+  <rect x="0" y="28" width="28" height="28" fill="#24a34a"/>
+  <text x="14" y="42" dominant-baseline="central" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-weight="bold" font-size="14">T</text>
+  
+  <!-- Bottom-right: S -->
+  <rect x="28" y="28" width="28" height="28" fill="#0b5f44"/>
+  <text x="42" y="42" dominant-baseline="central" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-weight="bold" font-size="14">S</text>
+  
+  <!-- Center circle: 29 -->
+  <circle cx="28" cy="28" r="10" fill="#f3c624"/>
+  <text x="28" y="28" dominant-baseline="central" text-anchor="middle" fill="#0f172a" font-family="Arial, sans-serif" font-weight="bold" font-size="10">29</text>
+  
+  <!-- Border -->
+  <rect x="0" y="0" width="56" height="56" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
+</svg>
