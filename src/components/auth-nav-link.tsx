@@ -18,7 +18,7 @@ export function AuthNavLink() {
         href="/login"
         className="px-3 py-1 text-sm font-semibold text-white border-r border-white/20"
       >
-        Entrar
+        <span className="navbar-underline">Entrar</span>
       </Link>
     )
   }
@@ -28,7 +28,7 @@ export function AuthNavLink() {
       onClick={logout}
       className="px-3 py-1 text-sm font-semibold text-white border-r border-white/20 cursor-pointer"
     >
-      Salir
+      <span className="navbar-underline">Salir</span>
     </button>
   )
 }

@@ -16,7 +16,7 @@ export function PortalNavLink() {
         href="/portal"
         className="px-3 py-1 text-sm font-semibold text-white border-r border-white/20 whitespace-nowrap"
       >
-        Portal
+        <span className="navbar-underline">Portal</span>
       </Link>
     )
   }
