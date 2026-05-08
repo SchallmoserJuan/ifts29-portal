@@ -6,6 +6,11 @@ export type SubjectItem = {
   subject: string
 }
 
+export type OutcomeItem = {
+  title: string
+  description: string
+}
+
 export type AuthorityItem = {
   name: string
   role: string
@@ -18,9 +23,26 @@ export type CareerItem = {
   summary: string
   duration: string
   modality: string
+  resolution?: string
   requirements?: RequirementItem[]
   studyPlan?: SubjectItem[]
   graduateProfile?: unknown
+  professionalProfile?: unknown
+  outcomes?: OutcomeItem[]
+  methodology?: unknown
+  heroImage?: {
+    url: string
+    alt?: string
+  }
+  floatingImage?: {
+    url: string
+    alt?: string
+  }
+  studyPlanImage?: {
+    url: string
+    alt?: string
+  }
+  documents?: (DocumentItem | string | number)[]
 }
 
 export type NewsItem = {

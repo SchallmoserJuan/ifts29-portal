@@ -28,22 +28,33 @@ export const defaultCareers: CareerItem[] = [
     name: 'Tecnicatura Superior en Desarrollo de Software',
     slug: 'tecnicatura-superior-en-desarrollo-de-software',
     summary:
-      'Formacion orientada al desarrollo web, bases de datos, analisis de sistemas y practicas profesionalizantes.',
+      'Formacion de excelencia orientada al desarrollo de software, arquitectura de sistemas, bases de datos y practicas profesionalizantes en el ecosistema tecnologico actual.',
     duration: '3 anos',
     modality: 'Presencial',
-    requirements: [{ item: 'Titulo secundario completo' }, { item: 'Documentacion de ingreso vigente' }],
-    studyPlan: [{ subject: 'Programacion' }, { subject: 'Base de Datos' }, { subject: 'Practicas Profesionalizantes' }],
-  },
-  {
-    id: 'default-2',
-    name: 'Tecnicatura Superior en Analisis de Sistemas',
-    slug: 'tecnicatura-superior-en-analisis-de-sistemas',
-    summary:
-      'Trayecto con foco en relevamiento, modelado, documentacion y construccion de soluciones informaticas.',
-    duration: '3 anos',
-    modality: 'Presencial',
-    requirements: [{ item: 'Titulo secundario completo' }],
-    studyPlan: [{ subject: 'Analisis Funcional' }, { subject: 'Arquitectura' }, { subject: 'Gestion de Proyectos' }],
+    resolution: 'Res. M.E.N. N° 1234/2023',
+    requirements: [
+      { item: 'Titulo secundario completo' },
+      { item: 'Documentacion de identidad vigente' },
+      { item: 'Constancia de CUIL' },
+    ],
+    studyPlan: [
+      { subject: 'Tecnicas de Programacion' },
+      { subject: 'Administracion de Bases de Datos' },
+      { subject: 'Desarrollo de Sistemas Orientado a Objetos' },
+      { subject: 'Desarrollo de Aplicaciones Web' },
+      { subject: 'Ingenieria de Software' },
+      { subject: 'Gestion de Proyectos' },
+    ],
+    outcomes: [
+      { title: 'Desarrollo Frontend', description: 'Construccion de interfaces modernas con tecnologias web actuales.' },
+      { title: 'Desarrollo Backend', description: 'Diseno e implementacion de APIs, servicios y logica de negocio.' },
+      { title: 'QA y Testing', description: 'Aseguramiento de calidad y pruebas automatizadas de software.' },
+      { title: 'Cloud Computing', description: 'Despliegue y gestion de aplicaciones en entornos cloud.' },
+      { title: 'DevOps', description: 'Integracion continua, infraestructura como codigo y automatizacion.' },
+      { title: 'Bases de Datos', description: 'Modelado, administracion y optimizacion de bases de datos relacionales y NoSQL.' },
+      { title: 'Aplicaciones Moviles', description: 'Desarrollo de apps multiplataforma con enfoque en usabilidad.' },
+      { title: 'Soporte Tecnologico', description: 'Asesoramiento tecnico y resolucion de incidentes en entornos productivos.' },
+    ],
   },
 ]
 

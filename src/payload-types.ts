@@ -210,6 +210,48 @@ export interface Career {
     };
     [k: string]: unknown;
   } | null;
+  resolution?: string | null;
+  heroImage?: (number | null) | Media;
+  floatingImage?: (number | null) | Media;
+  studyPlanImage?: (number | null) | Media;
+  professionalProfile?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  outcomes?:
+    | {
+        title: string;
+        description: string;
+        id?: string | null;
+      }[]
+    | null;
+  methodology?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  documents?: (number | Document)[] | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -241,6 +283,31 @@ export interface Media {
       filename?: string | null;
     };
   };
+}
+/**
+ * Para crear un documento tenes que completar titulo, descripcion y adjuntar un archivo.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "documents".
+ */
+export interface Document {
+  id: number;
+  title: string;
+  description: string;
+  category: 'biblioteca' | 'guias' | 'normativas' | 'empleo';
+  visibility: 'public' | 'students' | 'staff';
+  career?: (number | null) | Career;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -281,31 +348,6 @@ export interface News {
   } | null;
   updatedAt: string;
   createdAt: string;
-}
-/**
- * Para crear un documento tenes que completar titulo, descripcion y adjuntar un archivo.
- *
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "documents".
- */
-export interface Document {
-  id: number;
-  title: string;
-  description: string;
-  category: 'biblioteca' | 'guias' | 'normativas' | 'empleo';
-  visibility: 'public' | 'students' | 'staff';
-  career?: (number | null) | Career;
-  updatedAt: string;
-  createdAt: string;
-  url?: string | null;
-  thumbnailURL?: string | null;
-  filename?: string | null;
-  mimeType?: string | null;
-  filesize?: number | null;
-  width?: number | null;
-  height?: number | null;
-  focalX?: number | null;
-  focalY?: number | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -618,6 +660,20 @@ export interface CareersSelect<T extends boolean = true> {
         id?: T;
       };
   graduateProfile?: T;
+  resolution?: T;
+  heroImage?: T;
+  floatingImage?: T;
+  studyPlanImage?: T;
+  professionalProfile?: T;
+  outcomes?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  methodology?: T;
+  documents?: T;
   updatedAt?: T;
   createdAt?: T;
 }

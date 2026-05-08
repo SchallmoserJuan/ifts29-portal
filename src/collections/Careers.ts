@@ -81,5 +81,62 @@ export const Careers: CollectionConfig = {
       label: 'Perfil del egresado',
       type: 'richText',
     },
+    {
+      name: 'resolution',
+      label: 'Resolucion oficial',
+      type: 'text',
+    },
+    {
+      name: 'heroImage',
+      label: 'Imagen de hero',
+      type: 'upload',
+      relationTo: 'media',
+    },
+    {
+      name: 'floatingImage',
+      label: 'Imagen flotante (entre hero e intro)',
+      type: 'upload',
+      relationTo: 'media',
+    },
+    {
+      name: 'studyPlanImage',
+      label: 'Imagen del plan de estudios',
+      type: 'upload',
+      relationTo: 'media',
+    },
+    {
+      name: 'professionalProfile',
+      label: 'Perfil del profesional',
+      type: 'richText',
+    },
+    {
+      name: 'outcomes',
+      label: 'Salidas laborales',
+      type: 'array',
+      fields: [
+        {
+          name: 'title',
+          type: 'text',
+          required: true,
+        },
+        {
+          name: 'description',
+          type: 'textarea',
+          required: true,
+        },
+      ],
+    },
+    {
+      name: 'methodology',
+      label: 'Metodologia y experiencia academica',
+      type: 'richText',
+    },
+    {
+      name: 'documents',
+      label: 'Documentos relacionados',
+      type: 'relationship',
+      relationTo: 'documents',
+      hasMany: true,
+    },
   ],
 }

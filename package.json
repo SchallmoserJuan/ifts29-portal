@@ -11,7 +11,9 @@
     "start": "next start",
     "lint": "eslint .",
     "payload": "payload",
-    "generate:types": "payload generate:types"
+    "generate:types": "payload generate:types",
+    "seed:career": "tsx --tsconfig tsconfig.json src/scripts/seed-career.ts",
+    "seed:all": "tsx --tsconfig tsconfig.json src/scripts/seed-all.ts"
   },
   "keywords": [
     "payload",
@@ -39,6 +41,7 @@
     "@types/node": "^20",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19",
+    "dotenv": "^17.4.2",
     "eslint": "^9.28",
     "eslint-config-next": "16.2.4",
     "prettier": "^3.5",
