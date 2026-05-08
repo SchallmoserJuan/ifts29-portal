@@ -29,7 +29,7 @@ const careerData = {
   summary:
     'Formacion de excelencia orientada al desarrollo de software, arquitectura de sistemas, bases de datos y practicas profesionalizantes en el ecosistema tecnologico actual.',
   duration: '3 años',
-  modality: 'Presencial',
+  modality: 'A distancia',
   resolution: 'Res. M.E.N. N° 1234/2023',
   requirements: [
     { item: 'Titulo secundario completo' },

@@ -84,12 +84,12 @@ export const careerPdfs = [
 ]
 
 export const careerMethodology = {
-  title: 'Experiencia Academica',
-  subtitle: 'Metodologia de formación',
+  title: 'Experiencia Académica',
+  subtitle: 'Metodología de formación',
   items: [
     {
-      title: 'formación Practica',
-      text: 'Mas del sesenta por ciento de las horas curriculares se dedican a laboratorios, proyectos y resolución de problemas reales. Aprender haciendo es nuestra premisa.',
+      title: 'Formación Práctica',
+      text: 'Más del 60% de las horas curriculares se dedican a laboratorios, proyectos y resolución de problemas reales. Aprender haciendo es nuestra premisa.',
     },
     {
       title: 'Proyectos Reales',
@@ -97,15 +97,19 @@ export const careerMethodology = {
     },
     {
       title: 'Trabajo Colaborativo',
-      text: 'Fomentamos el trabajo en equipo mediante grupos de estudio, proyectos integradores y dinamicas de pair programming que reflejan la industria actual.',
+      text: 'Fomentamos el trabajo en equipo mediante grupos de estudio, proyectos integradores y dinámicas de pair programming que reflejan la industria actual.',
     },
     {
       title: 'Enfoque Moderno',
-      text: 'El plan se actualiza periodicamente para incorporar tecnologías emergentes, herramientas de la industria y buenas practicas consolidadas a nivel global.',
+      text: 'El plan de estudios se actualiza periódicamente para incorporar tecnologías emergentes, herramientas de la industria y buenas prácticas consolidadas a nivel global.',
     },
     {
       title: 'Aprendizaje Progresivo',
       text: 'Cada nivel introduce complejidad de manera gradual, permitiendo que el estudiante asimile conceptos fundamentales antes de abordar arquitecturas avanzadas.',
+    },
+    {
+      title: 'Perfil Profesional',
+      text: 'La formación combina bases técnicas sólidas con habilidades analíticas y de comunicación, preparando profesionales capaces de adaptarse a distintos entornos y desafíos tecnológicos.',
     },
   ],
 }

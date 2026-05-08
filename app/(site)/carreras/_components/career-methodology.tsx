@@ -25,10 +25,7 @@ export function CareerMethodology() {
         <div className="relative mx-auto flex min-h-[600px] w-full max-w-[1400px] flex-col justify-center px-4 py-24 sm:px-6 md:min-h-[700px] lg:px-10">
           <AnimatedSection>
             <div className="max-w-3xl">
-              <span className="text-xs font-semibold uppercase tracking-[0.28em] text-white/40">
-                06 — Experiencia Academica
-              </span>
-              <h2 className="mt-6 text-3xl font-medium leading-tight tracking-tight text-white md:text-4xl lg:text-5xl">
+              <h2 className="text-3xl font-medium leading-tight tracking-tight text-white md:text-4xl lg:text-5xl">
                 {careerMethodology.title}
               </h2>
               <p className="mt-4 text-lg text-slate-300">
