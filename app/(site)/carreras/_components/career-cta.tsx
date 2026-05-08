@@ -8,7 +8,7 @@ const easing: [number, number, number, number] = [0.22, 1, 0.36, 1]
 
 export function CareerCta() {
   return (
-    <section className="relative w-full bg-[#00152b] py-24 text-white md:py-32">
+    <section className="relative w-full bg-[#072c57] py-24 text-white md:py-32">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(40,194,243,0.06)_0%,_transparent_70%)]" />
 
       <div className="relative mx-auto flex w-full max-w-[1400px] flex-col items-center px-4 text-center sm:px-6 lg:px-10">
@@ -17,9 +17,9 @@ export function CareerCta() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-60px' }}
           transition={{ duration: 0.9, ease: easing }}
-          className="max-w-4xl"
+          className="max-w-6xl"
         >
-          <h2 className="text-3xl font-medium leading-tight tracking-tight text-white md:text-4xl lg:text-5xl xl:text-6xl">
+          <h2 className="text-3xl font-bold  tracking-tight text-white md:text-4xl lg:text-5xl xl:text-6xl">
             {careerCta.title}
           </h2>
 
@@ -30,10 +30,9 @@ export function CareerCta() {
           <div className="mt-12">
             <Link
               href="/contacto"
-              className="inline-flex items-center gap-3 rounded-sm bg-[#28c2f3] px-8 py-4 text-base font-semibold text-[#072c57] transition hover:bg-[#52d0f7] md:px-10 md:py-5 md:text-lg"
+              className="inline-flex items-center gap-3 rounded-sm bg-[#28c2f3] px-8 py-4 text-base font-semibold text-[#072c57] transition md:px-10 md:py-5 md:text-lg"
             >
-              {careerCta.cta}
-              <span aria-hidden="true">→</span>
+              <span className='tag-underline'>{careerCta.cta}</span>
             </Link>
           </div>
         </motion.div>

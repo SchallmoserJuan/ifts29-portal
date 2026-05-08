@@ -111,8 +111,8 @@ export const careerMethodology = {
 }
 
 export const careerCta = {
-  title: 'Comenza tu futuro en la industria del software.',
+  title: 'Impulsá tu futuro en el mundo del software.',
   subtitle:
-    'Una carrera de excelencia tecnica, respaldada por una institución publica con trayectoria y visión de futuro.',
+    'Una carrera de excelencia técnica, respaldada por una institución pública con trayectoria y visión de futuro.',
   cta: 'Solicitar información de ingreso',
 }

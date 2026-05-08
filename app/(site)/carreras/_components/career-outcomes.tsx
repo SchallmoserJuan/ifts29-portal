@@ -19,14 +19,11 @@ export function CareerOutcomes({ career }: { career: CareerItem }) {
       <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-10">
         <AnimatedSection>
           <div className="max-w-3xl">
-            <span className="text-xs font-semibold uppercase tracking-[0.28em] text-white/40">
-              05 — Salidas Laborales
-            </span>
-            <h2 className="mt-6 text-3xl font-medium leading-tight tracking-tight text-white md:text-4xl lg:text-5xl">
+            <h2 className="text-3xl font-medium leading-tight tracking-tight text-white md:text-4xl lg:text-5xl">
               Campos de desempeno
             </h2>
             <p className="mt-4 text-lg text-slate-300">
-              La industria tecnologica ofrece multiples vertientes de especializacion para el egresado.
+              La industria tecnológica ofrece múltiples vertientes de especialización para el egresado.
             </p>
           </div>
         </AnimatedSection>
