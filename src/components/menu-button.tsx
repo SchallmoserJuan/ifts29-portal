@@ -13,7 +13,7 @@ export function MenuButton() {
         aria-label="Abrir menú"
         aria-expanded={open}
         onClick={() => setOpen(true)}
-        className="flex items-center gap-1 px-2 py-1 text-sm font-semibold text-white whitespace-nowrap"
+        className="flex cursor-pointer items-center gap-1 px-2 py-1 text-sm font-semibold text-white whitespace-nowrap"
       >
         <span className="navbar-underline">Menu</span>
         <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
