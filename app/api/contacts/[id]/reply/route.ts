@@ -65,6 +65,28 @@ export async function POST(req: Request, { params }: { params: Params }) {
       },
     })
 
+    const relatedNotifications = await payload.find({
+      collection: 'notifications',
+      where: {
+        relatedContact: {
+          equals: typeof id === 'string' ? parseInt(id) : id,
+        },
+      },
+      limit: 1,
+    })
+
+    if (relatedNotifications.docs.length > 0) {
+      await payload.update({
+        collection: 'notifications',
+        id: relatedNotifications.docs[0].id,
+        data: {
+          status: 'replied',
+          read: true,
+          readAt: new Date().toISOString(),
+        },
+      })
+    }
+
     return NextResponse.json({ success: true })
   } catch (error) {
     console.error('Error sending reply:', error)

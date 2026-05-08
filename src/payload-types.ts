@@ -424,6 +424,7 @@ export interface Notification {
   title: string;
   message?: string | null;
   relatedContact?: (number | null) | Contact;
+  status: 'new' | 'read' | 'replied';
   read?: boolean | null;
   readAt?: string | null;
   updatedAt: string;
@@ -737,6 +738,7 @@ export interface NotificationsSelect<T extends boolean = true> {
   title?: T;
   message?: T;
   relatedContact?: T;
+  status?: T;
   read?: T;
   readAt?: T;
   updatedAt?: T;

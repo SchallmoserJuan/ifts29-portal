@@ -32,6 +32,7 @@ export async function PATCH(req: Request, { params }: { params: Params }) {
       collection: 'notifications',
       id,
       data: {
+        status: 'read',
         read: true,
         readAt: new Date().toISOString(),
       },

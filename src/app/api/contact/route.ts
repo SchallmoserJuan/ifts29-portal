@@ -49,6 +49,7 @@ export async function POST(req: Request) {
           title: `Nuevo contacto: ${asunto}`,
           message: truncatedMessage,
           relatedContact: contact.id,
+          status: 'new',
         },
       })
       console.log('[contact API] Notification created:', notification.id)

@@ -40,6 +40,18 @@ export const Notifications: CollectionConfig = {
       required: false,
     },
     {
+      name: 'status',
+      label: 'Estado',
+      type: 'select',
+      required: true,
+      defaultValue: 'new',
+      options: [
+        { label: 'Nuevo', value: 'new' },
+        { label: 'Leída', value: 'read' },
+        { label: 'Respondida', value: 'replied' },
+      ],
+    },
+    {
       name: 'read',
       label: 'Leída',
       type: 'checkbox',
