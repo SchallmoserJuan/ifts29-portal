@@ -8,7 +8,7 @@ import {ValuesSection} from '@/src/components/institutional/values-section'
 import {AuthoritiesSection} from '@/src/components/institutional/authorities-section'
 import {CTASection} from '@/src/components/institutional/cta-section'
 
-export const dynamic = 'force-dynamic'
+export const revalidate = 60
 
 export default async function InstitutionalPage() {
   return (

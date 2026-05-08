@@ -12,7 +12,7 @@ import { CareerOutcomes } from './_components/career-outcomes'
 import { CareerMethodology } from './_components/career-methodology'
 import { CareerCta } from './_components/career-cta'
 
-export const dynamic = 'force-dynamic'
+export const revalidate = 60
 
 export default async function CareersPage() {
   const careers = await getCareers()

@@ -7,7 +7,7 @@ import { CompaniesSection } from '@/src/components/companies-section'
 import { getNewsList, getEventsList, getProjectsList, getCompaniesList } from '@/src/lib/content'
 import type { NewsItem } from '@/src/types/content'
 
-export const dynamic = 'force-dynamic'
+export const revalidate = 60
 
 export default async function NewsPage() {
   const news = await getNewsList()

@@ -5,7 +5,7 @@ import { NewsCard } from '@/src/components/news-card'
 import { getNewsList } from '@/src/lib/content'
 import type { NewsItem } from '@/src/types/content'
 import { HomeHero } from '@/src/components/home-hero'
-export const dynamic = 'force-dynamic'
+export const revalidate = 60
 
 const communityCards = [
   {
