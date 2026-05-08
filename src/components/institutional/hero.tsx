@@ -31,20 +31,6 @@ export function InstitutionalHero() {
             El IFTS 29 es una institución de educación técnica superior dedicada a formar profesionales
             con sólidas competencias técnicas y un compromiso ético con la sociedad.
           </p>
-          <div className="mt-10 flex flex-wrap gap-4">
-            <Link
-              href="#historia"
-              className="inline-flex items-center bg-[#00d4ff] px-8 py-3.5 text-sm font-semibold text-[#00152b] transition hover:brightness-110 rounded-sm"
-            >
-              <span className="tag-underline">Conocer nuestra historia</span>
-            </Link>
-            <Link
-              href="#carreras"
-              className="inline-flex items-center border border-white/30 px-8 py-3.5 text-sm font-semibold text-white transition hover:bg-white/10 rounded-sm"
-            >
-              <span className="navbar-underline">Ver carreras</span>
-            </Link>
-          </div>
         </motion.div>
       </div>
 

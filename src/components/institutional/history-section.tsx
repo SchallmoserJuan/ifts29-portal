@@ -57,7 +57,7 @@ export function HistorySection() {
               className="h-full w-full object-cover"
             />
           </div>
-          <p className="mt-4 text-xs text-slate-400">Ceremonia de graduación 2023</p>
+          <p className="mt-4 text-xs text-slate-400">Ceremonia de graduación 2025</p>
         </AnimatedSection>
       </div>
     </section>
