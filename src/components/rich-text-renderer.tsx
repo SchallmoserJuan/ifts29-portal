@@ -1,51 +1,46 @@
-type LexicalNode = {
-  type?: string
-  text?: string
-  children?: unknown[]
+'use client'
+
+import {
+  RichText as PayloadRichText,
+  LinkJSXConverter,
+  type JSXConvertersFunction,
+} from '@payloadcms/richtext-lexical/react'
+
+interface RichTextProps {
+  content: unknown
 }
 
-const isNode = (value: unknown): value is LexicalNode => typeof value === 'object' && value !== null
+export function RichTextRenderer({ content }: RichTextProps) {
+  const globalStyles: React.CSSProperties = {
+    fontFamily: '"DM Sans", Arial, sans-serif',
+    fontWeight: 400,
+    color: '#61615f',
+    fontSize: '22px',
+    lineHeight: '35px',
+    textAlign: 'justify',
+  }
 
-const readText = (nodes?: unknown[]): string =>
-  nodes
-    ?.map((node) => {
-      if (!isNode(node)) return ''
-      if (node.text) return node.text
-      if (node.children) return readText(node.children)
-      return ''
-    })
-    .join(' ')
-    .trim() || ''
-
-export function RichTextRenderer({ content }: { content: { root?: { children?: unknown[] } } | null | undefined }) {
-  const nodes = content?.root?.children || []
-
-  if (nodes.length === 0) {
+  if (!content || typeof content !== 'object') {
     return null
   }
 
+  const hasRoot = 'root' in content
+
+  if (!hasRoot) {
+    return null
+  }
+
+  const jsxConverters: JSXConvertersFunction = ({ defaultConverters }) => ({
+    ...defaultConverters,
+    ...LinkJSXConverter({ internalDocToHref: () => '#' }),
+  })
+
   return (
-    <div className="space-y-4 text-slate-700">
-      {nodes.map((node, index) => {
-        if (!isNode(node)) return null
-        const text = node.text || readText(node.children)
-
-        if (!text) return null
-
-        if (node.type === 'heading') {
-          return (
-            <h2 key={index} className="text-2xl font-semibold text-slate-950">
-              {text}
-            </h2>
-          )
-        }
-
-        return (
-          <p key={index} className="text-base leading-8">
-            {text}
-          </p>
-        )
-      })}
+    <div style={globalStyles} className="rich-text-content">
+      <PayloadRichText
+        converters={jsxConverters}
+        data={content as never}
+      />
     </div>
   )
 }
