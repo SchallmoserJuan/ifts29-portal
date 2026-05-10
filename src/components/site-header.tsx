@@ -22,12 +22,8 @@ import { MenuButton } from './menu-button'
 export async function SiteHeader() {
   // Obtención de datos del servidor (CMS)
   const settings = await getSiteSettings()
-<<<<<<< HEAD
-
-=======
   
   // Configuración de navegación simplificada según consigna Oxford-style
->>>>>>> 8cd0e674ee3c097631013a5666ac6994dcbabc11
   const links = [
     { href: '/institucional', label: 'Institución' },
     { href: '/carreras', label: 'Carreras' },
@@ -35,42 +31,6 @@ export async function SiteHeader() {
   ]
 
   return (
-<<<<<<< HEAD
-    <>
-      <header className="sticky top-0 z-40 border-b border-slate-200/80 bg-white/92 backdrop-blur">
-        <div className="mx-auto flex w-full max-w-[1400px] items-center justify-between gap-6 px-4 py-4 sm:px-6 lg:px-10">
-          <SiteBrand dark />
-
-          <nav className="hidden items-center gap-3 lg:flex">
-            <NavLinks links={links} />
-
-            <Link
-              href="/login"
-              className="rounded-md border border-[#0a2e57] px-5 py-3 text-sm font-semibold text-[#0a2e57] transition hover:bg-[#0a2e57] hover:text-white"
-            >
-              Ingresar
-            </Link>
-          </nav>
-
-          <div className="hidden max-w-sm text-right text-xs text-slate-500 xl:block">
-            <p>{settings.tagline}</p>
-          </div>
-
-          <div className="lg:hidden">
-            <MobileMenu links={links} />
-          </div>
-        </div>
-
-        <div className="border-t border-slate-200/70 bg-[#dcecff]/35">
-          <div className="mx-auto w-full max-w-[1400px] px-4 py-2 text-xs uppercase tracking-[0.24em] text-[#214ca0] sm:px-6 lg:px-10">
-            {settings.siteTitle}
-          </div>
-        </div>
-      </header>
-
-      <Breadcrumbs />
-    </>
-=======
     <NavbarClient>
       <div className="mx-auto flex w-full max-w-[1400px] items-center justify-between gap-6 px-4 py-4 sm:px-6 lg:px-10">
         
@@ -114,6 +74,5 @@ export async function SiteHeader() {
       </div>
       
     </NavbarClient>
->>>>>>> 8cd0e674ee3c097631013a5666ac6994dcbabc11
   )
 }

@@ -32,11 +32,7 @@ export function MobileMenu() {
         />
       </button>
 
-<<<<<<< HEAD
-      {mounted && createPortal(overlay, document.body)}
-=======
       <MegaMenu open={open} onClose={() => setOpen(false)} />
->>>>>>> 8cd0e674ee3c097631013a5666ac6994dcbabc11
     </>
   )
 }
