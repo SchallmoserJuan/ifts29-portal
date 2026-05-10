@@ -1,42 +1,43 @@
-import { SiteBrand } from '@/src/components/site-brand'
-import { getSiteSettings } from '@/src/lib/content'
+import {SiteBrand} from '@/src/components/site-brand'
+import {getSiteSettings} from '@/src/lib/content'
 import Link from 'next/link'
 
 const footerLinks = [
   {
     title: 'Explorar',
     links: [
-      { label: 'Institucional', href: '/institucional' },
-      { label: 'Carreras', href: '/carreras' },
-      { label: 'Noticias', href: '/noticias' },
-      { label: 'Biblioteca', href: '/portal/biblioteca' },
-      { label: 'Alumni', href: '/login' },
+      {label: 'Institucional', href: '/institucional'},
+      {label: 'Carreras', href: '/carreras'},
+      {label: 'Noticias', href: '/noticias'},
+      {label: 'Biblioteca', href: '/portal/biblioteca'},
+      {label: 'Alumni', href: '/login'},
     ],
   },
   {
     title: 'Comunidad',
     links: [
-      { label: 'Ingreso', href: '/login' },
-      { label: 'Portal', href: '/portal' },
-      { label: 'Documentación', href: '#' },
-      { label: 'Recursos', href: '#' },
+      {label: 'Ingreso', href: '/login'},
+      {label: 'Portal', href: '/portal'},
+      {label: 'Documentación', href: '#'},
+      {label: 'Recursos', href: '#'},
     ],
   },
   {
     title: 'Síguenos',
     links: [
-      { label: 'YouTube', href: '#' },
-      { label: 'Instagram', href: '#' },
-      { label: 'LinkedIn', href: '#' },
+      {
+        label: 'LinkedIn',
+        href: 'https://www.linkedin.com/school/instituto-de-formaci%C3%B3n-t%C3%A9cnica-superior-29/',
+      },
     ],
   },
 ]
 
 const bottomLinks = [
-  { label: 'Privacy', href: '#' },
-  { label: 'Accessibility', href: '#' },
-  { label: 'Cookies', href: '#' },
-  { label: 'Legal', href: '#' },
+  {label: 'Privacy', href: '#'},
+  {label: 'Accessibility', href: '#'},
+  {label: 'Cookies', href: '#'},
+  {label: 'Legal', href: '#'},
 ]
 
 export async function SiteFooter() {
@@ -56,14 +57,14 @@ export async function SiteFooter() {
             <p>{settings.phone}</p>
             <p>{settings.contactEmail}</p>
             <div className="pt-2">
-                  <Link 
-                    href="/contacto" 
-                    className="group relative block w-fit font-bold text-blue-800 hover:text-blue-600"
-                  >
-                    Escribinos una consulta
-                    <span className="absolute bottom-0 left-0 h-[1px] w-0 bg-blue-800 transition-all duration-300 group-hover:w-full" />
-                  </Link>
-                </div>
+              <Link
+                href="/contacto"
+                className="group relative block w-fit font-bold text-blue-800 hover:text-blue-600"
+              >
+                Escribinos una consulta
+                <span className="absolute bottom-0 left-0 h-[1px] w-0 bg-blue-800 transition-all duration-300 group-hover:w-full" />
+              </Link>
+            </div>
           </div>
 
           {footerLinks.map((column) => (
@@ -73,11 +74,7 @@ export async function SiteFooter() {
             >
               <p className="font-semibold text-[#002649]">{column.title}</p>
               {column.links.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  className="group relative block w-fit"
-                >
+                <a key={link.label} href={link.href} className="group relative block w-fit">
                   {link.label}
                   <span className="absolute bottom-0 left-0 h-[1px] w-0 bg-[#002649] transition-all duration-300 group-hover:w-full" />
                 </a>
