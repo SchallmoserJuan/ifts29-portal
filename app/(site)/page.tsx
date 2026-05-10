@@ -128,15 +128,15 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <section id="home-accesos" className="bg-[#072c57] py-16 sm:py-20">
+      <section id="home-accesos" className="bg-[#dcecff] py-16 sm:py-20">
         <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-10">
           <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
-            <h2 className="text-4xl font-semibold text-white">Excelencia IFTS</h2>
+            <h2 className="text-4xl font-medium text-[#214ca0]">Excelencia IFTS</h2>
             <Link
               href="/login"
-              className="inline-flex items-center justify-center rounded-md border border-[#28c2f3] px-6 py-3 text-sm font-medium text-[#28c2f3] transition hover:bg-[#28c2f3] hover:text-[#072c57]"
+              className="inline-flex items-center justify-center rounded-md border border-[#214ca0] px-6 py-3 text-sm font-medium text-[#214ca0]"
             >
-              + Ingresar al portal
+              <span className="tag-underline">Ingresar al portal</span>
             </Link>
           </div>
 
