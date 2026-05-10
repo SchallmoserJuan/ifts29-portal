@@ -144,7 +144,7 @@ export default async function HomePage() {
             {excellenceCards.map((card) => (
               <article
                 key={card.title}
-                className="group overflow-hidden rounded-xl bg-white/5 border border-white/10 transition-all duration-500 hover:border-[#2fd0ff]/50"
+                className="group overflow-hidden rounded bg-white/5 border border-white/10 transition-all duration-100 hover:border-[#2fd0ff]/50"
               >
                 <Link href={card.href} className="flex flex-col h-full w-full">
                   {/* 1. Agrandar/Estirar: Aumentamos la altura a h-[420px] */}
@@ -153,7 +153,7 @@ export default async function HomePage() {
                       src={card.image}
                       alt={card.title}
                       fill
-                      className="object-cover transition-transform duration-700 ease-in-out group-hover:scale-110"
+                      className="object-cover transition-transform duration-300 ease-in-out group-hover:scale-110"
                       unoptimized
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#072c57] via-transparent to-transparent" />
