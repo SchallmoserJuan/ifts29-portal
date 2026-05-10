@@ -51,7 +51,7 @@ export function NewsCard({ news, variant = 'default' }: NewsCardProps) {
             src={imageUrl}
             alt={news.title}
             fill
-            className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+            className="object-cover transition-transform duration-300 ease-out group-hover:scale-105"
             unoptimized
           />
           {/* Date & read time badge */}
