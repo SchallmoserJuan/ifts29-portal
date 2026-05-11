@@ -9,7 +9,6 @@
 
 
 'use client'
-import { usePathname } from 'next/navigation'
 import { ReactNode } from 'react'
 import { useHero } from './hero-context'
 
