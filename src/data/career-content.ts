@@ -2,7 +2,6 @@
 // Este contenido complementa los datos estructurados del CMS (Careers)
 
 export const careerHero = {
-  label: 'Carrera',
   headline: 'Tecnicatura Superior en Desarrollo de Software',
   paragraph:
     'Una formación de excelencia pensada para quienes buscan dominar la creación de software con rigor academico y mirada profesional. Preparamos técnicos capaces de liderar proyectos, diseñar arquitecturas robustas y aportar valor real a la industria tecnológica.',
