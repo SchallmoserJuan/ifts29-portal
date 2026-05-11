@@ -8,7 +8,6 @@ export function MobileMenu() {
 
   return (
     <>
-      {/* Hamburger button — stays in the header flow */}
       <button
         type="button"
         aria-label={open ? 'Cerrar menú' : 'Abrir menú'}

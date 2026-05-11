@@ -38,13 +38,17 @@ function calculateReadTime(content: unknown): string {
 
 export function NewsHero({news}: {news: NewsItem}) {
   const imageUrl = news.heroImage?.url || FALLBACK_IMAGE
-  const {setHasImageHero} = useHero()
+  const {setHasImageHero, setHasImageBackground} = useHero()
   const readTime = calculateReadTime(news.content)
 
   useEffect(() => {
     setHasImageHero(true)
-    return () => setHasImageHero(false)
-  }, [setHasImageHero])
+    setHasImageBackground(true)
+    return () => {
+      setHasImageHero(false)
+      setHasImageBackground(false)
+    }
+  }, [setHasImageHero, setHasImageBackground])
 
   return (
     <section className="relative flex min-h-[76vh] w-full items-end overflow-hidden text-white">

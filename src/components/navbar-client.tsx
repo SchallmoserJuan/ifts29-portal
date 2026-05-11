@@ -9,7 +9,6 @@
 
 
 'use client'
-import { usePathname } from 'next/navigation'
 import { ReactNode } from 'react'
 import { useHero } from './hero-context'
 
@@ -25,8 +24,8 @@ export function NavbarClient({ children }: NavbarClientProps) {
       className={`
         top-0 z-50 w-full
         ${hasImageHero
-          ? 'absolute bg-transparent border-b border-white/10'
-          : 'relative bg-[#072c57] border-b border-slate-600'
+          ? 'absolute bg-transparent'
+          : 'relative bg-[#072c57]'
         }
       `}
     >

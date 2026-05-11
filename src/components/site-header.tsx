@@ -5,24 +5,21 @@
  * 1. Se eliminaron los bloques de 'tagline' y 'siteTitle' para limpiar la interfaz.
  * 2. Se actualizaron los labels de navegación ( 'Institucional' -> 'Institución').
  * 3. Se integró NavbarClient para manejar la estética dinámica (transparencia en Home).
- * 4. Maintained as Server Component to allow use of 'getSiteSettings' without 'child_process' errors.
+ * 4. Maintained as Server Component to allow use of server-only data fetching.
  * Nota, Se eliminaron intencionalmente los fragmentos de settings.tagline y settings.siteTitle para cumplir con el requerimiento de diseño del Portal Institucional
  */
 
 import Link from 'next/link'
 import { MobileMenu } from '@/src/components/mobile-menu'
 import { SiteBrand } from '@/src/components/site-brand'
-import { getSiteSettings } from '@/src/lib/content'
 import { NavbarClient } from './navbar-client'
 import { AuthNavLink } from './auth-nav-link'
 import { UserNavInfo } from './user-nav-info'
 import { PortalNavLink } from './portal-nav-link'
 import { MenuButton } from './menu-button'
+import { Breadcrumbs } from './breadcrumbs'
 
 export async function SiteHeader() {
-  // Obtención de datos del servidor (CMS)
-  const settings = await getSiteSettings()
-  
   // Configuración de navegación simplificada según consigna Oxford-style
   const links = [
     { href: '/institucional', label: 'Institución' },
@@ -72,7 +69,8 @@ export async function SiteHeader() {
 
 
       </div>
-      
+
+      <Breadcrumbs />
     </NavbarClient>
   )
 }
