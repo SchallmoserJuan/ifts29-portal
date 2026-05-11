@@ -2,19 +2,25 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { useHero } from './hero-context'
 
 export function Breadcrumbs() {
   const pathname = usePathname()
+  const { hasImageBackground } = useHero()
 
-  if (pathname === '/') return null
+  const hideContent = pathname === '/' || hasImageBackground
+
+  if (hideContent) {
+    return <div className="border-b border-white/10" />
+  }
 
   const segments = pathname.split('/').filter(Boolean)
 
   return (
-    <div className="border-t border-slate-200 bg-[#214ca0] text-white">
+    <div className="border-t border-b border-white/10 bg-[#072c57] text-white">
       <div className="mx-auto flex w-full max-w-[1400px] items-center gap-2 px-4 py-3 text-sm sm:px-6 lg:px-10">
         <Link href="/" className="hover:underline">
-          Home
+          <span className="navbar-underline">Home</span>
         </Link>
 
         {segments.map((segment, index) => {
@@ -28,7 +34,7 @@ export function Breadcrumbs() {
             <div key={href} className="flex items-center gap-2">
               <span>{'>'}</span>
 
-              <Link href={href} className="hover:underline">
+              <Link href={href} className="navbar-underline hover:underline">
                 {label}
               </Link>
             </div>

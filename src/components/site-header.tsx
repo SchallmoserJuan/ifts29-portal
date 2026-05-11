@@ -18,6 +18,7 @@ import { AuthNavLink } from './auth-nav-link'
 import { UserNavInfo } from './user-nav-info'
 import { PortalNavLink } from './portal-nav-link'
 import { MenuButton } from './menu-button'
+import { Breadcrumbs } from './breadcrumbs'
 
 export async function SiteHeader() {
   // Obtención de datos del servidor (CMS)
@@ -72,7 +73,8 @@ export async function SiteHeader() {
 
 
       </div>
-      
+
+      <Breadcrumbs />
     </NavbarClient>
   )
 }

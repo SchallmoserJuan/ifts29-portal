@@ -4,12 +4,16 @@ import { useEffect } from 'react'
 import { useHero } from '@/src/components/hero-context'
 
 export function HomeHero({ children }: { children: React.ReactNode }) {
-  const { setHasImageHero } = useHero()
+  const { setHasImageHero, setHasImageBackground } = useHero()
 
   useEffect(() => {
     setHasImageHero(true)
-    return () => setHasImageHero(false)
-  }, [setHasImageHero])
+    setHasImageBackground(true)
+    return () => {
+      setHasImageHero(false)
+      setHasImageBackground(false)
+    }
+  }, [setHasImageHero, setHasImageBackground])
 
   return (
     <section

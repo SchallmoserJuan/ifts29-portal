@@ -17,11 +17,15 @@ export function PageHeroImage({
   backgroundImage: string
   children?: ReactNode
 }) {
-  const { setHasImageHero } = useHero()
+  const { setHasImageHero, setHasImageBackground } = useHero()
 
   useEffect(() => {
     setHasImageHero(true)
-    return () => setHasImageHero(false) // cleanup al desmontar
+    setHasImageBackground(true)
+    return () => {
+      setHasImageHero(false)
+      setHasImageBackground(false)
+    } // cleanup al desmontar
   }, [])
 
   return (
