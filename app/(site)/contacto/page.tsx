@@ -1,7 +1,12 @@
-// NOTA: No lleva "use client" para que PageShell pueda correr en el servidor
+import type { Metadata } from 'next'
 
-import { PageShell } from "@/src/components/page-shell"; // Importamos el layout base que ya incluye el Header y Footer
+import { PageShell } from "@/src/components/page-shell";
 import { ContactForm } from "@/src/components/contact-form";
+
+export const metadata: Metadata = {
+  title: 'Contacto',
+  description: 'Canal centralizado para consultas de aspirantes y alumnos del IFTS N° 29. Envianos tu mensaje y te responderemos a la brevedad.',
+}
 
 export default function ContactoPage() {
   return (

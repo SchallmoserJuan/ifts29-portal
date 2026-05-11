@@ -1,9 +1,18 @@
+import type { Metadata } from 'next'
 import Link from 'next/link'
 
 import { NotificationsCard } from '@/src/components/notifications-card'
 import { PageHero } from '@/src/components/page-hero'
 import { PageShell } from '@/src/components/page-shell'
 import { requireUser } from '@/src/lib/auth'
+
+export const metadata: Metadata = {
+  title: 'Portal',
+  robots: {
+    index: false,
+    follow: false,
+  },
+}
 
 export const dynamic = 'force-dynamic'
 

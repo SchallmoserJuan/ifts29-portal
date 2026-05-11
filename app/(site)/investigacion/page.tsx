@@ -1,4 +1,11 @@
+import type { Metadata } from 'next'
+
 import { PageShell } from '@/src/components/page-shell'
+
+export const metadata: Metadata = {
+  title: 'Investigación',
+  description: 'Proyectos de investigación y desarrollo del IFTS N° 29. Conocé los avances académicos e innovaciones de nuestra institución.',
+}
 
 export default function InvestigacionPage() {
   return (

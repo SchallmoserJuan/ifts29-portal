@@ -9,11 +9,32 @@ import '@fontsource/playfair-display/600.css'
 import '@fontsource/playfair-display/700.css'
 
 import { AuthProvider } from '@/src/context/auth-context'
+import { getSiteSettings } from '@/src/lib/content'
 import './globals.css'
 
-export const metadata: Metadata = {
-  title: 'Portal IFTS 29',
-  description: 'Portal institucional del IFTS 29 con acceso por roles, noticias, carreras y biblioteca.',
+export async function generateMetadata(): Promise<Metadata> {
+  const settings = await getSiteSettings()
+
+  return {
+    title: {
+      default: settings.siteTitle,
+      template: '%s | IFTS 29',
+    },
+    description: settings.tagline,
+    metadataBase: new URL('https://ifts29.edu.ar'),
+    openGraph: {
+      type: 'website',
+      locale: 'es_AR',
+      siteName: settings.siteTitle,
+    },
+    twitter: {
+      card: 'summary_large_image',
+    },
+    robots: {
+      index: true,
+      follow: true,
+    },
+  }
 }
 
 export default function RootLayout({
