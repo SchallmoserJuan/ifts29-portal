@@ -21,9 +21,6 @@ export function InstitutionalHero() {
 
       <div className="relative z-10 mx-auto w-full max-w-[1400px] px-6 pb-20 pt-40 sm:px-10 md:pb-28 md:pt-48">
         <motion.div className="max-w-4xl">
-          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-white/60">
-            Institución
-          </p>
           <h1 className="mt-5 font-heading text-4xl font-semibold text-white sm:text-5xl md:text-6xl lg:text-7xl">
             Formando el futuro desde la excelencia académica
           </h1>
