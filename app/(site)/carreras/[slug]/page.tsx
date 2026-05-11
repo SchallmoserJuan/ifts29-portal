@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
 import { PageHero } from '@/src/components/page-hero'
@@ -7,6 +8,44 @@ import { getCareerBySlug } from '@/src/lib/content'
 import type { RequirementItem, SubjectItem } from '@/src/types/content'
 
 export const dynamic = 'force-dynamic'
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>
+}): Promise<Metadata> {
+  const { slug } = await params
+  const career = await getCareerBySlug(slug)
+
+  if (!career) {
+    return {
+      title: 'Carrera no encontrada',
+    }
+  }
+
+  return {
+    title: career.name,
+    description: career.summary,
+    openGraph: {
+      title: career.name,
+      description: career.summary,
+      images: career.heroImage
+        ? [
+            {
+              url: career.heroImage.url,
+              alt: career.heroImage.alt || career.name,
+            },
+          ]
+        : [],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: career.name,
+      description: career.summary,
+      images: career.heroImage ? [career.heroImage.url] : [],
+    },
+  }
+}
 
 const hasRichTextRoot = (value: unknown): value is { root?: { children?: unknown[] } } =>
   typeof value === 'object' && value !== null && 'root' in value

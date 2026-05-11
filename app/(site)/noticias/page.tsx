@@ -1,3 +1,5 @@
+import type { Metadata } from 'next'
+
 import { PageShell } from '@/src/components/page-shell'
 import { NewsHero } from '@/src/components/news-hero'
 import { NewsSection } from '@/src/components/news-section'
@@ -6,6 +8,11 @@ import { ProjectsSection } from '@/src/components/projects-section'
 import { CompaniesSection } from '@/src/components/companies-section'
 import { getNewsList, getEventsList, getProjectsList, getCompaniesList } from '@/src/lib/content'
 import type { NewsItem } from '@/src/types/content'
+
+export const metadata: Metadata = {
+  title: 'Noticias',
+  description: 'Enterate de las últimas novedades, eventos y proyectos del IFTS N° 29. Noticias académicas e institucionales de nuestra comunidad.',
+}
 
 export const revalidate = 60
 

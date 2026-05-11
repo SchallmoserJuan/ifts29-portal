@@ -1,7 +1,13 @@
+import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
 import { PageShell } from '@/src/components/page-shell'
 import { getCareers } from '@/src/lib/content'
+
+export const metadata: Metadata = {
+  title: 'Carreras',
+  description: 'Explorá nuestra oferta académica en el IFTS N° 29. Carreras técnicas con sólida formación profesional y salida laboral garantizada.',
+}
 
 import { CareerHero } from './_components/career-hero'
 import { CareerIntro } from './_components/career-intro'
