@@ -1,4 +1,4 @@
-import {SiteBrand} from '@/src/components/site-brand'
+import {SiteBrand} from '../ui/site-brand'
 import {getSiteSettings} from '@/src/lib/content'
 import Link from 'next/link'
 

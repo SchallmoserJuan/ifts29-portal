@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
-import { PageShell } from '@/src/components/page-shell'
+import { PageShell } from '@/src/components/layout'
 import { getCareers } from '@/src/lib/content'
 
 export const metadata: Metadata = {

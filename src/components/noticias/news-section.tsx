@@ -1,6 +1,6 @@
-import { NewsCard } from '@/src/components/news-card'
-import { SectionHeader } from '@/src/components/section-header'
-import { StaggerContainer, StaggerItem } from '@/src/components/animated-section'
+import { NewsCard } from './news-card'
+import { SectionHeader } from '../ui/section-header'
+import { StaggerContainer, StaggerItem } from '../ui/animated-section'
 import type { NewsItem } from '@/src/types/content'
 
 export function NewsSection({ news }: { news: NewsItem[] }) {

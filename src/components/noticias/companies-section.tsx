@@ -1,6 +1,6 @@
-import { CompaniesCard } from '@/src/components/companies-card'
-import { SectionHeader } from '@/src/components/section-header'
-import { AnimatedSection, StaggerContainer, StaggerItem } from '@/src/components/animated-section'
+import { CompaniesCard } from './companies-card'
+import { SectionHeader } from '../ui/section-header'
+import { AnimatedSection, StaggerContainer, StaggerItem } from '../ui/animated-section'
 import { Briefcase } from 'lucide-react'
 import type { CompanyItem } from '@/src/types/content'
 

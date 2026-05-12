@@ -10,13 +10,13 @@
  */
 
 import Link from 'next/link'
-import { MobileMenu } from '@/src/components/mobile-menu'
-import { SiteBrand } from '@/src/components/site-brand'
+import { MobileMenu } from '../navigation/mobile-menu'
+import { SiteBrand } from '../ui/site-brand'
 import { NavbarClient } from './navbar-client'
-import { AuthNavLink } from './auth-nav-link'
-import { UserNavInfo } from './user-nav-info'
-import { PortalNavLink } from './portal-nav-link'
-import { MenuButton } from './menu-button'
+import { AuthNavLink } from '../navigation/auth-nav-link'
+import { UserNavInfo } from '../navigation/user-nav-info'
+import { PortalNavLink } from '../navigation/portal-nav-link'
+import { MenuButton } from '../navigation/menu-button'
 import { Breadcrumbs } from './breadcrumbs'
 
 export async function SiteHeader() {

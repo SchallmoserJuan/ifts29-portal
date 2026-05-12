@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 import type { CareerItem } from '@/src/types/content'
 import { defaultCareers } from '@/src/data/defaults'
-import { AnimatedSection } from '@/src/components/animated-section'
+import { AnimatedSection } from '@/src/components/ui'
 
 const easing: [number, number, number, number] = [0.22, 1, 0.36, 1]
 

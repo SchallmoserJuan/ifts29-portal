@@ -1,7 +1,7 @@
 'use client'
 
-import {CountUp} from '@/src/components/count-up'
-import {AnimatedSection} from '@/src/components/animated-section'
+import {CountUp} from '../ui/count-up'
+import {AnimatedSection} from '../ui/animated-section'
 
 const stats = [
   {value: 5, prefix: '+', suffix: '', label: 'años de trayectoria'},

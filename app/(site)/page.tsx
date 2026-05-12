@@ -1,10 +1,10 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import {PageShell} from '@/src/components/page-shell'
-import {NewsCard} from '@/src/components/news-card'
+import {PageShell} from '@/src/components/layout'
+import {NewsCard} from '@/src/components/noticias'
 import {getNewsList} from '@/src/lib/content'
 import type {NewsItem} from '@/src/types/content'
-import {HomeHero} from '@/src/components/home-hero'
+import {HomeHero} from '@/src/components/home'
 export const revalidate = 60
 
 const communityCards = [

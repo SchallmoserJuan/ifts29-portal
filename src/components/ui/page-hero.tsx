@@ -2,7 +2,7 @@
 'use client'
 import type { ReactNode } from 'react'
 import { useEffect } from 'react'
-import { useHero } from './hero-context'
+import { useHero } from '../layout/hero-context'
 
 export function PageHeroImage({
   eyebrow,

@@ -1,6 +1,6 @@
-import { EventsCard } from '@/src/components/events-card'
-import { SectionHeader } from '@/src/components/section-header'
-import { StaggerContainer, StaggerItem } from '@/src/components/animated-section'
+import { EventsCard } from './events-card'
+import { SectionHeader } from '../ui/section-header'
+import { StaggerContainer, StaggerItem } from '../ui/animated-section'
 import type { EventItem } from '@/src/types/content'
 
 export function EventsSection({ events }: { events: EventItem[] }) {

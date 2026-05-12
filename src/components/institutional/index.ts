@@ -1,0 +1,8 @@
+export { InstitutionalHero } from './hero'
+export { HistorySection } from './history-section'
+export { StatsSection } from './stats-section'
+export { BannerSection } from './banner-section'
+export { AcademicSection } from './academic-section'
+export { ValuesSection } from './values-section'
+export { AuthoritiesSection } from './authorities-section'
+export { CTASection } from './cta-section'

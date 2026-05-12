@@ -2,7 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { MapPin, Clock } from 'lucide-react'
 import type { EventItem } from '@/src/types/content'
-import { TechBadge } from './tech-badge'
+import { TechBadge } from '../ui/tech-badge'
 
 const FALLBACK_IMAGE = 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=600&q=80'
 

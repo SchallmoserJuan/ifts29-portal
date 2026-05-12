@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { careerStudyPlan } from '@/src/data/career-content'
-import { AnimatedSection } from '@/src/components/animated-section'
+import { AnimatedSection } from '@/src/components/ui'
 import type { CareerItem } from '@/src/types/content'
 
 const easing: [number, number, number, number] = [0.22, 1, 0.36, 1]

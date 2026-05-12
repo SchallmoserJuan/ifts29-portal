@@ -1,6 +1,6 @@
 'use client'
 
-import {AnimatedSection} from '@/src/components/animated-section'
+import {AnimatedSection} from '../ui/animated-section'
 
 export function BannerSection() {
   return (

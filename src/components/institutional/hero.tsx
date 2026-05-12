@@ -3,7 +3,7 @@
 import {useEffect} from 'react'
 import {motion} from 'framer-motion'
 import Link from 'next/link'
-import {useHero} from '@/src/components/hero-context'
+import {useHero} from '../layout/hero-context'
 
 const easing: [number, number, number, number] = [0.22, 1, 0.36, 1]
 

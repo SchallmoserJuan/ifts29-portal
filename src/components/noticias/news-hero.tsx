@@ -6,8 +6,8 @@ import Image from 'next/image'
 import {motion} from 'framer-motion'
 import {Calendar, Clock, ArrowRight} from 'lucide-react'
 import type {NewsItem} from '@/src/types/content'
-import {useHero} from './hero-context'
-import {TechBadge} from './tech-badge'
+import {useHero} from '../layout/hero-context'
+import {TechBadge} from '../ui/tech-badge'
 
 const FALLBACK_IMAGE =
   'https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=1800&q=80'

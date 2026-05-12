@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-import { PageShell } from '@/src/components/page-shell'
+import { PageShell } from '@/src/components/layout'
 
 export default function NotFound() {
   return (

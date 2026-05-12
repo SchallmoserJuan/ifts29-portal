@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 
-import { PageShell } from '@/src/components/page-shell'
+import { PageShell } from '@/src/components/layout'
 import { requireUser } from '@/src/lib/auth'
 import { getLibraryDocuments } from '@/src/lib/content'
 import type { DocumentItem } from '@/src/types/content'

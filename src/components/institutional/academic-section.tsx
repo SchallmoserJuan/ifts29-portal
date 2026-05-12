@@ -2,8 +2,8 @@
 
 import Link from 'next/link'
 import {motion} from 'framer-motion'
-import {AnimatedSection} from '@/src/components/animated-section'
-import {SectionLabel} from '@/src/components/section-label'
+import {AnimatedSection} from '../ui/animated-section'
+import {SectionLabel} from '../ui/section-label'
 
 const easing: [number, number, number, number] = [0.22, 1, 0.36, 1]
 
