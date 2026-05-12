@@ -1,11 +1,7 @@
 import type { Metadata } from 'next'
 
-import { PageShell } from '@/src/components/page-shell'
-import { NewsHero } from '@/src/components/news-hero'
-import { NewsSection } from '@/src/components/news-section'
-import { EventsSection } from '@/src/components/events-section'
-import { ProjectsSection } from '@/src/components/projects-section'
-import { CompaniesSection } from '@/src/components/companies-section'
+import { PageShell } from '@/src/components/layout'
+import { NewsHero, NewsSection, EventsSection, ProjectsSection, CompaniesSection } from '@/src/components/noticias'
 import { getNewsList, getEventsList, getProjectsList, getCompaniesList } from '@/src/lib/content'
 import type { NewsItem } from '@/src/types/content'
 

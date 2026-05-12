@@ -1,9 +1,9 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
-import { PageHero } from '@/src/components/page-hero'
-import { PageShell } from '@/src/components/page-shell'
-import { RichTextRenderer } from '@/src/components/rich-text-renderer'
+import { PageHero } from '@/src/components/ui'
+import { PageShell } from '@/src/components/layout'
+import { RichTextRenderer } from '@/src/components/ui'
 import { getCareerBySlug } from '@/src/lib/content'
 import type { RequirementItem, SubjectItem } from '@/src/types/content'
 

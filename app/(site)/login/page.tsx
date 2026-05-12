@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
 
-import { LoginForm } from '@/src/components/login-form'
-import { PageShell } from '@/src/components/page-shell'
+import { LoginForm } from '@/src/components/login'
+import { PageShell } from '@/src/components/layout'
 import { getCurrentUser } from '@/src/lib/auth'
 
 export const metadata: Metadata = {

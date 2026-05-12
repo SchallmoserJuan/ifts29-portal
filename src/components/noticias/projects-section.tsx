@@ -1,8 +1,8 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import type { ProjectItem } from '@/src/types/content'
-import { SectionHeader } from './section-header'
-import { StaggerContainer, StaggerItem } from './animated-section'
+import { SectionHeader } from '../ui/section-header'
+import { StaggerContainer, StaggerItem } from '../ui/animated-section'
 
 const FALLBACK_IMAGE = 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=600&q=80'
 

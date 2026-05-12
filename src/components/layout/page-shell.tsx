@@ -1,8 +1,8 @@
 import type { ReactNode } from 'react'
 
-import { HeroProvider } from '@/src/components/hero-context'
-import { SiteFooter } from '@/src/components/site-footer'
-import { SiteHeader } from '@/src/components/site-header'
+import { HeroProvider } from './hero-context'
+import { SiteFooter } from './site-footer'
+import { SiteHeader } from './site-header'
 
 export async function PageShell({ children }: { children: ReactNode }) {
   return (

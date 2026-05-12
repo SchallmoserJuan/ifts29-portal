@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 
-import { PageShell } from '@/src/components/page-shell'
+import { PageShell } from '@/src/components/layout'
 
 export const metadata: Metadata = {
   title: 'Eventos',

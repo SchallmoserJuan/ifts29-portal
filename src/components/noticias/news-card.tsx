@@ -2,7 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Calendar, Clock } from 'lucide-react'
 import type { NewsItem } from '@/src/types/content'
-import { TechBadge } from './tech-badge'
+import { TechBadge } from '../ui/tech-badge'
 
 const FALLBACK_IMAGE = 'https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=600&q=80'
 

@@ -1,7 +1,7 @@
 'use client'
 
-import {AnimatedSection} from '@/src/components/animated-section'
-import {SectionLabel} from '@/src/components/section-label'
+import {AnimatedSection} from '../ui/animated-section'
+import {SectionLabel} from '../ui/section-label'
 
 export function ValuesSection() {
   return (

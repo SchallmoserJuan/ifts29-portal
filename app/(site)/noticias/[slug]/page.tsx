@@ -1,9 +1,9 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
-import { PageShell } from '@/src/components/page-shell'
-import { NewsDetailHero } from '@/src/components/news-detail-hero'
-import { RichTextRenderer } from '@/src/components/rich-text-renderer'
+import { PageShell } from '@/src/components/layout'
+import { NewsDetailHero } from '@/src/components/noticias'
+import { RichTextRenderer } from '@/src/components/ui'
 import { getNewsBySlug } from '@/src/lib/content'
 
 export const dynamic = 'force-dynamic'

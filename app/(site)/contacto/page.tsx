@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 
-import { PageShell } from "@/src/components/page-shell";
-import { ContactForm } from "@/src/components/contact-form";
+import { PageShell } from '@/src/components/layout';
+import { ContactForm } from '@/src/components/contacto';
 
 export const metadata: Metadata = {
   title: 'Contacto',

@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect } from 'react'
-import { useHero } from '@/src/components/hero-context'
+import { useHero } from '../layout/hero-context'
 
 export function HomeHero({ children }: { children: React.ReactNode }) {
   const { setHasImageHero, setHasImageBackground } = useHero()
