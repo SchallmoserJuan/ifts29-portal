@@ -1,1 +1,8 @@
 export { HomeHero } from './home-hero'
+export { SearchBar } from './search-bar'
+export { AnnouncementBar } from './announcement-bar'
+export { WhyChooseSection } from './why-choose'
+export { FeaturedCareer } from './featured-career'
+export { TestimonialsSection } from './testimonials'
+export { QuickAccessSection } from './quick-access'
+export { HomeCta } from './home-cta'
