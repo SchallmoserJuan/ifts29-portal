@@ -24,7 +24,7 @@ export function HomeCta() {
               href="/contacto"
               className="inline-flex items-center justify-center rounded-md border border-[#072c57] px-10 py-4 text-sm font-semibold text-[#072c57] transition hover:bg-[#072c57] hover:text-white"
             >
-              Contactanos
+              <span className="tag-underline">Contactanos</span>
             </Link>
           </div>
         </AnimatedSection>

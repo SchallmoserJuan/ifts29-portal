@@ -28,7 +28,7 @@ export function TestimonialsSection() {
       <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-10">
         <AnimatedSection>
           <p className="text-xs font-semibold uppercase tracking-[0.28em] text-slate-400">
-            04 — Comunidad
+            07 — Comunidad
           </p>
           <h2 className="font-heading mt-6 max-w-3xl text-3xl font-semibold text-[#00152b] sm:text-4xl md:text-5xl">
             Lo que dicen nuestros estudiantes

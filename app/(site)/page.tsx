@@ -56,25 +56,30 @@ export default async function HomePage() {
                 href="/portal"
                 className="inline-flex items-center justify-center rounded-md border border-white/25 px-8 py-3.5 text-sm font-semibold text-white transition hover:border-white/50 hover:bg-white/5"
               >
-                Portal estudiantil
+                <span className="navbar-underline">Portal estudiantil</span>
               </Link>
             </div>
           </div>
 
-          <div className="rounded-[24px] bg-[#072c57]/90 p-6 shadow-2xl shadow-slate-950/30 backdrop-blur-sm sm:p-8">
-            <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
-              <div className="max-w-md">
-                <p className="text-2xl leading-tight text-white sm:text-3xl">
-                  ¿Qué estás buscando?
-                </p>
-                <p className="mt-2 text-sm text-slate-300">
-                  Navegá rápidamente por todo el portal.
-                </p>
-              </div>
-              <div className="w-full max-w-2xl">
-                <SearchBar />
+          {/* Píldora de búsqueda minimalista */}
+          <div className="relative">
+            <div className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-6 backdrop-blur-xl sm:p-8">
+              <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between lg:gap-10">
+                <div className="max-w-sm shrink-0">
+                  <p className="text-lg leading-snug text-white/70 sm:text-xl">
+                    ¿Qué estás buscando?
+                  </p>
+                  <p className="mt-1 text-xs tracking-wide text-white/25">
+                    Escribí para ver sugerencias
+                  </p>
+                </div>
+                <div className="w-full max-w-xl">
+                  <SearchBar />
+                </div>
               </div>
             </div>
+            {/* Línea decorativa inferior */}
+            <div className="pointer-events-none absolute inset-x-8 -bottom-px h-px bg-gradient-to-r from-transparent via-[#28c2f3]/20 to-transparent" />
           </div>
         </div>
       </HomeHero>
@@ -88,16 +93,13 @@ export default async function HomePage() {
       {/* ===== 4. CARRERA DESTACADA ===== */}
       {career && <FeaturedCareer career={career} />}
 
-      {/* ===== 5. TESTIMONIOS ===== */}
-      <TestimonialsSection />
-
-      {/* ===== 6. NOTICIAS ===== */}
+      {/* ===== 5. NOTICIAS ===== */}
       <section className="bg-[#f8f7f4] py-16 sm:py-20">
         <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-10">
           <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.28em] text-slate-400">
-                06 — Novedades
+                05 — Novedades
               </p>
               <h2 className="font-heading mt-4 text-4xl font-medium text-[#00152b]">
                 Últimas noticias
@@ -107,7 +109,7 @@ export default async function HomePage() {
               href="/noticias"
               className="inline-flex items-center justify-center rounded-md border border-[#072c57] px-6 py-3 text-sm font-medium text-[#072c57] transition hover:bg-[#072c57] hover:text-white"
             >
-              Ver todas
+              <span className="tag-underline">Ver todas</span>
             </Link>
           </div>
 
@@ -121,6 +123,9 @@ export default async function HomePage() {
 
       {/* ===== 7. ACCESOS RÁPIDOS ===== */}
       <QuickAccessSection />
+
+      {/* ===== 7. TESTIMONIOS ===== */}
+      <TestimonialsSection />
 
       {/* ===== 8. CTA FINAL ===== */}
       <HomeCta />

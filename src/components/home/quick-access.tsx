@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { AnimatedSection, StaggerContainer, StaggerItem } from '@/src/components/ui'
-import { GraduationCap, BookOpen, FileText, Mail, HelpCircle } from 'lucide-react'
+import { GraduationCap, BookOpen, FileText, Mail, HelpCircle, CalendarDays } from 'lucide-react'
 
 const quickLinks = [
   {
@@ -22,6 +22,12 @@ const quickLinks = [
     href: '/institucional',
   },
   {
+    icon: CalendarDays,
+    title: 'Eventos',
+    description: 'Charlas, talleres, jornadas y actividades del instituto.',
+    href: '/eventos',
+  },
+  {
     icon: Mail,
     title: 'Contacto',
     description: 'Consultas, ubicación y horarios de atención.',
@@ -41,7 +47,7 @@ export function QuickAccessSection() {
       <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-10">
         <AnimatedSection>
           <p className="text-xs font-semibold uppercase tracking-[0.28em] text-white/50">
-            05 — Accesos directos
+            06 — Accesos directos
           </p>
           <h2 className="font-heading mt-6 max-w-3xl text-3xl font-semibold text-white sm:text-4xl md:text-5xl">
             Todo lo que necesitás en un solo lugar
@@ -61,7 +67,7 @@ export function QuickAccessSection() {
                 <h3 className="text-base font-semibold text-white">{link.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-white/60">{link.description}</p>
                 <div className="mt-auto pt-4">
-                  <span className="inline-flex items-center gap-1 text-xs font-semibold uppercase tracking-[0.15em] text-[#28c2f3] transition group-hover:gap-2">
+                  <span className="navbar-underline-inline items-center gap-1 text-xs font-semibold uppercase tracking-[0.15em] text-[#28c2f3] transition group-hover:gap-2">
                     Acceder
                     <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
