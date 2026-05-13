@@ -375,3 +375,27 @@ button {
     transform: none;
   }
 }
+
+/* Scrollbar personalizado para WebKit */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 5px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(40, 194, 243, 0.25);
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(40, 194, 243, 0.45);
+}
+
+/* Scrollbar para Firefox */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(40, 194, 243, 0.25) transparent;
+}
