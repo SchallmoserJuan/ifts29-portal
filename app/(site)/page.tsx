@@ -7,6 +7,7 @@ import {
   HomeHero,
   SearchBar,
   AnnouncementBar,
+  PlatformCards,
   WhyChooseSection,
   FeaturedCareer,
   TestimonialsSection,
@@ -87,7 +88,10 @@ export default async function HomePage() {
       {/* ===== 2. AVISOS IMPORTANTES ===== */}
       <AnnouncementBar />
 
-      {/* ===== 3. ¿POR QUÉ ELEGIRNOS? ===== */}
+      {/* ===== 3. PLATAFORMAS ACADÉMICAS ===== */}
+      <PlatformCards />
+
+      {/* ===== 4. ¿POR QUÉ ELEGIRNOS? ===== */}
       <WhyChooseSection />
 
       {/* ===== 4. CARRERA DESTACADA ===== */}

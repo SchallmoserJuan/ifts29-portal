@@ -21,7 +21,7 @@ const announcements = [
 
 export function AnnouncementBar() {
   return (
-    <div className="border-b border-white/5 bg-[#00152b]">
+    <div className="border-b border-white/5 bg-[#072c57]">
       <div className="mx-auto flex max-w-[1400px] flex-col items-center justify-center gap-3 px-4 py-4 sm:flex-row sm:gap-6 sm:px-6 lg:px-10">
         {announcements.map((item) => (
           <Link
