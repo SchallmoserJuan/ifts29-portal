@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { AnimatedSection } from '@/src/components/ui'
-import type { CareerItem } from '@/src/types/content'
+import {AnimatedSection} from '@/src/components/ui'
+import type {CareerItem} from '@/src/types/content'
 
 interface FeaturedCareerProps {
   career: CareerItem
@@ -10,7 +10,7 @@ interface FeaturedCareerProps {
 const FALLBACK_IMAGE =
   'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=1200&q=80'
 
-export function FeaturedCareer({ career }: FeaturedCareerProps) {
+export function FeaturedCareer({career}: FeaturedCareerProps) {
   return (
     <section className="relative bg-[#072c57] py-24 text-white md:py-32">
       <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-10">
@@ -49,12 +49,17 @@ export function FeaturedCareer({ career }: FeaturedCareerProps) {
               <p className="mt-8 text-lg leading-8 text-white/80">{career.summary}</p>
 
               <Link
-                href={`/carreras/${career.slug}`}
+                href={`/carreras`}
                 className="mt-10 inline-flex items-center gap-2 rounded-sm bg-[#00d4ff] px-10 py-4 text-sm font-semibold text-[#00152b] transition hover:brightness-110"
               >
                 Ver plan de estudios
                 <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M17 8l4 4m0 0l-4 4m4-4H3"
+                  />
                 </svg>
               </Link>
             </div>

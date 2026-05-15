@@ -13,6 +13,7 @@
     "payload": "payload",
     "generate:types": "payload generate:types",
     "seed:career": "tsx --tsconfig tsconfig.json src/scripts/seed-career.ts",
+    "seed:admin": "tsx --tsconfig tsconfig.json src/scripts/seed-admin.ts",
     "seed:all": "tsx --tsconfig tsconfig.json src/scripts/seed-all.ts"
   },
   "keywords": [
