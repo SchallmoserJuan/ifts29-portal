@@ -252,6 +252,17 @@ export interface Career {
     [k: string]: unknown;
   } | null;
   documents?: (number | Document)[] | null;
+  /**
+   * Convenios con facultades/universidades para continuar estudios.
+   */
+  articulations?:
+    | {
+        institution: string;
+        description?: string | null;
+        link?: string | null;
+        id?: string | null;
+      }[]
+    | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -674,6 +685,14 @@ export interface CareersSelect<T extends boolean = true> {
       };
   methodology?: T;
   documents?: T;
+  articulations?:
+    | T
+    | {
+        institution?: T;
+        description?: T;
+        link?: T;
+        id?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
 }
