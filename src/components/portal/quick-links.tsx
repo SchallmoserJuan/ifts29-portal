@@ -10,12 +10,14 @@ interface QuickLink {
   icon: React.ReactNode
   bgColor: string
   iconColor: string
+  staffOnly?: boolean
   adminOnly?: boolean
 }
 
 export function QuickLinks() {
   const { user } = useAuth()
   const isAdmin = user?.role === 'admin'
+  const isStaff = user?.role === 'admin' || user?.role === 'teacher'
 
   const links: QuickLink[] = [
     {
@@ -42,6 +44,7 @@ export function QuickLinks() {
       ),
       bgColor: 'bg-slate-100 hover:bg-slate-200',
       iconColor: 'text-slate-600',
+      staffOnly: true,
     },
     {
       href: '/admin/collections/users',
@@ -58,7 +61,10 @@ export function QuickLinks() {
     },
   ]
 
-  const visibleLinks = links.filter((l) => !l.adminOnly || isAdmin)
+  const visibleLinks = links.filter(
+    (l) =>
+      (!l.staffOnly || isStaff) && (!l.adminOnly || isAdmin)
+  )
 
   return (
     <div className="space-y-3">
