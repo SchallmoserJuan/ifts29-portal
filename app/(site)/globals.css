@@ -155,6 +155,21 @@ button {
   background-size: 100% 2px;
 }
 
+.mega-menu-underline {
+  text-decoration: none;
+  background-image: linear-gradient(white, white);
+  background-position: 0% 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 3px;
+  transition: background-size 300ms ease, transform 300ms ease;
+  display: inline-block;
+}
+
+.group:hover .mega-menu-underline,
+.mega-menu-underline:hover {
+  background-size: 100% 3px;
+}
+
 .rich-text-content h1,
 .rich-text-content h2,
 .rich-text-content h3,
