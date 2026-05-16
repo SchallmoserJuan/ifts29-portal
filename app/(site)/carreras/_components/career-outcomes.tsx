@@ -20,7 +20,7 @@ export function CareerOutcomes({ career }: { career: CareerItem }) {
         <AnimatedSection>
           <div className="max-w-3xl">
             <h2 className="text-3xl font-medium leading-tight tracking-tight text-white md:text-4xl lg:text-5xl">
-              Campos de desempeno
+              Campos de desempeño
             </h2>
             <p className="mt-4 text-lg text-slate-300">
               La industria tecnológica ofrece múltiples vertientes de especialización para el egresado.
