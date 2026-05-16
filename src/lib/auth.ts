@@ -32,3 +32,17 @@ export const requireUser = async () => {
 
   return user
 }
+
+export const requireApprovedStudent = async () => {
+  const user = await getCurrentUser()
+
+  if (!user) {
+    redirect('/login')
+  }
+
+  if (user.role === 'student' && user.status === 'pending') {
+    redirect('/pendiente')
+  }
+
+  return user
+}

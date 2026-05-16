@@ -147,7 +147,9 @@ export interface User {
   id: number;
   firstName: string;
   lastName: string;
+  dni: string;
   role: 'admin' | 'teacher' | 'student';
+  status?: ('pending' | 'approved' | 'rejected') | null;
   career?: (number | null) | Career;
   updatedAt: string;
   createdAt: string;
@@ -585,7 +587,9 @@ export interface PayloadMigration {
 export interface UsersSelect<T extends boolean = true> {
   firstName?: T;
   lastName?: T;
+  dni?: T;
   role?: T;
+  status?: T;
   career?: T;
   updatedAt?: T;
   createdAt?: T;

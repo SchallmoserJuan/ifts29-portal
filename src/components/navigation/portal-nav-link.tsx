@@ -10,7 +10,12 @@ export function PortalNavLink() {
     return null
   }
 
-  if (user?.role === 'admin' || user?.role === 'teacher') {
+  const canAccessPortal =
+    user?.role === 'admin' ||
+    user?.role === 'teacher' ||
+    (user?.role === 'student' && user?.status === 'approved')
+
+  if (canAccessPortal) {
     return (
       <Link
         href="/portal"

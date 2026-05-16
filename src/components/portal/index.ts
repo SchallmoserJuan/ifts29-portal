@@ -1,1 +1,6 @@
 export { NotificationsCard } from './notifications-card'
+export { DashboardStats } from './dashboard-stats'
+export { PendingUsersTable } from './pending-users-table'
+export { QuickLinks } from './quick-links'
+export { StudentDashboard } from './student-dashboard'
+export { ComingSoonGrid } from './coming-soon-grid'
