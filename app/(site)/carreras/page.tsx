@@ -70,7 +70,7 @@ export default async function CareersPage() {
 
 function CareerArticulations() {
   return (
-    <section className="py-12 bg-[#072c57] border-t border-b border-neutral-100">
+    <section id="articulaciones" className="py-12 bg-[#072c57] border-t border-b border-neutral-100">
       <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-10">
         <h2 className="text-4xl font-bold text-white mb-6 tracking-tight text-center sm:text-left">
           Articulaciones Universitarias

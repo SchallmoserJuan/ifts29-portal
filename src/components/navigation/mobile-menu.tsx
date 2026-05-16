@@ -3,7 +3,12 @@
 import {useState} from 'react'
 import {MegaMenu} from './mega-menu'
 
-export function MobileMenu() {
+interface MobileMenuProps {
+  latestNews: {slug: string; title: string}[]
+  latestEvents: {slug: string; title: string}[]
+}
+
+export function MobileMenu({latestNews, latestEvents}: MobileMenuProps) {
   const [open, setOpen] = useState(false)
 
   return (
@@ -32,7 +37,7 @@ export function MobileMenu() {
         />
       </button>
 
-      <MegaMenu open={open} onClose={() => setOpen(false)} />
+      <MegaMenu open={open} onClose={() => setOpen(false)} latestNews={latestNews} latestEvents={latestEvents} />
     </>
   )
 }

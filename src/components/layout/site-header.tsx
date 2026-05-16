@@ -18,6 +18,7 @@ import { UserNavInfo } from '../navigation/user-nav-info'
 import { PortalNavLink } from '../navigation/portal-nav-link'
 import { MenuButton } from '../navigation/menu-button'
 import { Breadcrumbs } from './breadcrumbs'
+import { getNewsList, getEventsList } from '@/src/lib/content'
 
 export async function SiteHeader() {
   // Configuración de navegación simplificada según consigna Oxford-style
@@ -26,6 +27,12 @@ export async function SiteHeader() {
     { href: '/carreras', label: 'Carreras' },
     { href: '/noticias', label: 'Noticias' },
   ]
+
+  const news = await getNewsList()
+  const events = await getEventsList()
+
+  const latestNews = news.slice(0, 3).map((n) => ({ slug: n.slug, title: n.title }))
+  const latestEvents = events.slice(0, 3).map((e) => ({ slug: e.slug, title: e.title }))
 
   return (
     <NavbarClient>
@@ -56,12 +63,12 @@ export async function SiteHeader() {
             <UserNavInfo />
             <AuthNavLink />
 
-            <MenuButton />
+            <MenuButton latestNews={latestNews} latestEvents={latestEvents} />
           </div>
 
           {/* MENÚ MÓVIL (Solo visible en pantallas chicas) */}
           <div className="lg:hidden">
-            <MobileMenu />
+            <MobileMenu latestNews={latestNews} latestEvents={latestEvents} />
           </div>
         </div>
 
