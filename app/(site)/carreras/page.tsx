@@ -20,6 +20,20 @@ import { CareerCta } from './_components/career-cta'
 
 export const revalidate = 60
 
+// Data hardcodeada para las articulaciones de TDS
+const ARTICULACIONES_DATA = [
+  {
+    institucion: "Universidad Nacional de Quilmes (UNQ)",
+    carrera: "Licenciatura en Informática",
+    link: "https://www.unq.edu.ar/"
+  },
+  {
+    institucion: "Universidad Tecnológica Nacional (UTN)",
+    carrera: "Licenciatura en Sistemas de Información",
+    link: "https://www.utn.edu.ar/"
+  }
+]
+
 export default async function CareersPage() {
   const careers = await getCareers()
 
@@ -37,10 +51,54 @@ export default async function CareersPage() {
       <CareerIntro />
       <CareerProfile />
       <CareerStudyPlan career={career} />
+      
+      {/* Sección de articulaciones hardcodeada */}
+      <CareerArticulations />
+
       <CareerPdfs />
       <CareerOutcomes career={career} />
       <CareerMethodology />
       <CareerCta />
     </PageShell>
+  )
+}
+
+function CareerArticulations() {
+  return (
+    <section className="py-12 bg-neutral-50 border-t border-b border-neutral-100">
+      <div className="max-w-5xl mx-auto px-4">
+        <h2 className="text-3xl font-bold text-neutral-900 mb-6 tracking-tight text-center sm:text-left">
+          Articulaciones Universitarias
+        </h2>
+        <p className="text-neutral-600 mb-8 text-center sm:text-left">
+          Al finalizar la tecnicatura, podés continuar tus estudios y obtener un título de grado en las siguientes instituciones:
+        </p>
+        <div className="grid gap-4 sm:grid-cols-2">
+          {ARTICULACIONES_DATA.map((art, index) => (
+            <a
+              key={index}
+              href={art.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block p-5 bg-white rounded-xl border border-neutral-200 shadow-sm hover:shadow-md hover:border-blue-500 transition-all group"
+            >
+              <span className="text-xs font-semibold uppercase tracking-wider text-blue-600 block mb-1">
+                Convenio de Grado
+              </span>
+              <h3 className="text-lg font-bold text-neutral-800 group-hover:text-blue-600 transition-colors">
+                {art.carrera}
+              </h3>
+              <p className="text-sm text-neutral-500 mt-1">
+                {art.institucion}
+              </p>
+              <div className="mt-4 text-xs font-medium text-neutral-400 group-hover:text-blue-500 flex items-center gap-1 transition-colors">
+                Ver plan de articulación 
+                <span className="inline-block transform group-hover:translate-x-0.5 transition-transform">→</span>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
   )
 }
