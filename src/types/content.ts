@@ -36,6 +36,7 @@ export type CareerItem = {
   id: string | number
   name: string
   slug: string
+  status?: string
   summary: string
   duration: string
   modality: string
