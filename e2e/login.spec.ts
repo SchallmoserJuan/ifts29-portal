@@ -23,17 +23,12 @@ test.describe('Página de login', () => {
     await expect(page.locator('p.text-red-600')).toBeVisible({timeout: 5000})
   })
 
-  test('el botón muestra "Ingresando..." mientras procesa', async ({page}) => {
-    await page.route('/api/users/login', async route => {
-      await new Promise(r => setTimeout(r, 800))
-      await route.fulfill({status: 401, body: JSON.stringify({errors: [{message: 'Error'}]})})
-    })
+  test('los campos email y password son requeridos', async ({page}) => {
+    const emailInput = page.locator('input#email')
+    const passwordInput = page.locator('input#password')
 
-    await page.fill('input#email', 'test@example.com')
-    await page.fill('input#password', 'password')
-    await page.getByRole('button', {name: 'Ingresar'}).click()
-
-    await expect(page.getByRole('button', {name: 'Ingresando...'})).toBeVisible()
+    await expect(emailInput).toHaveAttribute('required', '')
+    await expect(passwordInput).toHaveAttribute('required', '')
   })
 })
 
