@@ -10,6 +10,7 @@ import {
 } from '@/src/components/portal'
 import { PageShell } from '@/src/components/layout'
 import { requireApprovedStudent } from '@/src/lib/auth'
+import { LogoutButton } from './logout-button'
 
 export const metadata: Metadata = {
   title: 'Portal',
@@ -62,14 +63,17 @@ export default async function PortalPage() {
                   : 'Bienvenido al portal del alumno. Accede a tus recursos academicos, materiales de estudio y novedades del IFTS 29.'}
               </p>
             </div>
-            <div className="flex items-center gap-3 text-sm text-slate-500">
-              <div className="flex size-10 items-center justify-center rounded-full bg-[#072c57]">
-                <span className="text-xs font-bold text-white">{displayName[0]?.toUpperCase()}</span>
+            <div className="flex items-center gap-4">
+              <div className="flex items-center gap-3 text-sm text-slate-500">
+                <div className="flex size-10 items-center justify-center rounded-full bg-[#072c57]">
+                  <span className="text-xs font-bold text-white">{displayName[0]?.toUpperCase()}</span>
+                </div>
+                <div>
+                  <p className="font-medium text-slate-900">{displayName}</p>
+                  <p className="text-xs">{user.email}</p>
+                </div>
               </div>
-              <div>
-                <p className="font-medium text-slate-900">{displayName}</p>
-                <p className="text-xs">{user.email}</p>
-              </div>
+              <LogoutButton />
             </div>
           </div>
         </div>
