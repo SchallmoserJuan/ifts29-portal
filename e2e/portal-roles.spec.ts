@@ -7,8 +7,11 @@ import {AUTH_FILES} from './constants'
 // Helpers
 // ---------------------------------------------------------------------------
 
-function authStateExists(file: string): boolean {
-  return fs.existsSync(file)
+async function loadAuthState(context: import('@playwright/test').BrowserContext, file: string): Promise<boolean> {
+  if (!fs.existsSync(file)) return false
+  const state = JSON.parse(fs.readFileSync(file, 'utf-8'))
+  if (state.cookies?.length) await context.addCookies(state.cookies)
+  return true
 }
 
 // ---------------------------------------------------------------------------
@@ -16,12 +19,9 @@ function authStateExists(file: string): boolean {
 // ---------------------------------------------------------------------------
 
 test.describe('Portal — student', () => {
-  test.beforeEach(async ({page}) => {
-    if (!authStateExists(AUTH_FILES.student)) {
-      test.skip()
-      return
-    }
-    await page.context().storageState({path: AUTH_FILES.student})
+  test.beforeEach(async ({context}) => {
+    const loaded = await loadAuthState(context, AUTH_FILES.student)
+    if (!loaded) test.skip()
   })
 
   test('puede acceder a /portal/biblioteca', async ({page}) => {
@@ -51,12 +51,9 @@ test.describe('Portal — student', () => {
 // ---------------------------------------------------------------------------
 
 test.describe('Portal — teacher', () => {
-  test.beforeEach(async ({page}) => {
-    if (!authStateExists(AUTH_FILES.teacher)) {
-      test.skip()
-      return
-    }
-    await page.context().storageState({path: AUTH_FILES.teacher})
+  test.beforeEach(async ({context}) => {
+    const loaded = await loadAuthState(context, AUTH_FILES.teacher)
+    if (!loaded) test.skip()
   })
 
   test('puede acceder a /portal', async ({page}) => {
@@ -86,12 +83,9 @@ test.describe('Portal — teacher', () => {
 // ---------------------------------------------------------------------------
 
 test.describe('Portal — admin', () => {
-  test.beforeEach(async ({page}) => {
-    if (!authStateExists(AUTH_FILES.admin)) {
-      test.skip()
-      return
-    }
-    await page.context().storageState({path: AUTH_FILES.admin})
+  test.beforeEach(async ({context}) => {
+    const loaded = await loadAuthState(context, AUTH_FILES.admin)
+    if (!loaded) test.skip()
   })
 
   test('puede acceder a /portal', async ({page}) => {

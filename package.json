@@ -14,6 +14,7 @@
     "generate:types": "payload generate:types",
     "seed:career": "tsx --tsconfig tsconfig.json src/scripts/seed-career.ts",
     "seed:all": "tsx --tsconfig tsconfig.json src/scripts/seed-all.ts",
+    "seed:users": "tsx --tsconfig tsconfig.json src/scripts/seed-users.ts",
     "test": "vitest",
     "test:run": "vitest run",
     "test:coverage": "vitest run --coverage",
