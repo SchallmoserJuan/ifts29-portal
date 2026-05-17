@@ -21,6 +21,7 @@
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
     "test:e2e:report": "playwright show-report",
+    "test:report": "vite preview --outDir test-report",
     "typecheck": "tsc --noEmit"
   },
   "keywords": [
@@ -62,6 +63,7 @@
     "@types/react-dom": "^19",
     "@vitejs/plugin-react": "^6.0.2",
     "@vitest/coverage-v8": "^4.1.6",
+    "@vitest/ui": "^4.1.6",
     "dotenv": "^17.4.2",
     "eslint": "^9.28",
     "eslint-config-next": "16.2.4",

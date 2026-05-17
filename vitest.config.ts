@@ -9,6 +9,7 @@ export default defineConfig({
     globals: true,
     environment: 'jsdom',
     setupFiles: ['./src/test/setup.ts'],
+    reporters: ['verbose', ['html', {outputFile: './test-report/index.html'}]],
     include: ['src/**/*.{test,spec}.{ts,tsx}'],
     exclude: ['node_modules', '.next', 'src/scripts'],
     environmentOptions: {
