@@ -1,0 +1,83 @@
+schema: spec-driven
+
+context: |
+  Tech stack: Next.js 16 + Payload CMS 3 + React 19 + TypeScript 5 + Tailwind 4 + SQLite
+  Architecture: App Router (Next.js), Payload collections (Users, Contacts, Notifications, Careers, etc.)
+  Testing: Vitest 4 (unit/integration, jsdom) + Playwright 1.60 (E2E, Chromium)
+  Style: ESLint + Prettier (single quotes, no semi, printWidth 100)
+  Email: Resend + EmailJS
+
+strict_tdd: true
+
+testing:
+  strict_tdd: true
+  detected: "2026-05-17"
+
+  test_runner:
+    framework: vitest
+    command: "npm run test:run"
+    watch_command: "npm test"
+    coverage_command: "npm run test:coverage"
+
+  layers:
+    unit:
+      available: true
+      tool: vitest
+    integration:
+      available: true
+      tool: "@testing-library/react + vitest"
+    e2e:
+      available: true
+      tool: playwright
+      command: "npm run test:e2e"
+
+  coverage:
+    available: true
+    provider: v8
+    command: "npm run test:coverage"
+    reporters: ["text", "lcov"]
+    include: ["src/**/*.{ts,tsx}"]
+    exclude:
+      - src/test/**
+      - src/scripts/**
+      - src/payload-types.ts
+      - "src/**/*.d.ts"
+
+  quality:
+    linter:
+      available: true
+      command: "npm run lint"
+      tool: eslint
+    type_checker:
+      available: true
+      command: "npx tsc --noEmit"
+      tool: typescript
+    formatter:
+      available: true
+      command: "npx prettier --write ."
+      tool: prettier
+
+rules:
+  proposal:
+    - Include rollback plan for risky changes
+    - Identify affected modules/packages (collections, components, routes, lib)
+  specs:
+    - Use Given/When/Then format for scenarios
+    - Use RFC 2119 keywords (MUST, SHALL, SHOULD, MAY)
+  design:
+    - Include sequence diagrams for complex flows
+    - Document architecture decisions with rationale
+  tasks:
+    - Group tasks by phase (infrastructure, implementation, testing)
+    - Use hierarchical numbering (1.1, 1.2, etc.)
+    - Keep tasks small enough to complete in one session
+  apply:
+    - Follow existing code patterns and conventions
+    - No comments unless the WHY is non-obvious
+    - No Co-Authored-By trailers in commits
+    - Conventional commits only
+  verify:
+    - Run vitest + playwright before marking done
+    - Compare implementation against every spec scenario
+  archive:
+    - Warn before merging destructive deltas (large removals)
