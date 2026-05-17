@@ -21,7 +21,7 @@
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
     "test:e2e:report": "playwright show-report",
-    "test:report": "vite preview --outDir test-report",
+    "test:report": "node scripts/generate-chart-report.mjs",
     "typecheck": "tsc --noEmit"
   },
   "keywords": [

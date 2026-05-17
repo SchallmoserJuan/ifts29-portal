@@ -26,6 +26,7 @@ out/
 # Coverage directory used by testing tools
 /coverage
 /test-report
+/test-results.json
 
 # Playwright
 /playwright-report
