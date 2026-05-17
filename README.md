@@ -48,7 +48,12 @@ DATABASE_URL=file:./ifts29.db
 2. Ejecutar `npm install`
 3. Ejecutar `npm run dev`
 4. Entrar a `/admin`
-5. Crear el primer usuario administrador
+5. Create the first admin user
+
+Documentation
+
+- 📘 [Manual de Usuario del CMS (PDF)](docs\manual-usuario-cms.pdf): Guía paso a paso para la gestión de contenidos, carreras, noticias y configuración del portal.
+
 
 ---
 
