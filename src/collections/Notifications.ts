@@ -65,7 +65,7 @@ export const Notifications: CollectionConfig = {
     },
   ],
   access: {
-    create: () => true,
+    create: canAccessNotifications,
     read: canAccessNotifications,
     update: canAccessNotifications,
     delete: ({ req }) => req.user?.role === 'admin',

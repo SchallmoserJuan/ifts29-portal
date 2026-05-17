@@ -1,8 +1,22 @@
 import { NextResponse } from 'next/server'
 
 import { getPayloadClient } from '@/src/lib/payload'
+import { rateLimitByIP } from '@/src/lib/rate-limit'
 
 export async function POST(req: Request) {
+  const limit = rateLimitByIP(req, 20, 15 * 60 * 1000)
+  if (!limit.success) {
+    return NextResponse.json(
+      { error: 'Demasiadas solicitudes. Intenta de nuevo mas tarde.' },
+      {
+        status: 429,
+        headers: {
+          'Retry-After': String(Math.ceil((limit.resetTime - Date.now()) / 1000)),
+        },
+      }
+    )
+  }
+
   try {
     const body = await req.json()
     const { nombre, email, asunto, mensaje } = body
@@ -44,6 +58,7 @@ export async function POST(req: Request) {
     try {
       const notification = await payload.create({
         collection: 'notifications',
+        overrideAccess: true,
         data: {
           type: 'contact_received',
           title: `Nuevo contacto: ${asunto}`,
