@@ -44,7 +44,7 @@ export const documentReadAccess: Access = ({ req }) => {
     return true
   }
 
-  if (isStudent(user)) {
+  if (isStudent(user) && user?.status === 'approved') {
     return {
       or: [
         {

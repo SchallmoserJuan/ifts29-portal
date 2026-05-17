@@ -1,5 +1,8 @@
 import type { CollectionConfig } from 'payload'
 
+import { isStaff } from '@/src/access'
+import type { AppUser } from '@/src/types/app'
+
 export const Contacts: CollectionConfig = {
   slug: 'contacts',
   admin: {
@@ -101,8 +104,8 @@ export const Contacts: CollectionConfig = {
   ],
   access: {
     create: () => true,
-    read: () => true,
-    update: () => true,
+    read: ({ req }) => isStaff(req.user as Partial<AppUser> | null),
+    update: ({ req }) => isStaff(req.user as Partial<AppUser> | null),
     delete: ({ req }) => req.user?.role === 'admin',
   },
 }

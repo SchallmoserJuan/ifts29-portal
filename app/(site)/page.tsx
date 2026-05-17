@@ -1,207 +1,138 @@
 import Link from 'next/link'
-import Image from 'next/image'
-import {PageShell} from '@/src/components/layout'
-import {NewsCard} from '@/src/components/noticias'
-import {getNewsList} from '@/src/lib/content'
-import type {NewsItem} from '@/src/types/content'
-import {HomeHero} from '@/src/components/home'
+import { PageShell } from '@/src/components/layout'
+import { NewsCard } from '@/src/components/noticias'
+import { getNewsList, getCareers } from '@/src/lib/content'
+import type { NewsItem } from '@/src/types/content'
+import {
+  HomeHero,
+  SearchBar,
+  AnnouncementBar,
+  PlatformCards,
+  WhyChooseSection,
+  FeaturedCareer,
+  TestimonialsSection,
+  QuickAccessSection,
+  HomeCta,
+} from '@/src/components/home'
+
 export const revalidate = 60
 
-const communityCards = [
-  {
-    title: 'Comunidad estudiantil',
-    href: '#',
-    image:
-      'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=900&q=80',
-  },
-  {
-    title: 'Aulas y encuentros',
-    href: '#',
-    image:
-      'https://images.unsplash.com/photo-1513258496099-48168024aec0?auto=format&fit=crop&w=900&q=80',
-  },
-  {
-    title: 'Campus y actividades',
-    href: '#',
-    image:
-      'https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?auto=format&fit=crop&w=900&q=80',
-  },
-]
-
-const excellenceCards = [
-  {
-    title: 'Oferta academica',
-    description: 'Explora carreras tecnicas con una presentacion mas clara y accesible.',
-    href: '/careers',
-    image:
-      'https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    cta: 'Ver carreras',
-  },
-  {
-    title: 'Biblioteca virtual',
-    description: 'Access documents, guides and portal material based on your role and permissions.',
-    href: '/portal/library',
-    image:
-      'https://images.unsplash.com/photo-1585066437529-9f6a2061652b?q=80&w=1032&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    cta: 'Abrir biblioteca',
-  },
-  {
-    title: 'Informacion institucional',
-    description:
-      'Consulta historia, mision y vision del instituto desde una experiencia mas consistente.',
-    href: '/institutional',
-    image:
-      'https://plus.unsplash.com/premium_photo-1682125773446-259ce64f9dd7?q=80&w=871&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    cta: 'Conocer mas',
-  },
-]
-
 export default async function HomePage() {
-  const news = await getNewsList()
+  const [news, careers] = await Promise.all([getNewsList(), getCareers()])
   const latestNews = news.slice(0, 3) as NewsItem[]
+
+  const career =
+    careers.find((c) => c.slug === 'tecnicatura-superior-en-desarrollo-de-software') || careers[0]
+
   return (
     <PageShell>
+      {/* ===== 1. HERO REDISEÑADO ===== */}
       <HomeHero>
-        <div className="absolute inset-0 bg-gradient-to-b from-sky-100/25 via-transparent to-slate-950/35" />
+        <div className="absolute inset-0 bg-gradient-to-b from-sky-100/10 via-transparent to-slate-950/40" />
 
-        {/* pt-24 compensa el header absolute que flota encima */}
-        <div className="relative mx-auto flex min-h-[760px] w-full max-w-[1400px] flex-col px-4 pb-12 pt-24 sm:px-6 lg:px-10">
+        <div className="relative mx-auto flex min-h-[780px] w-full max-w-[1400px] flex-col px-4 pb-12 pt-24 sm:px-6 lg:px-10">
           <div className="mt-auto max-w-3xl pb-10">
             <p className="text-sm uppercase tracking-[0.34em] text-sky-100/80">
-              Sitio institucional
+              Educación técnica superior · Buenos Aires · Argentina
             </p>
-            <h1 className="mt-4 text-5xl font-semibold tracking-tight sm:text-6xl">IFTS N° 29</h1>
-            <p className="mt-2 text-2xl text-slate-100 sm:text-3xl">
-              Instituto de Formacion Tecnica N°29
+            <h1 className="font-heading mt-5 text-5xl font-semibold tracking-tight text-white sm:text-6xl md:text-7xl">
+              IFTS N° 29
+            </h1>
+            <p className="mt-3 text-2xl text-slate-100 sm:text-3xl">
+              Instituto de Formación Técnica Superior
             </p>
-            <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-100/90">
-              Una portada institucional con el lenguaje visual del nuevo boceto y acceso rapido a
-              las secciones principales del sitio.
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-100/80">
+              Más de una década formando profesionales técnicos con título oficial de validez
+              nacional. Tu camino hacia la excelencia comienza aquí.
             </p>
+
+            <div className="mt-8 flex flex-wrap items-center gap-4">
+              <Link
+                href="/carreras"
+                className="inline-flex items-center justify-center rounded-md bg-[#28c2f3] px-8 py-3.5 text-sm font-semibold text-[#072c57] transition hover:bg-[#52d0f7]"
+              >
+                Conocé la carrera
+              </Link>
+              <Link
+                href="/portal"
+                className="inline-flex items-center justify-center rounded-md border border-white/25 px-8 py-3.5 text-sm font-semibold text-white transition hover:border-white/50 hover:bg-white/5"
+              >
+                <span className="navbar-underline">Portal estudiantil</span>
+              </Link>
+            </div>
           </div>
 
-          <div className="rounded-[28px] bg-[#072c57] p-6 shadow-2xl shadow-slate-950/30 sm:p-8">
-            <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
-              <div className="max-w-md">
-                <p className="text-3xl leading-tight text-white">Busca nuestras opciones ahora.</p>
-                <p className="mt-3 text-sm text-slate-200">Navega rapidamente por el portal.</p>
-              </div>
-              <div className="flex w-full max-w-3xl flex-col gap-3 sm:flex-row">
-                <input
-                  type="search"
-                  placeholder="Buscar"
-                  className="h-14 flex-1 rounded-md border border-white/15 bg-white px-5 text-base text-slate-900 outline-none ring-0 placeholder:text-slate-400"
-                />
-                <Link
-                  href="#home-accesos"
-                  className="inline-flex h-14 items-center justify-center rounded-md bg-[#28c2f3] px-8 text-base font-semibold text-[#072c57] transition hover:bg-[#52d0f7]"
-                >
-                  + Buscar
-                </Link>
+          {/* Píldora de búsqueda minimalista */}
+          <div className="relative">
+            <div className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-6 backdrop-blur-xl sm:p-8">
+              <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between lg:gap-10">
+                <div className="max-w-sm shrink-0">
+                  <p className="text-lg leading-snug text-white/70 sm:text-xl">
+                    ¿Qué estás buscando?
+                  </p>
+                  <p className="mt-1 text-xs tracking-wide text-white/25">
+                    Escribí para ver sugerencias
+                  </p>
+                </div>
+                <div className="w-full max-w-xl">
+                  <SearchBar />
+                </div>
               </div>
             </div>
+            {/* Línea decorativa inferior */}
+            <div className="pointer-events-none absolute inset-x-8 -bottom-px h-px bg-gradient-to-r from-transparent via-[#28c2f3]/20 to-transparent" />
           </div>
         </div>
       </HomeHero>
 
-      <section className="bg-[#072c57] py-16 text-white sm:py-20">
-        <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-10">
-          <div className="grid gap-4 md:grid-cols-3">
-            {communityCards.map((card) => (
-              <Link key={card.title} href={card.href} className="block">
-                <article className="group relative overflow-hidden rounded bg-slate-900 shadow-xl">
-                  <div className="relative h-[480px] w-full overflow-hidden">
-                    <Image
-                      src={card.image}
-                      alt={card.title}
-                      fill
-                      className="object-cover transition-transform duration-300 ease-in-out group-hover:scale-110"
-                      unoptimized
-                    />
+      {/* ===== 2. AVISOS IMPORTANTES ===== */}
+      <AnnouncementBar />
 
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent" />
+      {/* ===== 3. PLATAFORMAS ACADÉMICAS ===== */}
+      <PlatformCards />
 
-                    <div className="absolute inset-x-0 bottom-0 p-8">
-                      <h3 className="text-2xl font-semibold text-white relative inline-block">
-                        {card.title}
-                        <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#2fd0ff] transition-all duration-500 group-hover:w-full"></span>
-                      </h3>
-                    </div>
-                  </div>
-                </article>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* ===== 4. ¿POR QUÉ ELEGIRNOS? ===== */}
+      <WhyChooseSection />
 
-      <section id="home-accesos" className="bg-[#dcecff] py-16 sm:py-20">
+      {/* ===== 4. CARRERA DESTACADA ===== */}
+      {career && <FeaturedCareer career={career} />}
+
+      {/* ===== 5. NOTICIAS ===== */}
+      <section className="bg-[#f8f7f4] py-16 sm:py-20">
         <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-10">
           <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
-            <h2 className="text-4xl font-medium text-[#214ca0]">Excelencia IFTS</h2>
-            <Link
-              href="/login"
-              className="inline-flex items-center justify-center rounded-md border border-[#214ca0] px-6 py-3 text-sm font-medium text-[#214ca0]"
-            >
-              <span className="tag-underline">Ingresar al portal</span>
-            </Link>
-          </div>
-
-          <div className="mt-8 grid gap-6 lg:grid-cols-3">
-            {excellenceCards.map((card) => (
-              <article
-                key={card.title}
-                className="group overflow-hidden rounded bg-white/5 border border-white/10 transition-all duration-100 hover:border-[#2fd0ff]/50"
-              >
-                <Link href={card.href} className="flex flex-col h-full w-full">
-                  {/* 1. Agrandar/Estirar: Aumentamos la altura a h-[420px] */}
-                  <div className="relative h-[420px] w-full overflow-hidden">
-                    <Image
-                      src={card.image}
-                      alt={card.title}
-                      fill
-                      className="object-cover transition-transform duration-300 ease-in-out group-hover:scale-110"
-                      unoptimized
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#072c57] via-transparent to-transparent" />
-
-                    <div className="absolute inset-x-0 bottom-0 p-8">
-                      <h3 className="text-2xl font-semibold text-white relative inline-block">
-                        {card.title}
-                        {/* 2. Efecto underline de izquierda a derecha */}
-                        <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#2fd0ff] transition-all duration-500 group-hover:w-full"></span>
-                      </h3>
-                      <p className="mt-4 text-sm text-slate-200 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
-                        {card.description}
-                      </p>
-                    </div>
-                  </div>
-                </Link>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-[#072c57] py-16 text-white sm:py-20">
-        <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-10">
-          <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
-            <h2 className="text-4xl font-medium">Ultimas noticias</h2>
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-slate-400">
+                05 — Novedades
+              </p>
+              <h2 className="font-heading mt-4 text-4xl font-medium text-[#00152b]">
+                Últimas noticias
+              </h2>
+            </div>
             <Link
               href="/noticias"
-              className="inline-flex items-center justify-center rounded-md border border-[#28c2f3] px-6 py-3 text-sm font-medium text-[#28c2f3] transition hover:bg-[#28c2f3] hover:text-[#072c57]"
+              className="inline-flex items-center justify-center rounded-md border border-[#072c57] px-6 py-3 text-sm font-medium text-[#072c57] transition hover:bg-[#072c57] hover:text-white"
             >
-              <span className="tag-underline">Ver noticias</span>
+              <span className="tag-underline">Ver todas</span>
             </Link>
           </div>
 
-          <div className="mt-8 grid gap-6 lg:grid-cols-3">
+          <div className="mt-10 grid gap-6 lg:grid-cols-3">
             {latestNews.map((item) => (
-              <NewsCard key={item.id} news={item} variant="dark" />
+              <NewsCard key={item.id} news={item} variant="default" />
             ))}
           </div>
         </div>
       </section>
+
+      {/* ===== 7. ACCESOS RÁPIDOS ===== */}
+      <QuickAccessSection />
+
+      {/* ===== 7. TESTIMONIOS ===== */}
+      <TestimonialsSection />
+
+      {/* ===== 8. CTA FINAL ===== */}
+      <HomeCta />
     </PageShell>
   )
 }

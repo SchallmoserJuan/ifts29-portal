@@ -147,7 +147,9 @@ export interface User {
   id: number;
   firstName: string;
   lastName: string;
+  dni: string;
   role: 'admin' | 'teacher' | 'student';
+  status?: ('pending' | 'approved' | 'rejected') | null;
   career?: (number | null) | Career;
   updatedAt: string;
   createdAt: string;
@@ -183,18 +185,81 @@ export interface Career {
   summary: string;
   duration: string;
   modality: string;
+  resolution?: string | null;
+  heroImage?: (number | null) | Media;
   requirements?:
     | {
         item: string;
         id?: string | null;
       }[]
     | null;
+  heroHeadline?: string | null;
+  heroParagraph?: string | null;
+  introTitle?: string | null;
+  introDescription?: string | null;
+  introFocus?: string | null;
+  introOutcome?: string | null;
+  introIndustry?: string | null;
+  introImage?: (number | null) | Media;
+  profileTitle?: string | null;
+  profileSubtitle?: string | null;
+  profileBlocks?:
+    | {
+        title: string;
+        text: string;
+        id?: string | null;
+      }[]
+    | null;
+  profileQuote?: string | null;
+  studyPlanTitle?: string | null;
+  studyPlanSubtitle?: string | null;
+  studyPlanDescription?: string | null;
+  studyPlanDurationLabel?: string | null;
+  studyPlanStructureLabel?: string | null;
+  studyPlanFocusLabel?: string | null;
   studyPlan?:
     | {
         subject: string;
         id?: string | null;
       }[]
     | null;
+  studyPlanImage?: (number | null) | Media;
+  methodologyTitle?: string | null;
+  methodologySubtitle?: string | null;
+  methodologyItems?:
+    | {
+        title: string;
+        text: string;
+        id?: string | null;
+      }[]
+    | null;
+  methodologyImage?: (number | null) | Media;
+  outcomesTitle?: string | null;
+  outcomesSubtitle?: string | null;
+  outcomes?:
+    | {
+        title: string;
+        description: string;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Convenios con facultades/universidades para continuar estudios.
+   */
+  articulations?:
+    | {
+        institution: string;
+        description?: string | null;
+        link?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  documentsTitle?: string | null;
+  documentsSubtitle?: string | null;
+  documents?: (number | Document)[] | null;
+  ctaTitle?: string | null;
+  ctaSubtitle?: string | null;
+  ctaLabel?: string | null;
   graduateProfile?: {
     root: {
       type: string;
@@ -210,10 +275,6 @@ export interface Career {
     };
     [k: string]: unknown;
   } | null;
-  resolution?: string | null;
-  heroImage?: (number | null) | Media;
-  floatingImage?: (number | null) | Media;
-  studyPlanImage?: (number | null) | Media;
   professionalProfile?: {
     root: {
       type: string;
@@ -229,13 +290,6 @@ export interface Career {
     };
     [k: string]: unknown;
   } | null;
-  outcomes?:
-    | {
-        title: string;
-        description: string;
-        id?: string | null;
-      }[]
-    | null;
   methodology?: {
     root: {
       type: string;
@@ -251,7 +305,7 @@ export interface Career {
     };
     [k: string]: unknown;
   } | null;
-  documents?: (number | Document)[] | null;
+  floatingImage?: (number | null) | Media;
   updatedAt: string;
   createdAt: string;
 }
@@ -585,7 +639,9 @@ export interface PayloadMigration {
 export interface UsersSelect<T extends boolean = true> {
   firstName?: T;
   lastName?: T;
+  dni?: T;
   role?: T;
+  status?: T;
   career?: T;
   updatedAt?: T;
   createdAt?: T;
@@ -647,24 +703,57 @@ export interface CareersSelect<T extends boolean = true> {
   summary?: T;
   duration?: T;
   modality?: T;
+  resolution?: T;
+  heroImage?: T;
   requirements?:
     | T
     | {
         item?: T;
         id?: T;
       };
+  heroHeadline?: T;
+  heroParagraph?: T;
+  introTitle?: T;
+  introDescription?: T;
+  introFocus?: T;
+  introOutcome?: T;
+  introIndustry?: T;
+  introImage?: T;
+  profileTitle?: T;
+  profileSubtitle?: T;
+  profileBlocks?:
+    | T
+    | {
+        title?: T;
+        text?: T;
+        id?: T;
+      };
+  profileQuote?: T;
+  studyPlanTitle?: T;
+  studyPlanSubtitle?: T;
+  studyPlanDescription?: T;
+  studyPlanDurationLabel?: T;
+  studyPlanStructureLabel?: T;
+  studyPlanFocusLabel?: T;
   studyPlan?:
     | T
     | {
         subject?: T;
         id?: T;
       };
-  graduateProfile?: T;
-  resolution?: T;
-  heroImage?: T;
-  floatingImage?: T;
   studyPlanImage?: T;
-  professionalProfile?: T;
+  methodologyTitle?: T;
+  methodologySubtitle?: T;
+  methodologyItems?:
+    | T
+    | {
+        title?: T;
+        text?: T;
+        id?: T;
+      };
+  methodologyImage?: T;
+  outcomesTitle?: T;
+  outcomesSubtitle?: T;
   outcomes?:
     | T
     | {
@@ -672,8 +761,24 @@ export interface CareersSelect<T extends boolean = true> {
         description?: T;
         id?: T;
       };
-  methodology?: T;
+  articulations?:
+    | T
+    | {
+        institution?: T;
+        description?: T;
+        link?: T;
+        id?: T;
+      };
+  documentsTitle?: T;
+  documentsSubtitle?: T;
   documents?: T;
+  ctaTitle?: T;
+  ctaSubtitle?: T;
+  ctaLabel?: T;
+  graduateProfile?: T;
+  professionalProfile?: T;
+  methodology?: T;
+  floatingImage?: T;
   updatedAt?: T;
   createdAt?: T;
 }

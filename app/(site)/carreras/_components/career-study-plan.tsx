@@ -2,13 +2,14 @@
 
 import { motion } from 'framer-motion'
 import Image from 'next/image'
-import { careerStudyPlan } from '@/src/data/career-content'
 import { AnimatedSection } from '@/src/components/ui'
 import type { CareerItem } from '@/src/types/content'
 
 const easing: [number, number, number, number] = [0.22, 1, 0.36, 1]
 
 export function CareerStudyPlan({ career }: { career: CareerItem }) {
+  if (!career.studyPlanTitle) return null
+
   const planImage = career.studyPlanImage?.url || '/images/plan-de-estudios.png'
 
   return (
@@ -17,30 +18,40 @@ export function CareerStudyPlan({ career }: { career: CareerItem }) {
         <AnimatedSection>
           <div className="max-w-3xl">
             <h2 className="text-3xl font-medium leading-tight tracking-tight text-[#00152b] md:text-4xl lg:text-5xl">
-              {careerStudyPlan.title}
+              {career.studyPlanTitle}
             </h2>
-            <p className="mt-4 text-lg text-slate-500">
-              {careerStudyPlan.subtitle}
-            </p>
-            <p className="mt-8 max-w-2xl text-lg leading-8 text-slate-700">
-              {careerStudyPlan.description}
-            </p>
+            {career.studyPlanSubtitle && (
+              <p className="mt-4 text-lg text-slate-500">
+                {career.studyPlanSubtitle}
+              </p>
+            )}
+            {career.studyPlanDescription && (
+              <p className="mt-8 max-w-2xl text-lg leading-8 text-slate-700">
+                {career.studyPlanDescription}
+              </p>
+            )}
           </div>
         </AnimatedSection>
 
         <div className="mt-12 flex flex-wrap gap-8 text-sm text-slate-600">
-          <div className="flex items-center gap-3">
-            <div className="h-px w-8 bg-[#072c57]" />
-            <span className="font-medium">{careerStudyPlan.durationLabel}</span>
-          </div>
-          <div className="flex items-center gap-3">
-            <div className="h-px w-8 bg-[#072c57]" />
-            <span className="font-medium">{careerStudyPlan.structureLabel}</span>
-          </div>
-          <div className="flex items-center gap-3">
-            <div className="h-px w-8 bg-[#072c57]" />
-            <span className="font-medium">{careerStudyPlan.focusLabel}</span>
-          </div>
+          {career.studyPlanDurationLabel && (
+            <div className="flex items-center gap-3">
+              <div className="h-px w-8 bg-[#072c57]" />
+              <span className="font-medium">{career.studyPlanDurationLabel}</span>
+            </div>
+          )}
+          {career.studyPlanStructureLabel && (
+            <div className="flex items-center gap-3">
+              <div className="h-px w-8 bg-[#072c57]" />
+              <span className="font-medium">{career.studyPlanStructureLabel}</span>
+            </div>
+          )}
+          {career.studyPlanFocusLabel && (
+            <div className="flex items-center gap-3">
+              <div className="h-px w-8 bg-[#072c57]" />
+              <span className="font-medium">{career.studyPlanFocusLabel}</span>
+            </div>
+          )}
         </div>
 
         <motion.div

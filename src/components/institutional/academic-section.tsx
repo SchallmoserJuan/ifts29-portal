@@ -13,7 +13,7 @@ const careers = [
     title: 'Tecnicatura Superior en Desarrollo de Software',
     description:
       'Modalidad a distancia · Formación integral en tecnologías modernas de desarrollo, programación y gestión de proyectos digitales.',
-    href: '/carreras',
+    href: '/carreras/tecnicatura-superior-en-desarrollo-de-software',
   },
 ]
 
