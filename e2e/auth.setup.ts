@@ -1,13 +1,6 @@
 import {test as setup} from '@playwright/test'
-import path from 'path'
 
-export const AUTH_STATE_DIR = path.join(process.cwd(), 'e2e', '.auth')
-
-export const AUTH_FILES = {
-  admin: path.join(AUTH_STATE_DIR, 'admin.json'),
-  teacher: path.join(AUTH_STATE_DIR, 'teacher.json'),
-  student: path.join(AUTH_STATE_DIR, 'student.json'),
-}
+import {AUTH_FILES} from './constants'
 
 setup('autenticar admin', async ({request, context}) => {
   const email = process.env.TEST_ADMIN_EMAIL

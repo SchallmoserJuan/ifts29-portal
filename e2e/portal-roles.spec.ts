@@ -1,7 +1,7 @@
 import {expect, test} from '@playwright/test'
 import fs from 'fs'
 
-import {AUTH_FILES} from './auth.setup'
+import {AUTH_FILES} from './constants'
 
 // ---------------------------------------------------------------------------
 // Helpers
