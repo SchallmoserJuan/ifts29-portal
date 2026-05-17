@@ -15,7 +15,7 @@ export function HomeCta() {
           </p>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
             <Link
-              href="/carreras"
+              href="/carreras/tecnicatura-superior-en-desarrollo-de-software"
               className="inline-flex items-center justify-center rounded-md bg-[#28c2f3] px-10 py-4 text-sm font-semibold text-[#072c57] transition hover:bg-[#52d0f7]"
             >
               Conocé la carrera

@@ -49,7 +49,7 @@ export function FeaturedCareer({career}: FeaturedCareerProps) {
               <p className="mt-8 text-lg leading-8 text-white/80">{career.summary}</p>
 
               <Link
-                href={`/carreras`}
+                href={`/carreras/${career.slug}`}
                 className="mt-10 inline-flex items-center gap-2 rounded-sm bg-[#00d4ff] px-10 py-4 text-sm font-semibold text-[#00152b] transition hover:brightness-110"
               >
                 Ver plan de estudios

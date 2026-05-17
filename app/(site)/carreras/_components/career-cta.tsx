@@ -2,11 +2,13 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { careerCta } from '@/src/data/career-content'
+import type { CareerItem } from '@/src/types/content'
 
 const easing: [number, number, number, number] = [0.22, 1, 0.36, 1]
 
-export function CareerCta() {
+export function CareerCta({ career }: { career: CareerItem }) {
+  if (!career.ctaTitle) return null
+
   return (
     <section className="relative w-full bg-[#072c57] py-24 text-white md:py-32">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(40,194,243,0.06)_0%,_transparent_70%)]" />
@@ -20,21 +22,25 @@ export function CareerCta() {
           className="max-w-6xl"
         >
           <h2 className="text-3xl font-bold  tracking-tight text-white md:text-4xl lg:text-5xl xl:text-6xl">
-            {careerCta.title}
+            {career.ctaTitle}
           </h2>
 
-          <p className="mt-6 text-lg leading-8 text-slate-300 md:text-xl">
-            {careerCta.subtitle}
-          </p>
+          {career.ctaSubtitle && (
+            <p className="mt-6 text-lg leading-8 text-slate-300 md:text-xl">
+              {career.ctaSubtitle}
+            </p>
+          )}
 
-          <div className="mt-12">
-            <Link
-              href="/contacto"
-              className="inline-flex items-center gap-3 rounded-sm bg-[#28c2f3] px-8 py-4 text-base font-semibold text-[#072c57] transition md:px-10 md:py-5 md:text-lg"
-            >
-              <span className='tag-underline'>{careerCta.cta}</span>
-            </Link>
-          </div>
+          {career.ctaLabel && (
+            <div className="mt-12">
+              <Link
+                href="/contacto"
+                className="inline-flex items-center gap-3 rounded-sm bg-[#28c2f3] px-8 py-4 text-base font-semibold text-[#072c57] transition md:px-10 md:py-5 md:text-lg"
+              >
+                <span className='tag-underline'>{career.ctaLabel}</span>
+              </Link>
+            </div>
+          )}
         </motion.div>
 
         <div className="mt-20 flex w-full max-w-2xl items-center gap-6 text-xs tracking-widest text-white/20">

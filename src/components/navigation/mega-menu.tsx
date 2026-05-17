@@ -157,7 +157,7 @@ export function MegaMenu({open, onClose, latestNews, latestEvents}: MegaMenuProp
           {label: 'Información general', href: '/carreras'},
           {label: 'Inscripciones', href: '/inscripciones'},
           {label: 'Becas', href: '/becas'},
-          {label: 'Articulaciones', href: '/carreras#articulaciones'},
+          {label: 'Articulaciones', href: '/carreras/tecnicatura-superior-en-desarrollo-de-software#articulaciones'},
           {label: 'Agenda académica', href: '/agenda'},
           {label: 'Horarios', href: '/carreras/horarios'},
         ],

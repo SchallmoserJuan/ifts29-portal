@@ -5,12 +5,12 @@ const announcements = [
   {
     icon: Megaphone,
     text: 'Inscripciones abiertas — Ciclo Lectivo 2026',
-    href: '/carreras',
+    href: '/inscripciones',
   },
   {
     icon: FileText,
     text: 'Tecnicatura en Desarrollo de Software — Título oficial',
-    href: '/carreras',
+    href: '/carreras/tecnicatura-superior-en-desarrollo-de-software',
   },
   {
     icon: Calendar,

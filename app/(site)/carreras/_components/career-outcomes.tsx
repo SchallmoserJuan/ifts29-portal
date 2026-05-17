@@ -2,17 +2,13 @@
 
 import { motion } from 'framer-motion'
 import type { CareerItem } from '@/src/types/content'
-import { defaultCareers } from '@/src/data/defaults'
 import { AnimatedSection } from '@/src/components/ui'
 
 const easing: [number, number, number, number] = [0.22, 1, 0.36, 1]
 
-const fallbackOutcomes = defaultCareers[0]?.outcomes || []
-
 export function CareerOutcomes({ career }: { career: CareerItem }) {
-  const outcomes = career.outcomes && career.outcomes.length > 0
-    ? career.outcomes
-    : fallbackOutcomes
+  const outcomes = career.outcomes
+  if (!outcomes || outcomes.length === 0) return null
 
   return (
     <section className="relative w-full bg-[#072c57] py-24 text-white md:py-32">
@@ -20,11 +16,13 @@ export function CareerOutcomes({ career }: { career: CareerItem }) {
         <AnimatedSection>
           <div className="max-w-3xl">
             <h2 className="text-3xl font-medium leading-tight tracking-tight text-white md:text-4xl lg:text-5xl">
-              Campos de desempeño
+              {career.outcomesTitle || 'Campos de desempeño'}
             </h2>
-            <p className="mt-4 text-lg text-slate-300">
-              La industria tecnológica ofrece múltiples vertientes de especialización para el egresado.
-            </p>
+            {career.outcomesSubtitle && (
+              <p className="mt-4 text-lg text-slate-300">
+                {career.outcomesSubtitle}
+              </p>
+            )}
           </div>
         </AnimatedSection>
 

@@ -16,10 +16,10 @@ export function CTASection() {
             excelencia comienza aquí.
           </p>
           <Link
-            href="/carreras"
+            href="/carreras/tecnicatura-superior-en-desarrollo-de-software"
             className="mt-10 inline-flex items-center bg-[#00d4ff] px-10 py-4 text-sm font-semibold text-[#00152b] transition hover:brightness-110 rounded-sm"
           >
-            Ver carreras
+            Ver carrera
           </Link>
         </AnimatedSection>
       </div>
