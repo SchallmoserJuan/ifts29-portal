@@ -4,7 +4,7 @@ import { getPayloadClient } from '@/src/lib/payload'
 import { rateLimitByIP } from '@/src/lib/rate-limit'
 
 export async function POST(request: Request) {
-  const limit = rateLimitByIP(request, 5, 15 * 60 * 1000)
+  const limit = rateLimitByIP(request, 20, 15 * 60 * 1000)
   if (!limit.success) {
     return NextResponse.json(
       { error: 'Demasiadas solicitudes. Intenta de nuevo mas tarde.' },
