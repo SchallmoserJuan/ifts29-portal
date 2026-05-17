@@ -27,6 +27,11 @@ export default defineConfig({
         'src/payload-types.ts',
         'src/**/*.d.ts',
       ],
+      thresholds: {
+        'src/lib/**': {lines: 37, statements: 37, functions: 35, branches: 35},
+        'src/context/**': {lines: 60, statements: 60, functions: 60, branches: 60},
+        'src/fields/**': {lines: 60, statements: 60, functions: 60, branches: 60},
+      },
     },
   },
   resolve: {

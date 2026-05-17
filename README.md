@@ -1,5 +1,8 @@
 # Portal IFTS 29
 
+![CI](https://github.com/SchallmoserJuan/ifts29-portal/actions/workflows/ci.yml/badge.svg)
+![Coverage](https://codecov.io/gh/SchallmoserJuan/ifts29-portal/branch/main/graph/badge.svg)
+
 Portal institucional del IFTS 29 construido con `Next.js` y `Payload CMS`.
 
 ## Stack
