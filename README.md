@@ -25,6 +25,30 @@ DATABASE_URL=file:./ifts29.db
 - `npm run lint`: chequeo estático
 - `npm run generate:types`: genera tipos de Payload
 
+## Testing & Cobertura
+
+### Tests unitarios e integración (Vitest)
+
+```bash
+npm run test:run        # corre todos los tests una vez
+npm test                # modo watch
+npm run test:coverage   # genera reporte de cobertura
+```
+
+El reporte HTML queda en `coverage/index.html`. El resumen JSON en `coverage/coverage-summary.json`.
+
+### Tests E2E (Playwright)
+
+Requiere el servidor corriendo (`npm run dev`) y un archivo `.env.test.local` con credenciales de prueba.
+
+```bash
+npm run test:e2e        # corre todos los tests E2E
+npm run test:e2e:ui     # abre el UI de Playwright
+npm run test:e2e:report # abre el último reporte HTML
+```
+
+El reporte HTML queda en `playwright-report/index.html`.
+
 ## Rutas principales
 
 - `/`: home pública
