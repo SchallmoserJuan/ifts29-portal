@@ -1,3 +1,4 @@
+// app/(site)/careers/[slug]/page.tsx
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
@@ -6,6 +7,9 @@ import { PageShell } from '@/src/components/layout'
 import { RichTextRenderer } from '@/src/components/ui'
 import { getCareerBySlug } from '@/src/lib/content'
 import type { RequirementItem, SubjectItem } from '@/src/types/content'
+
+// Importamos el nuevo componente de horarios
+import ScheduleTable from '@/app/(site)/carreras/_components/ScheduleTable'
 
 export const dynamic = 'force-dynamic'
 
@@ -96,7 +100,8 @@ export default async function CareerDetailPage({
         </aside>
       </section>
 
-      <section className="mx-auto w-full max-w-[1400px] px-4 pb-16 sm:px-6 lg:px-10">
+      {/* Sección Plan de estudio */}
+      <section className="mx-auto w-full max-w-[1400px] px-4 pb-8 sm:px-6 lg:px-10">
         <div className="rounded-3xl border border-[#b8d2f1] bg-white p-8">
           <h2 className="text-3xl font-semibold text-slate-950">Plan de estudio</h2>
           <div className="mt-6 grid gap-4 md:grid-cols-2">
@@ -108,6 +113,15 @@ export default async function CareerDetailPage({
           </div>
         </div>
       </section>
+
+      {/* NUEVA SECCIÓN: Horarios de cursada */}
+      <section className="mx-auto w-full max-w-[1400px] px-4 pb-16 sm:px-6 lg:px-10">
+        <div className="rounded-3xl border border-[#b8d2f1] bg-white p-8">
+          {/* Invocamos la tabla pasando el slug resuelto */}
+          <ScheduleTable carreraSlug={slug} />
+        </div>
+      </section>
+      
     </PageShell>
-  )
+  );
 }
