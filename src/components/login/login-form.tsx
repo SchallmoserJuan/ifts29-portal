@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useState, useTransition } from 'react'
 import { useAuth } from '@/src/context/auth-context'
@@ -13,6 +14,9 @@ export function LoginForm() {
   const onSubmit = async (formData: FormData) => {
     setError(null)
 
+    const identifier = formData.get('identifier') as string
+    const password = formData.get('password') as string
+
     const response = await fetch('/api/users/login', {
       method: 'POST',
       headers: {
@@ -20,8 +24,8 @@ export function LoginForm() {
       },
       credentials: 'include',
       body: JSON.stringify({
-        email: formData.get('email'),
-        password: formData.get('password'),
+        identifier,
+        password,
       }),
     })
 
@@ -34,7 +38,7 @@ export function LoginForm() {
     const data = await response.json()
 
     if (data?.user) {
-      setUser(data.user as any)
+      setUser(data.user)
     }
 
     startTransition(() => {
@@ -55,14 +59,15 @@ export function LoginForm() {
     >
       <div className="space-y-5">
         <div>
-          <label htmlFor="email" className="mb-2 block text-sm font-medium text-slate-900">
-            Email
+          <label htmlFor="identifier" className="mb-2 block text-sm font-medium text-slate-900">
+            DNI o Email
           </label>
           <input
-            id="email"
-            name="email"
-            type="email"
+            id="identifier"
+            name="identifier"
+            type="text"
             required
+            placeholder="Ingresa tu DNI o email"
             className="w-full rounded-2xl border border-slate-300 px-4 py-3 outline-none transition focus:border-amber-500"
           />
         </div>
@@ -86,6 +91,12 @@ export function LoginForm() {
         >
           {isPending ? 'Ingresando...' : 'Ingresar'}
         </button>
+        <p className="text-center text-sm text-slate-600">
+          No tenes cuenta?{' '}
+          <Link href="/registro" className="font-semibold text-slate-950 hover:underline">
+            Registrate
+          </Link>
+        </p>
       </div>
     </form>
   )

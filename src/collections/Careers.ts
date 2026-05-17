@@ -1,5 +1,4 @@
 import type { CollectionConfig } from 'payload'
-
 import { canDeleteContent, canManageContent, publishedOnlyOrStaff } from '@/src/access'
 import { slugField } from '@/src/fields/slug'
 
@@ -137,6 +136,36 @@ export const Careers: CollectionConfig = {
       type: 'relationship',
       relationTo: 'documents',
       hasMany: true,
+    },
+    /* NUEVO CAMPO: Articulaciones Universitarias
+      Este módulo permite cumplir con la Estrategia de Diferenciación,
+      mostrando convenios para que los alumnos continúen sus estudios.
+    */
+    {
+      name: 'articulations',
+      label: 'Articulaciones',
+      type: 'array',
+      admin: {
+        description: 'Convenios con facultades/universidades para continuar estudios.',
+      },
+      fields: [
+        { 
+          name: 'institution', 
+          type: 'text', 
+          label: 'Institución', 
+          required: true 
+        },
+        { 
+          name: 'description', 
+          type: 'textarea', 
+          label: 'Descripción del convenio' 
+        },
+        { 
+          name: 'link', 
+          type: 'text', 
+          label: 'Link externo' 
+        }
+      ]
     },
   ],
 }

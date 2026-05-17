@@ -3,7 +3,12 @@
 import {useState} from 'react'
 import {MegaMenu} from './mega-menu'
 
-export function MenuButton() {
+interface MenuButtonProps {
+  latestNews: {slug: string; title: string}[]
+  latestEvents: {slug: string; title: string}[]
+}
+
+export function MenuButton({latestNews, latestEvents}: MenuButtonProps) {
   const [open, setOpen] = useState(false)
 
   return (
@@ -20,7 +25,7 @@ export function MenuButton() {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
         </svg>
       </button>
-      <MegaMenu open={open} onClose={() => setOpen(false)} />
+      <MegaMenu open={open} onClose={() => setOpen(false)} latestNews={latestNews} latestEvents={latestEvents} />
     </>
   )
 }

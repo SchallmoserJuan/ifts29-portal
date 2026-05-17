@@ -6,7 +6,9 @@ import { useRouter } from 'next/navigation'
 interface User {
   id: number | string
   email: string
+  dni: string
   role: 'admin' | 'teacher' | 'student'
+  status: 'pending' | 'approved' | 'rejected'
   firstName?: string | null
   lastName?: string | null
 }

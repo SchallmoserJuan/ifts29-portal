@@ -147,7 +147,9 @@ export interface User {
   id: number;
   firstName: string;
   lastName: string;
+  dni: string;
   role: 'admin' | 'teacher' | 'student';
+  status?: ('pending' | 'approved' | 'rejected') | null;
   career?: (number | null) | Career;
   updatedAt: string;
   createdAt: string;
@@ -252,6 +254,17 @@ export interface Career {
     [k: string]: unknown;
   } | null;
   documents?: (number | Document)[] | null;
+  /**
+   * Convenios con facultades/universidades para continuar estudios.
+   */
+  articulations?:
+    | {
+        institution: string;
+        description?: string | null;
+        link?: string | null;
+        id?: string | null;
+      }[]
+    | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -585,7 +598,9 @@ export interface PayloadMigration {
 export interface UsersSelect<T extends boolean = true> {
   firstName?: T;
   lastName?: T;
+  dni?: T;
   role?: T;
+  status?: T;
   career?: T;
   updatedAt?: T;
   createdAt?: T;
@@ -674,6 +689,14 @@ export interface CareersSelect<T extends boolean = true> {
       };
   methodology?: T;
   documents?: T;
+  articulations?:
+    | T
+    | {
+        institution?: T;
+        description?: T;
+        link?: T;
+        id?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
 }

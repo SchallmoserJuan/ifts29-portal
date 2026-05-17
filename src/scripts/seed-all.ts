@@ -279,10 +279,52 @@ const siteSettingsData = {
 }
 
 // ============================================================
+// DATOS: ADMIN DE EJEMPLO
+// ============================================================
+const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'admin@ifts29.edu.ar'
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'admin1234'
+const adminData = {
+  email: ADMIN_EMAIL,
+  password: ADMIN_PASSWORD,
+  dni: '12345678',
+  firstName: 'Administrador',
+  lastName: 'IFTS 29',
+  role: 'admin' as const,
+  status: 'approved' as const,
+}
+
+// ============================================================
 // HELPERS
 // ============================================================
+async function seedAdmin(payload: Awaited<ReturnType<typeof getPayload>>) {
+  console.log('\n[0/7] Seed de Admin...')
+
+  const existing = await payload.find({
+    collection: 'users',
+    limit: 1,
+    where: { email: { equals: adminData.email } },
+  })
+
+  if (existing.docs.length > 0) {
+    console.log('   Admin ya existe. Email:', adminData.email)
+    console.log('   Para acceder al panel de admin: /admin')
+    console.log('   Email:', adminData.email)
+    console.log('   Password:', ADMIN_PASSWORD)
+  } else {
+    const created = await payload.create({
+      collection: 'users',
+      data: adminData,
+    })
+    console.log('   Admin creado. ID:', created.id)
+    console.log('   Email:', adminData.email)
+    console.log('   Password:', ADMIN_PASSWORD)
+    console.log('   IMPORTANTE: Cambia esta contrasena en produccion.')
+  }
+}
+
 async function seedCareer(payload: Awaited<ReturnType<typeof getPayload>>) {
-  console.log('\n[1/7] Seed de Carrera...')
+  console.log('\n[1/8] Seed de Carrera...')
+
 
   const existing = await payload.find({
     collection: 'careers',
@@ -307,7 +349,7 @@ async function seedCareer(payload: Awaited<ReturnType<typeof getPayload>>) {
 }
 
 async function seedNews(payload: Awaited<ReturnType<typeof getPayload>>) {
-  console.log('\n[2/7] Seed de Noticias...')
+  console.log('\n[2/8] Seed de Noticias...')
 
   for (const item of newsData) {
     const existing = await payload.find({
@@ -329,7 +371,7 @@ async function seedNews(payload: Awaited<ReturnType<typeof getPayload>>) {
 }
 
 async function seedEvents(payload: Awaited<ReturnType<typeof getPayload>>) {
-  console.log('\n[3/7] Seed de Eventos...')
+  console.log('\n[3/8] Seed de Eventos...')
 
   for (const item of eventsData) {
     const existing = await payload.find({
@@ -351,7 +393,7 @@ async function seedEvents(payload: Awaited<ReturnType<typeof getPayload>>) {
 }
 
 async function seedProjects(payload: Awaited<ReturnType<typeof getPayload>>) {
-  console.log('\n[4/7] Seed de Proyectos...')
+  console.log('\n[4/8] Seed de Proyectos...')
 
   for (const item of projectsData) {
     const existing = await payload.find({
@@ -373,7 +415,7 @@ async function seedProjects(payload: Awaited<ReturnType<typeof getPayload>>) {
 }
 
 async function seedCompanies(payload: Awaited<ReturnType<typeof getPayload>>) {
-  console.log('\n[5/7] Seed de Empresas...')
+  console.log('\n[5/8] Seed de Empresas...')
 
   for (const item of companiesData) {
     const existing = await payload.find({
@@ -395,7 +437,7 @@ async function seedCompanies(payload: Awaited<ReturnType<typeof getPayload>>) {
 }
 
 async function seedInstitutional(payload: Awaited<ReturnType<typeof getPayload>>) {
-  console.log('\n[6/7] Seed de Contenido Institucional...')
+  console.log('\n[6/8] Seed de Contenido Institucional...')
 
   try {
     await payload.updateGlobal({
@@ -409,7 +451,7 @@ async function seedInstitutional(payload: Awaited<ReturnType<typeof getPayload>>
 }
 
 async function seedSiteSettings(payload: Awaited<ReturnType<typeof getPayload>>) {
-  console.log('\n[7/7] Seed de Configuracion del Sitio...')
+  console.log('\n[7/8] Seed de Configuracion del Sitio...')
 
   try {
     await payload.updateGlobal({
@@ -433,6 +475,7 @@ async function seed() {
 
   const payload = await getPayload({ config })
 
+  await seedAdmin(payload)
   await seedCareer(payload)
   await seedNews(payload)
   await seedEvents(payload)

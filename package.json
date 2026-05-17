@@ -13,10 +13,8 @@
     "payload": "payload",
     "generate:types": "payload generate:types",
     "seed:career": "tsx --tsconfig tsconfig.json src/scripts/seed-career.ts",
-    "seed:all": "tsx --tsconfig tsconfig.json src/scripts/seed-all.ts",
-    "test": "vitest",
-    "test:run": "vitest run",
-    "test:coverage": "vitest run --coverage"
+    "seed:admin": "tsx --tsconfig tsconfig.json src/scripts/seed-admin.ts",
+    "seed:all": "tsx --tsconfig tsconfig.json src/scripts/seed-all.ts"
   },
   "keywords": [
     "payload",
