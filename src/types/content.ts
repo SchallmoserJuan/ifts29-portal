@@ -11,6 +11,22 @@ export type OutcomeItem = {
   description: string
 }
 
+export type ProfileBlockItem = {
+  title: string
+  text: string
+}
+
+export type MethodologyItem = {
+  title: string
+  text: string
+}
+
+export type ArticulationItem = {
+  institution: string
+  description?: string
+  link?: string
+}
+
 export type AuthorityItem = {
   name: string
   role: string
@@ -43,6 +59,43 @@ export type CareerItem = {
     alt?: string
   }
   documents?: (DocumentItem | string | number)[]
+  // Nuevos campos de la landing premium
+  heroHeadline?: string
+  heroParagraph?: string
+  introTitle?: string
+  introDescription?: string
+  introFocus?: string
+  introOutcome?: string
+  introIndustry?: string
+  introImage?: {
+    url: string
+    alt?: string
+  }
+  profileTitle?: string
+  profileSubtitle?: string
+  profileBlocks?: ProfileBlockItem[]
+  profileQuote?: string
+  studyPlanTitle?: string
+  studyPlanSubtitle?: string
+  studyPlanDescription?: string
+  studyPlanDurationLabel?: string
+  studyPlanStructureLabel?: string
+  studyPlanFocusLabel?: string
+  methodologyTitle?: string
+  methodologySubtitle?: string
+  methodologyItems?: MethodologyItem[]
+  methodologyImage?: {
+    url: string
+    alt?: string
+  }
+  outcomesTitle?: string
+  outcomesSubtitle?: string
+  documentsTitle?: string
+  documentsSubtitle?: string
+  ctaTitle?: string
+  ctaSubtitle?: string
+  ctaLabel?: string
+  articulations?: ArticulationItem[]
 }
 
 export type NewsItem = {
