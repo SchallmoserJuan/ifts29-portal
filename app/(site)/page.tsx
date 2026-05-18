@@ -5,7 +5,7 @@ import { getNewsList, getCareers } from '@/src/lib/content'
 import type { NewsItem } from '@/src/types/content'
 import {
   HomeHero,
-  SearchBar,
+  HeroContent,
   AnnouncementBar,
   PlatformCards,
   WhyChooseSection,
@@ -26,63 +26,9 @@ export default async function HomePage() {
 
   return (
     <PageShell>
-      {/* ===== 1. HERO REDISEÑADO ===== */}
+      {/* ===== 1. HERO ===== */}
       <HomeHero>
-        <div className="absolute inset-0 bg-gradient-to-b from-sky-100/10 via-transparent to-slate-950/40" />
-
-        <div className="relative mx-auto flex min-h-[780px] w-full max-w-[1400px] flex-col px-4 pb-12 pt-24 sm:px-6 lg:px-10">
-          <div className="mt-auto max-w-3xl pb-10">
-            <p className="text-sm uppercase tracking-[0.34em] text-sky-100/80">
-              Educación técnica superior · Buenos Aires · Argentina
-            </p>
-            <h1 className="font-heading mt-5 text-5xl font-semibold tracking-tight text-white sm:text-6xl md:text-7xl">
-              IFTS N° 29
-            </h1>
-            <p className="mt-3 text-2xl text-slate-100 sm:text-3xl">
-              Instituto de Formación Técnica Superior
-            </p>
-            <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-100/80">
-              Más de una década formando profesionales técnicos con título oficial de validez
-              nacional. Tu camino hacia la excelencia comienza aquí.
-            </p>
-
-            <div className="mt-8 flex flex-wrap items-center gap-4">
-              <Link
-                href="/carreras"
-                className="inline-flex items-center justify-center rounded-md bg-[#28c2f3] px-8 py-3.5 text-sm font-semibold text-[#072c57] transition hover:bg-[#52d0f7]"
-              >
-                Conocé la carrera
-              </Link>
-              <Link
-                href="/portal"
-                className="inline-flex items-center justify-center rounded-md border border-white/25 px-8 py-3.5 text-sm font-semibold text-white transition hover:border-white/50 hover:bg-white/5"
-              >
-                <span className="navbar-underline">Portal estudiantil</span>
-              </Link>
-            </div>
-          </div>
-
-          {/* Píldora de búsqueda minimalista */}
-          <div className="relative">
-            <div className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-6 backdrop-blur-xl sm:p-8">
-              <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between lg:gap-10">
-                <div className="max-w-sm shrink-0">
-                  <p className="text-lg leading-snug text-white/70 sm:text-xl">
-                    ¿Qué estás buscando?
-                  </p>
-                  <p className="mt-1 text-xs tracking-wide text-white/25">
-                    Escribí para ver sugerencias
-                  </p>
-                </div>
-                <div className="w-full max-w-xl">
-                  <SearchBar />
-                </div>
-              </div>
-            </div>
-            {/* Línea decorativa inferior */}
-            <div className="pointer-events-none absolute inset-x-8 -bottom-px h-px bg-gradient-to-r from-transparent via-[#28c2f3]/20 to-transparent" />
-          </div>
-        </div>
+        <HeroContent />
       </HomeHero>
 
       {/* ===== 2. AVISOS IMPORTANTES ===== */}

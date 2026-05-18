@@ -1,4 +1,5 @@
 export { HomeHero } from './home-hero'
+export { HeroContent } from './hero-content'
 export { SearchBar } from './search-bar'
 export { AnnouncementBar } from './announcement-bar'
 export { WhyChooseSection } from './why-choose'
