@@ -1,3 +1,5 @@
+import {describe, expect, it} from 'vitest'
+
 describe('Testing infrastructure', () => {
   it('should run tests correctly', () => {
     expect(true).toBe(true)
