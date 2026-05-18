@@ -44,6 +44,14 @@ const fadeIn = {
   },
 }
 
+const slideUp = {
+  hidden: { y: 16 },
+  visible: {
+    y: 0,
+    transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] },
+  },
+}
+
 export function HeroContent() {
   return (
     <motion.div
@@ -107,11 +115,11 @@ export function HeroContent() {
         ))}
       </motion.div>
 
-      <motion.div variants={fadeUp} className="mt-10 w-full max-w-2xl">
+      <motion.div variants={slideUp} className="mt-10 w-full max-w-2xl">
         <SearchBar />
       </motion.div>
 
-      <motion.div variants={fadeIn} className="mt-4 flex flex-wrap items-center justify-center gap-2">
+      <motion.div variants={slideUp} className="mt-4 flex flex-wrap items-center justify-center gap-2">
         {quickTags.map((tag) => (
           <Link
             key={tag.label}

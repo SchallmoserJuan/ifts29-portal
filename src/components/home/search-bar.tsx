@@ -41,12 +41,14 @@ export function SearchBar() {
   const containerRef = useRef<HTMLDivElement>(null)
   const router = useRouter()
 
-  const filtered = query.trim()
+  const hasQuery = query.trim().length > 0
+
+  const filtered = hasQuery
     ? allSuggestions.filter((s) =>
         s.label.toLowerCase().includes(query.toLowerCase()) ||
         s.category.toLowerCase().includes(query.toLowerCase()),
       )
-    : allSuggestions
+    : []
 
   const handleSubmit = useCallback(
     (e: React.FormEvent) => {
@@ -72,6 +74,13 @@ export function SearchBar() {
 
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent) => {
+      if (!isOpen || filtered.length === 0) {
+        if (e.key === 'Enter' && query.trim()) {
+          handleSubmit(e as unknown as React.FormEvent)
+        }
+        return
+      }
+
       if (e.key === 'ArrowDown') {
         e.preventDefault()
         setHighlightedIndex((prev) => (prev + 1) % filtered.length)
@@ -91,12 +100,18 @@ export function SearchBar() {
         inputRef.current?.blur()
       }
     },
-    [filtered, highlightedIndex, handleSelect, handleSubmit],
+    [isOpen, filtered, highlightedIndex, handleSelect, handleSubmit, query],
   )
 
   useEffect(() => {
     setHighlightedIndex(-1)
   }, [query])
+
+  useEffect(() => {
+    if (!hasQuery) {
+      setIsOpen(false)
+    }
+  }, [hasQuery])
 
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
@@ -141,11 +156,15 @@ export function SearchBar() {
             value={query}
             onChange={(e) => {
               setQuery(e.target.value)
-              setIsOpen(true)
+              if (e.target.value.trim().length > 0) {
+                setIsOpen(true)
+              }
             }}
             onFocus={() => {
-              setIsOpen(true)
               setIsFocused(true)
+              if (hasQuery) {
+                setIsOpen(true)
+              }
             }}
             onBlur={() => {
               setTimeout(() => {
@@ -173,13 +192,13 @@ export function SearchBar() {
       </form>
 
       <AnimatePresence>
-        {isOpen && filtered.length > 0 && (
+        {isOpen && hasQuery && filtered.length > 0 && (
           <motion.div
             key="search-dropdown"
             initial={{ opacity: 0, y: 8, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 4, scale: 0.98 }}
-            transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
             className="absolute left-0 right-0 top-full z-[100] mt-3 overflow-hidden rounded-2xl border border-white/[0.08] bg-[#0a1628]/95 shadow-2xl shadow-black/30 backdrop-blur-2xl"
           >
             <div className="custom-scrollbar max-h-[360px] overflow-y-auto py-2">

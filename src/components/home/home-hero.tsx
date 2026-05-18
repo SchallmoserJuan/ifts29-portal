@@ -16,7 +16,7 @@ export function HomeHero({ children }: { children: React.ReactNode }) {
   }, [setHasImageHero, setHasImageBackground])
 
   return (
-    <section className="relative isolate overflow-hidden bg-slate-950 text-white">
+    <section className="relative isolate bg-slate-950 text-white">
       <div
         className="absolute inset-0"
         style={{
