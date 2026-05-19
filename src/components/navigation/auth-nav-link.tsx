@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { useAuth } from '@/src/context/auth-context'
 
 export function AuthNavLink() {
-  const { user, isLoading, logout } = useAuth()
+  const { user, isLoading } = useAuth()
 
   if (isLoading) {
     return (
@@ -23,12 +23,5 @@ export function AuthNavLink() {
     )
   }
 
-  return (
-    <button
-      onClick={logout}
-      className="px-3 py-1 text-sm font-semibold text-white border-r border-white/20 cursor-pointer"
-    >
-      <span className="navbar-underline">Salir</span>
-    </button>
-  )
+  return null
 }

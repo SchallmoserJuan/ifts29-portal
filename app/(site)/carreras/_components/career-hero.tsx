@@ -1,24 +1,24 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import Link from 'next/link'
-import { careerHero } from '@/src/data/career-content'
 import type { CareerItem } from '@/src/types/content'
 
 const easing: [number, number, number, number] = [0.22, 1, 0.36, 1]
 
 export function CareerHero({ career }: { career: CareerItem }) {
+  if (!career.heroHeadline && !career.heroParagraph) return null
+
   return (
     <section className="relative flex min-h-[45vh] w-full flex-col justify-end bg-[#072c57] text-white">
       <div className="relative mx-auto w-full max-w-[1400px] px-4 pb-18 sm:px-6 lg:px-10">
         <motion.div className="max-w-4xl"
         >
           <h1 className="mt-5 text-4xl font-heading leading-[1.1] tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl">
-            {careerHero.headline}
+            {career.heroHeadline || career.name}
           </h1>
 
           <p className="mt-8 max-w-2xl text-lg leading-8 text-slate-200 md:text-xl">
-            {careerHero.paragraph}
+            {career.heroParagraph}
           </p>
 
           <div className="mt-8 flex flex-wrap items-center gap-6 text-sm text-slate-300">

@@ -43,19 +43,15 @@ export function UserNavInfo() {
   }
 
   const config = roleConfig[user.role]
-  const displayName = [user.firstName, user.lastName].filter(Boolean).join(' ') || user.role
 
   return (
-    <div className="flex items-center gap-2 px-2 py-1">
+    <div className="flex items-center px-2 py-1">
       <div className={`flex items-center gap-1.5 rounded-full ${config.bgColor} px-2.5 py-1`}>
         {config.icon}
         <span className={`text-xs font-semibold ${config.textColor}`}>
           {config.label}
         </span>
       </div>
-      <span className="text-sm font-medium text-white/90 truncate max-w-32">
-        {displayName}
-      </span>
     </div>
   )
 }

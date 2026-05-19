@@ -20,6 +20,9 @@ export default async function LoginPage() {
   const user = await getCurrentUser()
 
   if (user) {
+    if (user.role === 'student' && user.status === 'pending') {
+      redirect('/pendiente')
+    }
     redirect('/portal')
   }
 
@@ -29,20 +32,20 @@ export default async function LoginPage() {
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[#214ca0]">Acceso</p>
           <h1 className="mt-5 text-5xl font-semibold tracking-tight text-slate-950">
-            Ingreso al portal con permisos por rol
+            Ingreso al portal del IFTS 29
           </h1>
           <p className="mt-6 max-w-xl text-lg leading-8 text-slate-600">
-            Alumnos, profesores y administradores acceden desde la misma web. El panel editorial completo vive en
-            Payload, mientras que la biblioteca y futuras funciones privadas se consumen desde el portal.
+            Alumnos, profesores y administradores acceden desde la misma web. Si todavia no tenes
+            cuenta, podes registrarte como alumno.
           </p>
           <div className="mt-8 rounded-3xl border border-[#b8d2f1] bg-white p-6">
-            <p className="font-semibold text-slate-950">Primer inicio</p>
+            <p className="font-semibold text-slate-950">Sos alumno y no tenes cuenta?</p>
             <p className="mt-2 text-slate-600">
-              Si todavia no existe un usuario administrador, crealo desde{' '}
-              <Link href="/admin" className="font-semibold text-slate-950">
-                /admin
-              </Link>
-              .
+              Registrate desde{' '}
+              <Link href="/registro" className="font-semibold text-slate-950 hover:underline">
+                /registro
+              </Link>{' '}
+              y espera la aprobacion de un administrador para acceder al portal.
             </p>
           </div>
         </div>

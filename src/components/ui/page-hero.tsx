@@ -65,7 +65,7 @@ export function PageHero({
 }) {
   return (
     <section className="relative overflow-hidden bg-[#072c57] text-white">
-      <div className="relative mx-auto w-full min-h-[65vh] max-w-[1400px] px-4 py-20 sm:px-6 lg:px-10">
+      <div className="relative mx-auto w-full min-h-[45vh] max-w-[1400px] px-4 py-25 sm:px-6 lg:px-10">
         <p className="text-xs font-semibold uppercase tracking-[0.28em] text-sky-100">{eyebrow}</p>
         <h1 className="mt-5 max-w-3xl text-4xl font-semibold tracking-tight md:text-6xl">{title}</h1>
         <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-200">{description}</p>
