@@ -23,6 +23,7 @@
         "name": "next"
       }
     ],
+    "types": ["vitest/globals"],
     "paths": {
       "@/*": [
         "./*"
@@ -43,6 +44,7 @@
   ],
   "exclude": [
     "node_modules",
-    "src/scripts"
+    "src/scripts",
+    "e2e"
   ]
 }

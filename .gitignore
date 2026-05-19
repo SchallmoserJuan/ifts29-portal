@@ -26,6 +26,11 @@ out/
 # Coverage directory used by testing tools
 /coverage
 
+# Playwright
+/playwright-report
+/test-results
+e2e/.auth
+
 # Misc
 .DS_Store
 *.pem
@@ -47,3 +52,4 @@ next-env.d.ts
 .agents/
 .claude
 skills-lock.json
+AGENTS.md
