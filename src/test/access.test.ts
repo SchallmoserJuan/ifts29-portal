@@ -23,10 +23,12 @@ import type {AppUser} from '@/src/types/app'
 // Helpers
 // ---------------------------------------------------------------------------
 
-const makeUser = (role: AppUser['role'], id: number | string = 1): AppUser => ({
+const makeUser = (role: AppUser['role'], id: number | string = 1, status: AppUser['status'] = 'approved'): AppUser => ({
   id,
   email: `${role}@ifts29.edu.ar`,
   role,
+  dni: `${id}`,
+  status,
 })
 
 const makeReq = (user: Partial<AppUser> | null = null, payloadOverrides = {}) => ({
