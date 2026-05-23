@@ -57,6 +57,12 @@ Prettier config lives in `package.json`:
 - `develop` → integration branch; open PRs against this.
 - Branch prefixes: `feat/`, `fix/`, `design/`, `docs/`, `qa/`.
 
+## Package Manager
+
+- **Instalar dependencias:** usar `pnpm install` (Vercel lee `pnpm-lock.yaml`).
+- **No usar `bun install`:** genera `bun.lock` / `bun.lockb` que entra en conflicto con Vercel.
+- **Correr scripts:** `bun run dev`, `bun run build`, etc. siguen funcionando perfecto (Bun como runtime es compatible con node_modules de pnpm).
+
 ## Gotchas
 
 - `bun run build` explicitly passes `--webpack`. Omitting it may not match production behavior.
