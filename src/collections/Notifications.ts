@@ -4,11 +4,16 @@ import { canAccessNotifications, isStaff } from '@/src/access'
 
 export const Notifications: CollectionConfig = {
   slug: 'notifications',
+  labels: {
+    singular: 'Notificación',
+    plural: 'Notificaciones',
+  },
   admin: {
     useAsTitle: 'title',
     defaultColumns: ['type', 'title', 'read', 'createdAt'],
     listSearchableFields: ['title', 'message'],
-    description: 'Notificaciones del sistema para administradores y profesores.',
+    group: 'Comunicación',
+    description: 'Alertas internas del sistema. Por ejemplo: cuando alguien envía una consulta por el formulario de contacto.',
   },
   fields: [
     {

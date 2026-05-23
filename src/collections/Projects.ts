@@ -5,9 +5,15 @@ import { slugField } from '@/src/fields/slug'
 
 export const Projects: CollectionConfig = {
   slug: 'projects',
+  labels: {
+    singular: 'Proyecto',
+    plural: 'Proyectos',
+  },
   admin: {
     useAsTitle: 'title',
     defaultColumns: ['title', 'category', 'status', 'publishedAt'],
+    group: 'Contenido del sitio',
+    description: 'Proyectos realizados por alumnos o docentes que se muestran en la sección de proyectos del portal.',
   },
   access: {
     read: publishedOnlyOrStaff,

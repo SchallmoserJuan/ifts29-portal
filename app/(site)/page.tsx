@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import { PageShell } from '@/src/components/layout'
 import { NewsCard } from '@/src/components/noticias'
@@ -8,12 +9,15 @@ import {
   HeroContent,
   AnnouncementBar,
   PlatformCards,
-  WhyChooseSection,
-  FeaturedCareer,
-  TestimonialsSection,
-  QuickAccessSection,
+  ValueAndCareerSection,
   HomeCta,
 } from '@/src/components/home'
+
+export const metadata: Metadata = {
+  title: 'IFTS N° 29 - Instituto de Formación Técnica Superior',
+  description:
+    'Tecnicatura Superior en Desarrollo de Software. Título oficial de validez nacional. Más de una década formando profesionales técnicos en Buenos Aires.',
+}
 
 export const revalidate = 60
 
@@ -37,21 +41,15 @@ export default async function HomePage() {
       {/* ===== 3. PLATAFORMAS ACADÉMICAS ===== */}
       <PlatformCards />
 
-      {/* ===== 4. ¿POR QUÉ ELEGIRNOS? ===== */}
-      <WhyChooseSection />
-
-      {/* ===== 4. CARRERA DESTACADA ===== */}
-      {career && <FeaturedCareer career={career} />}
+      {/* ===== 4. VALOR DIFERENCIAL + CARRERA DESTACADA ===== */}
+      {career && <ValueAndCareerSection career={career} />}
 
       {/* ===== 5. NOTICIAS ===== */}
       <section className="bg-[#f8f7f4] py-16 sm:py-20">
         <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-10">
           <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-slate-400">
-                05 — Novedades
-              </p>
-              <h2 className="font-heading mt-4 text-4xl font-medium text-[#00152b]">
+              <h2 className="font-heading text-4xl font-medium text-[#00152b]">
                 Últimas noticias
               </h2>
             </div>
@@ -71,13 +69,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ===== 7. ACCESOS RÁPIDOS ===== */}
-      <QuickAccessSection />
-
-      {/* ===== 7. TESTIMONIOS ===== */}
-      <TestimonialsSection />
-
-      {/* ===== 8. CTA FINAL ===== */}
+      {/* ===== 6. CTA FINAL + ACCESOS RÁPIDOS ===== */}
       <HomeCta />
     </PageShell>
   )

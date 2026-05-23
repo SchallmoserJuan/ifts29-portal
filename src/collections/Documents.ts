@@ -4,10 +4,15 @@ import { canDeleteContent, canManageContent, documentReadAccess } from '@/src/ac
 
 export const Documents: CollectionConfig = {
   slug: 'documents',
+  labels: {
+    singular: 'Documento',
+    plural: 'Documentos',
+  },
   admin: {
     useAsTitle: 'title',
     defaultColumns: ['title', 'category', 'visibility', 'updatedAt'],
-    description: 'Para crear un documento tenes que completar titulo, descripcion y adjuntar un archivo.',
+    group: 'Archivos y documentos',
+    description: 'Archivos PDF y Word descargables: biblioteca, normativas, guías y bolsa de empleo.',
   },
   access: {
     read: documentReadAccess,

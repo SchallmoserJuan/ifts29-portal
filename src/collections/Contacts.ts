@@ -5,11 +5,16 @@ import type { AppUser } from '@/src/types/app'
 
 export const Contacts: CollectionConfig = {
   slug: 'contacts',
+  labels: {
+    singular: 'Consulta',
+    plural: 'Consultas',
+  },
   admin: {
     useAsTitle: 'asunto',
     defaultColumns: ['nombre', 'email', 'status', 'createdAt'],
     listSearchableFields: ['nombre', 'email'],
-    description: 'Consultas recibidas a través del formulario de contacto del portal.',
+    group: 'Comunicación',
+    description: 'Mensajes recibidos a través del formulario de contacto del portal. Acá se gestionan las respuestas.',
   },
   fields: [
     {
