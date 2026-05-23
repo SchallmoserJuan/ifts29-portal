@@ -15,9 +15,6 @@ export function FeaturedCareer({career}: FeaturedCareerProps) {
     <section className="relative bg-[#072c57] py-24 text-white md:py-32">
       <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-10">
         <AnimatedSection>
-          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-white/50">
-            02 — Oferta académica
-          </p>
         </AnimatedSection>
 
         <div className="mt-16 grid gap-16 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">

@@ -27,10 +27,7 @@ export function TestimonialsSection() {
     <section className="bg-[#f8f7f4] py-24 md:py-32">
       <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-10">
         <AnimatedSection>
-          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-slate-400">
-            07 — Comunidad
-          </p>
-          <h2 className="font-heading mt-6 max-w-3xl text-3xl font-semibold text-[#00152b] sm:text-4xl md:text-5xl">
+          <h2 className="font-heading max-w-3xl text-3xl font-semibold text-[#00152b] sm:text-4xl md:text-5xl">
             Lo que dicen nuestros estudiantes
           </h2>
         </AnimatedSection>

@@ -9,9 +9,15 @@ import {
 
 export const Users: CollectionConfig = {
   slug: 'users',
+  labels: {
+    singular: 'Usuario',
+    plural: 'Usuarios',
+  },
   admin: {
     useAsTitle: 'email',
     defaultColumns: ['firstName', 'lastName', 'email', 'dni', 'role', 'status'],
+    group: 'Usuarios y sistema',
+    description: 'Administradores, profesores y alumnos registrados en el portal. Se gestionan los permisos y aprobaciones.',
   },
   auth: {
     tokenExpiration: 60 * 60 * 8,
@@ -29,11 +35,13 @@ export const Users: CollectionConfig = {
   fields: [
     {
       name: 'firstName',
+      label: 'Nombre',
       type: 'text',
       required: true,
     },
     {
       name: 'lastName',
+      label: 'Apellido',
       type: 'text',
       required: true,
     },

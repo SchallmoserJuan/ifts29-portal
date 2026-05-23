@@ -5,9 +5,15 @@ import { slugField } from '@/src/fields/slug'
 
 export const Events: CollectionConfig = {
   slug: 'events',
+  labels: {
+    singular: 'Evento',
+    plural: 'Eventos',
+  },
   admin: {
     useAsTitle: 'title',
     defaultColumns: ['title', 'date', 'location', 'status'],
+    group: 'Contenido del sitio',
+    description: 'Eventos, actividades y fechas importantes que aparecen en el calendario del portal.',
   },
   access: {
     read: publishedOnlyOrStaff,

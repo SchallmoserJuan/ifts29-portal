@@ -5,9 +5,15 @@ import { slugField } from '@/src/fields/slug'
 
 export const News: CollectionConfig = {
   slug: 'news',
+  labels: {
+    singular: 'Noticia',
+    plural: 'Noticias',
+  },
   admin: {
     useAsTitle: 'title',
     defaultColumns: ['title', 'category', 'status', 'publishedAt'],
+    group: 'Contenido del sitio',
+    description: 'Artículos informativos y novedades del instituto que se muestran en el portal público.',
   },
   access: {
     read: publishedOnlyOrStaff,

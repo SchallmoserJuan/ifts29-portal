@@ -4,9 +4,15 @@ import { slugField } from '@/src/fields/slug'
 
 export const Careers: CollectionConfig = {
   slug: 'careers',
+  labels: {
+    singular: 'Carrera',
+    plural: 'Carreras',
+  },
   admin: {
     useAsTitle: 'name',
     defaultColumns: ['name', 'status', 'duration', 'modality'],
+    group: 'Contenido del sitio',
+    description: 'Información de las carreras que se ofrecen en el instituto. Cada carrera tiene su propia página pública.',
   },
   access: {
     read: publishedOnlyOrStaff,

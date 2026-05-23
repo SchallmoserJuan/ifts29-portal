@@ -7,6 +7,10 @@ import { canDeleteContent, canManageContent, publicRead } from '@/src/access'
 
 export const Media: CollectionConfig = {
   slug: 'media',
+  labels: {
+    singular: 'Imagen',
+    plural: 'Imágenes',
+  },
   access: {
     read: publicRead,
     create: canManageContent,
@@ -15,6 +19,8 @@ export const Media: CollectionConfig = {
   },
   admin: {
     useAsTitle: 'alt',
+    group: 'Archivos y documentos',
+    description: 'Todas las imágenes del portal. Se usan en noticias, eventos, proyectos y carreras.',
   },
   fields: [
     {

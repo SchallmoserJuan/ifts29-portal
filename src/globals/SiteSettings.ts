@@ -5,6 +5,9 @@ import { canManageUsers, publicRead } from '@/src/access'
 export const SiteSettings: GlobalConfig = {
   slug: 'site-settings',
   label: 'Configuracion del sitio',
+  admin: {
+    group: 'Usuarios y sistema',
+  },
   access: {
     read: publicRead,
     update: canManageUsers,

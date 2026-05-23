@@ -4,6 +4,7 @@ import { fileURLToPath } from 'url'
 import { sqliteAdapter } from '@payloadcms/db-sqlite'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
+import { es } from '@payloadcms/translations/languages/es'
 import { buildConfig } from 'payload'
 import sharp from 'sharp'
 
@@ -32,6 +33,18 @@ export default buildConfig({
     meta: {
       titleSuffix: ' - IFTS 29',
     },
+    components: {
+      afterNavLinks: ['/src/components/admin/back-to-portal#BackToPortalButton'],
+      beforeDashboard: [
+        '/src/components/admin/widgets/dashboard-stats#DashboardStatsWidget',
+        '/src/components/admin/widgets/recent-news#RecentNewsWidget',
+        '/src/components/admin/widgets/upcoming-events#UpcomingEventsWidget',
+      ],
+    },
+  },
+  i18n: {
+    supportedLanguages: { es },
+    fallbackLanguage: 'es',
   },
   collections: [Users, Media, Careers, News, Documents, Events, Projects, Companies, Contacts, Notifications],
   globals: [SiteSettings, InstitutionalContent],

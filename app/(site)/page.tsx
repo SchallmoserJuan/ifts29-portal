@@ -48,10 +48,7 @@ export default async function HomePage() {
         <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-10">
           <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-slate-400">
-                05 — Novedades
-              </p>
-              <h2 className="font-heading mt-4 text-4xl font-medium text-[#00152b]">
+              <h2 className="font-heading text-4xl font-medium text-[#00152b]">
                 Últimas noticias
               </h2>
             </div>

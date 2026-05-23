@@ -46,10 +46,7 @@ export function QuickAccessSection() {
     <section className="bg-[#072c57] py-24 text-white md:py-32">
       <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-10">
         <AnimatedSection>
-          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-white/50">
-            06 — Accesos directos
-          </p>
-          <h2 className="font-heading mt-6 max-w-3xl text-3xl font-semibold text-white sm:text-4xl md:text-5xl">
+          <h2 className="font-heading max-w-3xl text-3xl font-semibold text-white sm:text-4xl md:text-5xl">
             Todo lo que necesitás en un solo lugar
           </h2>
         </AnimatedSection>

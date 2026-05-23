@@ -4,9 +4,15 @@ import { canDeleteContent, canManageContent, publishedOnlyOrStaff } from '@/src/
 
 export const Companies: CollectionConfig = {
   slug: 'companies',
+  labels: {
+    singular: 'Empresa',
+    plural: 'Empresas',
+  },
   admin: {
     useAsTitle: 'name',
     defaultColumns: ['name', 'practicesArea', 'status'],
+    group: 'Institucional',
+    description: 'Empresas asociadas al instituto para prácticas profesionales y bolsa de empleo.',
   },
   access: {
     read: publishedOnlyOrStaff,

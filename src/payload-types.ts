@@ -140,6 +140,8 @@ export interface UserAuthOperations {
   };
 }
 /**
+ * Administradores, profesores y alumnos registrados en el portal. Se gestionan los permisos y aprobaciones.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users".
  */
@@ -171,6 +173,8 @@ export interface User {
   collection: 'users';
 }
 /**
+ * Información de las carreras que se ofrecen en el instituto. Cada carrera tiene su propia página pública.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "careers".
  */
@@ -310,6 +314,8 @@ export interface Career {
   createdAt: string;
 }
 /**
+ * Todas las imágenes del portal. Se usan en noticias, eventos, proyectos y carreras.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "media".
  */
@@ -339,7 +345,7 @@ export interface Media {
   };
 }
 /**
- * Para crear un documento tenes que completar titulo, descripcion y adjuntar un archivo.
+ * Archivos PDF y Word descargables: biblioteca, normativas, guías y bolsa de empleo.
  *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "documents".
@@ -364,6 +370,8 @@ export interface Document {
   focalY?: number | null;
 }
 /**
+ * Artículos informativos y novedades del instituto que se muestran en el portal público.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "news".
  */
@@ -404,6 +412,8 @@ export interface News {
   createdAt: string;
 }
 /**
+ * Eventos, actividades y fechas importantes que aparecen en el calendario del portal.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "events".
  */
@@ -425,6 +435,8 @@ export interface Event {
   createdAt: string;
 }
 /**
+ * Proyectos realizados por alumnos o docentes que se muestran en la sección de proyectos del portal.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "projects".
  */
@@ -463,6 +475,8 @@ export interface Project {
   createdAt: string;
 }
 /**
+ * Empresas asociadas al instituto para prácticas profesionales y bolsa de empleo.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "companies".
  */
@@ -479,7 +493,7 @@ export interface Company {
   createdAt: string;
 }
 /**
- * Consultas recibidas a través del formulario de contacto del portal.
+ * Mensajes recibidos a través del formulario de contacto del portal. Acá se gestionan las respuestas.
  *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "contacts".
@@ -509,7 +523,7 @@ export interface Contact {
   createdAt: string;
 }
 /**
- * Notificaciones del sistema para administradores y profesores.
+ * Alertas internas del sistema. Por ejemplo: cuando alguien envía una consulta por el formulario de contacto.
  *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "notifications".

@@ -36,6 +36,7 @@
     "@payloadcms/next": "^3.84.0",
     "@payloadcms/richtext-lexical": "^3.84.0",
     "@payloadcms/storage-vercel-blob": "^3.84.0",
+    "@payloadcms/translations": "^3.84.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "framer-motion": "^12.38.0",

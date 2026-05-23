@@ -5,6 +5,9 @@ import { canManageUsers, publicRead } from '@/src/access'
 export const InstitutionalContent: GlobalConfig = {
   slug: 'institutional-content',
   label: 'Contenido institucional',
+  admin: {
+    group: 'Institucional',
+  },
   access: {
     read: publicRead,
     update: canManageUsers,
