@@ -20,9 +20,9 @@ export const Users: CollectionConfig = {
     description: 'Administradores, profesores y alumnos registrados en el portal. Se gestionan los permisos y aprobaciones.',
   },
   auth: {
-    tokenExpiration: 60 * 60 * 8,
-    maxLoginAttempts: 5,
-    lockTime: 10 * 60 * 1000,
+   tokenExpiration: 60 * 60 * 8,
+   maxLoginAttempts: 5,
+   lockTime: 10 * 60 * 1000,
   },
   access: {
     admin: canAccessAdmin,
