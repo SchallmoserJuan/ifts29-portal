@@ -14,9 +14,9 @@ export const Users: CollectionConfig = {
     defaultColumns: ['firstName', 'lastName', 'email', 'dni', 'role', 'status'],
   },
   auth: {
-    tokenExpiration: 60 * 60 * 8,
-    maxLoginAttempts: 5,
-    lockTime: 10 * 60 * 1000,
+   tokenExpiration: 60 * 60 * 8,
+   maxLoginAttempts: 5,
+   lockTime: 10 * 60 * 1000,
   },
   access: {
     admin: canAccessAdmin,
