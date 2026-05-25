@@ -2,14 +2,15 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { PageShell } from '@/src/components/layout'
 import { NewsCard } from '@/src/components/noticias'
-import { getNewsList, getCareers } from '@/src/lib/content'
-import type { NewsItem } from '@/src/types/content'
+import { getNewsList, getCareers, getProjectsList } from '@/src/lib/content'
+import type { NewsItem, ProjectItem } from '@/src/types/content'
 import {
   HomeHero,
   HeroContent,
   AnnouncementBar,
   PlatformCards,
   ValueAndCareerSection,
+  HomeProjectsSection,
   HomeCta,
 } from '@/src/components/home'
 
@@ -22,8 +23,13 @@ export const metadata: Metadata = {
 export const revalidate = 60
 
 export default async function HomePage() {
-  const [news, careers] = await Promise.all([getNewsList(), getCareers()])
+  const [news, careers, projects] = await Promise.all([
+    getNewsList(),
+    getCareers(),
+    getProjectsList(),
+  ])
   const latestNews = news.slice(0, 3) as NewsItem[]
+  const latestProjects = projects.slice(0, 3) as ProjectItem[]
 
   const career =
     careers.find((c) => c.slug === 'tecnicatura-superior-en-desarrollo-de-software') || careers[0]
@@ -44,7 +50,10 @@ export default async function HomePage() {
       {/* ===== 4. VALOR DIFERENCIAL + CARRERA DESTACADA ===== */}
       {career && <ValueAndCareerSection career={career} />}
 
-      {/* ===== 5. NOTICIAS ===== */}
+      {/* ===== 5. PROYECTOS DESTACADOS ===== */}
+      {latestProjects.length > 0 && <HomeProjectsSection projects={latestProjects} />}
+
+      {/* ===== 6. NOTICIAS ===== */}
       <section className="bg-[#f8f7f4] py-16 sm:py-20">
         <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-10">
           <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
@@ -69,7 +78,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ===== 6. CTA FINAL + ACCESOS RÁPIDOS ===== */}
+      {/* ===== 7. CTA FINAL + ACCESOS RÁPIDOS ===== */}
       <HomeCta />
     </PageShell>
   )
