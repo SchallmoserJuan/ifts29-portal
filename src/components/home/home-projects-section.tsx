@@ -110,7 +110,7 @@ export function HomeProjectsSection({ projects }: HomeProjectsSectionProps) {
                       {studentName ? (
                         <div className="flex items-center gap-2">
                           <span
-                            className="flex h-7 w-7 items-center justify-center rounded-full text-[10px] font-bold text-white"
+                            className="flex h-7 w-7 items-center justify-center rounded-full text-xs font-bold text-white"
                             style={{ backgroundColor: config.color }}
                           >
                             {studentInitials}
@@ -124,7 +124,7 @@ export function HomeProjectsSection({ projects }: HomeProjectsSectionProps) {
                           {project.tags.split(';').slice(0, 2).map((tag) => (
                             <span
                               key={tag}
-                              className="rounded-md px-2 py-0.5 text-[10px] text-slate-500"
+                              className="rounded-md px-2 py-0.5 text-xs text-slate-500"
                               style={{ backgroundColor: `${config.color}10` }}
                             >
                               {tag.trim()}

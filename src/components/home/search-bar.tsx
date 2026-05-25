@@ -208,7 +208,7 @@ export function SearchBar() {
           <div className="flex shrink-0 items-center pl-5 sm:pl-6">
             <Search
               className={`h-5 w-5 transition-colors duration-300 ${
-                isFocused ? 'text-[#28c2f3]' : 'text-white/30'
+                isFocused ? 'text-[#28c2f3]' : 'text-white/70'
               }`}
             />
           </div>
@@ -238,7 +238,7 @@ export function SearchBar() {
             }}
             onKeyDown={handleKeyDown}
             placeholder="Busc&aacute; carreras, noticias, proyectos, becas, documentaci\u00f3n..."
-            className="h-16 w-full bg-transparent px-4 text-base text-white placeholder:text-white/30 outline-none sm:h-[72px] sm:px-5 sm:text-lg"
+            className="h-16 w-full bg-transparent px-4 text-base text-white placeholder:text-white/70 outline-none sm:h-[72px] sm:px-5 sm:text-lg"
           />
 
           <div className="flex shrink-0 items-center pr-3 sm:pr-4">
@@ -290,7 +290,7 @@ export function SearchBar() {
                       </p>
                       <div className="mt-1 flex items-center gap-2">
                         <span
-                          className={`inline-flex rounded-md border px-1.5 py-0.5 text-[10px] font-medium leading-none ${colorClasses}`}
+                          className={`inline-flex rounded-md border px-1.5 py-0.5 text-xs font-medium leading-none ${colorClasses}`}
                         >
                           {suggestion.category}
                         </span>

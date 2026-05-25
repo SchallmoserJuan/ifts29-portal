@@ -50,8 +50,9 @@ export function FaqSection({ items, title = 'Preguntas Frecuentes', subtitle, id
                   onClick={() => setOpenIndex(isOpen ? null : index)}
                   className="w-full text-left p-5 flex items-center justify-between gap-4"
                   aria-expanded={isOpen}
+                  aria-controls={`faq-answer-${index}`}
                 >
-                  <span className="font-medium text-slate-800">{item.question}</span>
+                  <span id={`faq-question-${index}`} className="font-medium text-slate-800">{item.question}</span>
                   <div className="shrink-0 w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center transition-colors">
                     {isOpen ? (
                       <Minus className="w-4 h-4 text-[#072c57]" />
@@ -70,7 +71,7 @@ export function FaqSection({ items, title = 'Preguntas Frecuentes', subtitle, id
                       transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
                       className="overflow-hidden"
                     >
-                      <div className="px-5 pb-5 text-slate-600 text-sm leading-relaxed border-t border-slate-100 pt-4">
+                      <div id={`faq-answer-${index}`} role="region" aria-labelledby={`faq-question-${index}`} className="px-5 pb-5 text-slate-600 text-sm leading-relaxed border-t border-slate-100 pt-4">
                         {item.answer ? <RichTextRenderer content={item.answer} /> : null}
                       </div>
                     </motion.div>

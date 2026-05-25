@@ -124,7 +124,7 @@ export function HeroContent() {
           <Link
             key={tag.label}
             href={tag.href}
-            className="inline-flex items-center gap-1.5 rounded-full border border-white/[0.08] bg-white/[0.03] px-4 py-2 text-xs font-medium text-white/50 transition-all duration-200 hover:border-[#28c2f3]/30 hover:bg-[#28c2f3]/10 hover:text-white"
+            className="inline-flex items-center gap-1.5 rounded-full border border-white/[0.08] bg-white/[0.03] px-4 py-2 text-xs font-medium text-white/70 transition-all duration-200 hover:border-[#28c2f3]/30 hover:bg-[#28c2f3]/10 hover:text-white"
           >
             <tag.icon className="h-3 w-3" />
             {tag.label}

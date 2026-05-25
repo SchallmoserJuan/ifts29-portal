@@ -10,6 +10,7 @@ import '@fontsource/playfair-display/700.css'
 
 import { AuthProvider } from '@/src/context/auth-context'
 import { getSiteSettings } from '@/src/lib/content'
+import { SkipToContent } from '@/src/components/ui'
 import './globals.css'
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -45,6 +46,7 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body className="min-h-screen bg-background text-foreground antialiased">
+        <SkipToContent />
         <AuthProvider>{children}</AuthProvider>
       </body>
     </html>

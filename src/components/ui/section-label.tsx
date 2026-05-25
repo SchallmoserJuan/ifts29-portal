@@ -9,7 +9,7 @@ export function SectionLabel({
 }) {
   return (
     <p
-      className={`text-xs font-semibold uppercase tracking-[0.28em] ${light ? 'text-white/50' : 'text-slate-400'}`}
+      className={`text-xs font-semibold uppercase tracking-[0.28em] ${light ? 'text-white/70' : 'text-slate-500'}`}
     >
       {number} <span className="mx-2">—</span> {label}
     </p>

@@ -37,7 +37,7 @@ export function ProjectsGrid({ projects }: ProjectsGridProps) {
         <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-10">
           <div className="rounded-2xl border border-dashed border-slate-200 bg-[#f8f7f4] p-10 text-center">
             <p className="text-slate-600">No hay proyectos publicados en este momento.</p>
-            <p className="mt-2 text-sm text-slate-400">
+            <p className="mt-2 text-sm text-slate-500">
               Los proyectos se publican desde el panel de administración.
             </p>
           </div>

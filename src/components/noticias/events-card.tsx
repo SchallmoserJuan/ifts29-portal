@@ -70,7 +70,7 @@ export function EventsCard({ event }: { event: EventItem }) {
             {event.description}
           </p>
 
-          <div className="mt-4 flex flex-wrap items-center gap-4 text-xs text-slate-400">
+           <div className="mt-4 flex flex-wrap items-center gap-4 text-xs text-slate-500">
             <span className="inline-flex items-center gap-1.5">
               <Clock className="h-3.5 w-3.5" />
               {time}

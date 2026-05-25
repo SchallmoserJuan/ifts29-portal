@@ -9,7 +9,7 @@ export async function PageShell({ children }: { children: ReactNode }) {
     <HeroProvider>
       <SiteHeader />
 
-      <main className="flex-1 bg-[#f7fbff]">
+      <main id="main-content" className="flex-1 bg-[#f7fbff]">
         {children}
       </main>
 

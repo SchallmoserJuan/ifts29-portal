@@ -17,7 +17,7 @@ export function StudentDashboard() {
       href: '/portal/biblioteca',
       active: true,
       icon: (
-        <svg className="size-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg aria-hidden="true" className="size-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -36,7 +36,7 @@ export function StudentDashboard() {
       href: '#',
       active: false,
       icon: (
-        <svg className="size-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg aria-hidden="true" className="size-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -55,7 +55,7 @@ export function StudentDashboard() {
       href: '#',
       active: false,
       icon: (
-        <svg className="size-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg aria-hidden="true" className="size-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -74,7 +74,7 @@ export function StudentDashboard() {
       href: '#',
       active: false,
       icon: (
-        <svg className="size-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg aria-hidden="true" className="size-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -182,7 +182,7 @@ export function StudentDashboard() {
                       {resource.label}
                     </p>
                     {!resource.active && (
-                      <span className="rounded-full bg-slate-200 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-slate-500">
+                      <span className="rounded-full bg-slate-200 px-2 py-0.5 text-xs font-semibold uppercase tracking-wider text-slate-500">
                         Proximamente
                       </span>
                     )}

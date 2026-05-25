@@ -37,7 +37,7 @@ export function DocumentsSection({ documents }: DocumentsSectionProps) {
             <p className="mt-4 text-slate-600">
               No hay documentos públicos disponibles en este momento.
             </p>
-            <p className="mt-2 text-sm text-slate-400">
+            <p className="mt-2 text-sm text-slate-500">
               Los documentos se publican desde el panel de administración.
             </p>
           </div>
@@ -79,14 +79,14 @@ export function DocumentsSection({ documents }: DocumentsSectionProps) {
                   >
                     <div className="flex items-start justify-between gap-3">
                       <span
-                        className={`rounded-full px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider ${
+                        className={`rounded-full px-2.5 py-0.5 text-xs font-semibold uppercase tracking-wider ${
                           categoryColors[doc.category || ''] || 'bg-slate-100 text-slate-600'
                         }`}
                       >
                         {categoryLabels[doc.category || ''] || doc.category}
                       </span>
                       {doc.career?.name ? (
-                        <span className="text-[10px] text-slate-400 truncate max-w-[120px]">
+                        <span className="text-xs text-slate-500 truncate max-w-[120px]">
                           {doc.career.name}
                         </span>
                       ) : null}

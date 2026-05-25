@@ -60,7 +60,7 @@ export function PastEventsSection({ events, title = 'Eventos anteriores' }: Past
               <div className="p-5">
                 <h3 className="font-semibold text-slate-900">{event.title}</h3>
                 <p className="mt-2 text-sm text-slate-600 line-clamp-2">{event.description}</p>
-                <div className="mt-3 flex items-center gap-4 text-xs text-slate-400">
+                <div className="mt-3 flex items-center gap-4 text-xs text-slate-500">
                   <span className="inline-flex items-center gap-1">
                     <MapPin className="h-3 w-3" />
                     {event.location === 'presencial' ? 'Presencial' : event.location === 'virtual' ? 'Virtual' : 'Híbrido'}

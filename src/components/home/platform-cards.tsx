@@ -29,7 +29,7 @@ export function PlatformCards() {
     <section className="bg-[#072c57] py-16 text-white sm:py-20">
       <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-10">
         <AnimatedSection>
-          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-white/50">
+          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-white/70">
             Sistemas
           </p>
           <h2 className="font-heading mt-4 text-3xl font-medium text-white sm:text-4xl">

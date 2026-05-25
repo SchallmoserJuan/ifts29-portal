@@ -58,13 +58,18 @@ export function ContactForm() {
         {status === "loading" ? "Procesando envío..." : "Enviar consulta"}
       </button>
 
+      <div aria-live="polite" aria-atomic="true" className="sr-only">
+        {status === "success" && "Mensaje enviado con éxito"}
+        {status === "error" && "No se pudo enviar el mensaje"}
+      </div>
+
       {status === "success" && (
-        <div className="p-4 bg-green-50 text-green-700 rounded-md border border-green-200">
+        <div role="status" className="p-4 bg-green-50 text-green-700 rounded-md border border-green-200">
           ✓ ¡Mensaje enviado con éxito!
         </div>
       )}
       {status === "error" && (
-        <div className="p-4 bg-red-50 text-red-700 rounded-md border border-red-200">
+        <div role="alert" className="p-4 bg-red-50 text-red-700 rounded-md border border-red-200">
           ⚠ No se pudo enviar el mensaje.
         </div>
       )}

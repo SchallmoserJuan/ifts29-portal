@@ -46,7 +46,7 @@ export function AcademicSection() {
                 className="group flex flex-col gap-4 border-t border-[#00152b]/8 py-8 transition hover:bg-[#00152b]/[0.02] md:flex-row md:items-center md:justify-between md:py-10"
               >
                 <div className="flex items-start gap-6 md:gap-10">
-                  <span className="mt-1 text-xs font-semibold text-slate-400">{career.number}</span>
+                  <span className="mt-1 text-xs font-semibold text-slate-500">{career.number}</span>
                   <div>
                     <h3 className="font-heading text-2xl font-semibold text-[#00152b] transition-transform duration-300 group-hover:translate-x-2 md:text-3xl">
                       {career.title}
