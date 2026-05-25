@@ -439,5 +439,4 @@ button {
 /* Accessibility: visible focus indicator */
 *:focus-visible {
   outline: 2px solid #28c2f3;
-  outline-offset: 2px;
 }
