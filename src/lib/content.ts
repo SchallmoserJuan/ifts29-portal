@@ -161,7 +161,22 @@ export const getProjectsList = cache(async () => {
       sort: '-publishedAt',
     })
 
-    return (result.docs.length > 0 ? result.docs : defaultProjects) as ProjectItem[]
+    if (result.docs.length === 0) {
+      return defaultProjects
+    }
+
+    // Mergear imagen desde defaultProjects si falta en la BD
+    return result.docs.map((doc) => {
+      const populatedImage = doc.image && typeof doc.image === 'object' ? (doc.image as { url?: string }).url : undefined
+      if (populatedImage) {
+        return doc as ProjectItem
+      }
+      const fallback = defaultProjects.find((p) => p.slug === doc.slug)
+      if (fallback?.image) {
+        return { ...doc, image: fallback.image } as ProjectItem
+      }
+      return doc as ProjectItem
+    })
   } catch {
     return defaultProjects
   }

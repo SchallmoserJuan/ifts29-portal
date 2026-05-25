@@ -81,6 +81,34 @@ export const Projects: CollectionConfig = {
       required: false,
     },
     {
+      name: 'student',
+      label: 'Estudiante / Autor',
+      type: 'relationship',
+      relationTo: 'users',
+      required: false,
+      admin: {
+        description: 'Estudiante que realizó el proyecto',
+      },
+    },
+    {
+      name: 'githubUrl',
+      label: 'URL de GitHub',
+      type: 'text',
+      required: false,
+      admin: {
+        description: 'Link al repositorio del proyecto',
+      },
+    },
+    {
+      name: 'demoUrl',
+      label: 'URL de demo',
+      type: 'text',
+      required: false,
+      admin: {
+        description: 'Link a la demo o sitio web del proyecto',
+      },
+    },
+    {
       name: 'content',
       label: 'Contenido',
       type: 'richText',

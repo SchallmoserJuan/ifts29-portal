@@ -205,6 +205,14 @@ export type ProjectItem = {
     url: string
     alt?: string
   }
+  student?: {
+    id: string | number
+    firstName?: string
+    lastName?: string
+    email?: string
+  } | null
+  githubUrl?: string
+  demoUrl?: string
   content?: unknown
 }
 

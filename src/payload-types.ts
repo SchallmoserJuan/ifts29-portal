@@ -460,6 +460,18 @@ export interface Project {
    */
   tags?: string | null;
   image?: (number | null) | Media;
+  /**
+   * Estudiante que realizó el proyecto
+   */
+  student?: (number | null) | User;
+  /**
+   * Link al repositorio del proyecto
+   */
+  githubUrl?: string | null;
+  /**
+   * Link a la demo o sitio web del proyecto
+   */
+  demoUrl?: string | null;
   content?: {
     root: {
       type: string;
@@ -911,6 +923,9 @@ export interface ProjectsSelect<T extends boolean = true> {
   publishedAt?: T;
   tags?: T;
   image?: T;
+  student?: T;
+  githubUrl?: T;
+  demoUrl?: T;
   content?: T;
   updatedAt?: T;
   createdAt?: T;
