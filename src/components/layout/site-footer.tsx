@@ -34,10 +34,10 @@ const footerLinks = [
 ]
 
 const bottomLinks = [
-  {label: 'Privacy', href: '#'},
-  {label: 'Accessibility', href: '#'},
-  {label: 'Cookies', href: '#'},
-  {label: 'Legal', href: '#'},
+  {label: 'Privacidad', href: '/privacidad'},
+  {label: 'Accesibilidad', href: '/accesibilidad'},
+  {label: 'Cookies', href: '/cookies'},
+  {label: 'Legal', href: '/legal'},
 ]
 
 export async function SiteFooter() {
