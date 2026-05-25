@@ -46,8 +46,9 @@ export function ContactFormInscripciones() {
             className="bg-[#f8f7f4] p-8 rounded-xl border border-slate-200 space-y-5"
           >
             <div>
-              <label className="block text-sm font-semibold text-slate-700 mb-1">Nombre completo</label>
+              <label htmlFor="inscripciones-nombre" className="block text-sm font-semibold text-slate-700 mb-1">Nombre completo</label>
               <input
+                id="inscripciones-nombre"
                 required
                 name="nombre"
                 type="text"
@@ -56,8 +57,9 @@ export function ContactFormInscripciones() {
             </div>
 
             <div>
-              <label className="block text-sm font-semibold text-slate-700 mb-1">Correo Electrónico</label>
+              <label htmlFor="inscripciones-email" className="block text-sm font-semibold text-slate-700 mb-1">Correo Electrónico</label>
               <input
+                id="inscripciones-email"
                 required
                 name="email"
                 type="email"
@@ -66,8 +68,9 @@ export function ContactFormInscripciones() {
             </div>
 
             <div>
-              <label className="block text-sm font-semibold text-slate-700 mb-1">Asunto</label>
+              <label htmlFor="inscripciones-asunto" className="block text-sm font-semibold text-slate-700 mb-1">Asunto</label>
               <input
+                id="inscripciones-asunto"
                 name="asunto"
                 type="text"
                 value="Inscripciones"
@@ -77,8 +80,9 @@ export function ContactFormInscripciones() {
             </div>
 
             <div>
-              <label className="block text-sm font-semibold text-slate-700 mb-1">Mensaje / Consulta</label>
+              <label htmlFor="inscripciones-mensaje" className="block text-sm font-semibold text-slate-700 mb-1">Mensaje / Consulta</label>
               <textarea
+                id="inscripciones-mensaje"
                 required
                 name="mensaje"
                 rows={4}

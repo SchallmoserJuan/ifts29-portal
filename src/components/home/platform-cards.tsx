@@ -47,6 +47,8 @@ export function PlatformCards() {
                       src={platform.image}
                       alt={platform.title}
                       fill
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                      loading="lazy"
                       className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />

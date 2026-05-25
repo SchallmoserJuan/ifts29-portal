@@ -81,8 +81,9 @@ export function HomeProjectsSection({ projects }: HomeProjectsSectionProps) {
                         src={project.image!.url}
                         alt={project.image!.alt || project.title}
                         fill
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                        loading="lazy"
                         className="object-cover transition-transform duration-500 group-hover:scale-105"
-                        unoptimized
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
                       <span

@@ -12,8 +12,8 @@ export function CompaniesSection({ companies }: { companies: CompanyItem[] }) {
       <div className="relative mx-auto w-full max-w-7xl px-6 sm:px-8 lg:px-12">
         <SectionHeader
           title="Convenios con empresas"
-          href="/empresas"
-          linkText="Ver todas las empresas"
+          href="/noticias"
+          linkText="Ver noticias"
         />
 
         {/* Companies grid */}

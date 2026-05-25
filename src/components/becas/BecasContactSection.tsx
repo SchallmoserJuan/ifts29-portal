@@ -52,8 +52,9 @@ export function BecasContactSection({
             className="bg-[#f8f7f4] p-8 rounded-xl border border-slate-200 space-y-5"
           >
             <div>
-              <label className="block text-sm font-semibold text-slate-700 mb-1">Nombre completo</label>
+              <label htmlFor="becas-nombre" className="block text-sm font-semibold text-slate-700 mb-1">Nombre completo</label>
               <input
+                id="becas-nombre"
                 required
                 name="nombre"
                 type="text"
@@ -62,8 +63,9 @@ export function BecasContactSection({
             </div>
 
             <div>
-              <label className="block text-sm font-semibold text-slate-700 mb-1">Correo Electrónico</label>
+              <label htmlFor="becas-email" className="block text-sm font-semibold text-slate-700 mb-1">Correo Electrónico</label>
               <input
+                id="becas-email"
                 required
                 name="email"
                 type="email"
@@ -72,8 +74,9 @@ export function BecasContactSection({
             </div>
 
             <div>
-              <label className="block text-sm font-semibold text-slate-700 mb-1">Asunto</label>
+              <label htmlFor="becas-asunto" className="block text-sm font-semibold text-slate-700 mb-1">Asunto</label>
               <input
+                id="becas-asunto"
                 name="asunto"
                 type="text"
                 value="Becas"
@@ -83,8 +86,9 @@ export function BecasContactSection({
             </div>
 
             <div>
-              <label className="block text-sm font-semibold text-slate-700 mb-1">Mensaje / Consulta</label>
+              <label htmlFor="becas-mensaje" className="block text-sm font-semibold text-slate-700 mb-1">Mensaje / Consulta</label>
               <textarea
+                id="becas-mensaje"
                 required
                 name="mensaje"
                 rows={4}
