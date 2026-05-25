@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { AnimatedSection } from '@/src/components/ui'
 import {
   GraduationCap,
-  BookOpen,
+  Award,
   FileText,
   Mail,
   HelpCircle,
@@ -17,10 +17,10 @@ const quickLinks = [
     href: '/portal',
   },
   {
-    icon: BookOpen,
-    title: 'Biblioteca virtual',
-    description: 'Recursos digitales, apuntes y bibliografía.',
-    href: '/portal/library',
+    icon: Award,
+    title: 'Becas',
+    description: 'Programas nacionales y de la Ciudad para financiar tus estudios.',
+    href: '/becas',
   },
   {
     icon: FileText,

@@ -32,6 +32,42 @@ export type AuthorityItem = {
   role: string
 }
 
+export type ScholarshipItem = {
+  id: string | number
+  title: string
+  slug: string
+  summary: string
+  description?: unknown
+  requirements?: RequirementItem[]
+  externalLink?: string
+  order?: number
+  status?: string
+}
+
+export type TimelineItem = {
+  date: string
+  title: string
+  description?: string
+}
+
+export type FaqItem = {
+  question: string
+  answer?: unknown
+}
+
+export type BecasPageData = {
+  pageTitle: string
+  pageSubtitle?: string
+  introduction?: unknown
+  scholarshipsTitle?: string
+  timelineTitle?: string
+  timelineItems?: TimelineItem[]
+  faqTitle?: string
+  faqItems?: FaqItem[]
+  contactTitle?: string
+  contactText?: string
+}
+
 export type CareerItem = {
   id: string | number
   name: string

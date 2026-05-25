@@ -9,7 +9,7 @@ const footerLinks = [
       {label: 'Institucional', href: '/institucional'},
       {label: 'Carreras', href: '/carreras'},
       {label: 'Noticias', href: '/noticias'},
-      {label: 'Biblioteca', href: '/portal/biblioteca'},
+      {label: 'Becas', href: '/becas'},
       {label: 'Alumni', href: '/login'},
     ],
   },

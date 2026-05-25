@@ -15,6 +15,7 @@
     "seed:career": "NODE_NO_WARNINGS=1 tsx --tsconfig tsconfig.json src/scripts/seed-career.ts",
     "seed:all": "NODE_NO_WARNINGS=1 tsx --tsconfig tsconfig.json src/scripts/seed-all.ts",
     "seed:users": "NODE_NO_WARNINGS=1 tsx --tsconfig tsconfig.json src/scripts/seed-users.ts",
+    "seed:becas": "NODE_NO_WARNINGS=1 tsx --tsconfig tsconfig.json src/scripts/seed-becas.ts",
     "test": "vitest",
     "test:run": "vitest run",
     "test:coverage": "vitest run --coverage",
