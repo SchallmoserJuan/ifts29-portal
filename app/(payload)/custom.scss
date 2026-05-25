@@ -1,0 +1,306 @@
+/*
+ * Tema visual del panel de administración de Payload CMS
+ * Alineado con la identidad del Portal IFTS 29
+ * Colores principales: #072c57 (navy), #28c2f3 (cyan)
+ */
+
+@layer payload {
+  /* ---------- Variables de tema ---------- */
+  :root {
+    /* Acentos institucionales */
+    --theme-primary: #072c57;
+    --theme-primary-inverse: #ffffff;
+    --theme-accent: #28c2f3;
+    --theme-accent-inverse: #072c57;
+
+    /* Estados con acento institucional */
+    --theme-success-400: #10b981;
+    --theme-success-500: #059669;
+    --theme-warning-400: #f59e0b;
+    --theme-warning-500: #d97706;
+    --theme-error-400: #ef4444;
+    --theme-error-500: #dc2626;
+  }
+
+  /* ---------- Botón Volver al portal ---------- */
+  .back-to-portal {
+    padding: 0.5rem 1rem;
+    margin: 0.5rem 0;
+  }
+
+  .back-to-portal__link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: var(--theme-text, #0f172a);
+    background-color: transparent;
+    border: 1px solid var(--theme-elevation-200, #e2e8f0);
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .back-to-portal__link:hover {
+    background-color: var(--theme-primary, #072c57);
+    color: var(--theme-primary-inverse, #ffffff);
+    border-color: var(--theme-primary, #072c57);
+  }
+
+  .back-to-portal__link svg {
+    flex-shrink: 0;
+    width: 1rem;
+    height: 1rem;
+  }
+
+  /* ---------- Escala general del panel ---------- */
+  /* Aumenta ligeramente el tamaño base para que todo se sienta más grande */
+  html {
+    font-size: 15px;
+  }
+
+  /* Asegura que el dashboard use todo el ancho disponible */
+  .dashboard__wrap,
+  .template-default__wrap {
+    max-width: 100% !important;
+  }
+
+  /* ---------- Widget: Estadísticas ---------- */
+  .dashboard-stats-widget {
+    padding: 1.5rem;
+    background-color: var(--theme-elevation-50, #f8fafc);
+    border: 1px solid var(--theme-elevation-100, #f1f5f9);
+    border-radius: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .dashboard-stats-widget__title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--theme-text, #0f172a);
+    margin: 0 0 1rem 0;
+  }
+
+  .dashboard-stats-widget__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  @media (min-width: 768px) {
+    .dashboard-stats-widget__grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .dashboard-stats-widget__card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+    padding: 1.25rem;
+    border-radius: 0.75rem;
+    background-color: var(--theme-elevation-0, #ffffff);
+    border: 1px solid var(--theme-elevation-100, #f1f5f9);
+    transition: box-shadow 0.2s ease;
+  }
+
+  .dashboard-stats-widget__card:hover {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  }
+
+  .dashboard-stats-widget__card--blue {
+    border-top: 3px solid #1772b7;
+  }
+  .dashboard-stats-widget__card--cyan {
+    border-top: 3px solid #28c2f3;
+  }
+  .dashboard-stats-widget__card--indigo {
+    border-top: 3px solid #6366f1;
+  }
+  .dashboard-stats-widget__card--navy {
+    border-top: 3px solid #072c57;
+  }
+
+  .dashboard-stats-widget__value {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--theme-text, #0f172a);
+  }
+
+  .dashboard-stats-widget__label {
+    font-size: 0.8125rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--theme-elevation-600, #64748b);
+  }
+
+  /* ---------- Widget: Noticias recientes ---------- */
+  .recent-news-widget {
+    padding: 1.5rem;
+    background-color: var(--theme-elevation-50, #f8fafc);
+    border: 1px solid var(--theme-elevation-100, #f1f5f9);
+    border-radius: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .recent-news-widget__title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--theme-text, #0f172a);
+    margin: 0 0 1rem 0;
+  }
+
+  .recent-news-widget__empty {
+    font-size: 0.875rem;
+    color: var(--theme-elevation-600, #64748b);
+    margin: 0;
+  }
+
+  .recent-news-widget__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .recent-news-widget__item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.625rem 0.875rem;
+    border-radius: 0.5rem;
+    background-color: var(--theme-elevation-0, #ffffff);
+    border: 1px solid var(--theme-elevation-100, #f1f5f9);
+    transition: border-color 0.2s ease;
+  }
+
+  .recent-news-widget__item:hover {
+    border-color: var(--theme-accent, #28c2f3);
+  }
+
+  .recent-news-widget__status {
+    flex-shrink: 0;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 9999px;
+  }
+
+  .recent-news-widget__status--published {
+    background-color: #10b981;
+  }
+
+  .recent-news-widget__name {
+    flex: 1;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: var(--theme-text, #0f172a);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .recent-news-widget__meta {
+    flex-shrink: 0;
+    font-size: 0.8125rem;
+    color: var(--theme-elevation-600, #64748b);
+  }
+
+  /* ---------- Widget: Próximos eventos ---------- */
+  .upcoming-events-widget {
+    padding: 1.5rem;
+    background-color: var(--theme-elevation-50, #f8fafc);
+    border: 1px solid var(--theme-elevation-100, #f1f5f9);
+    border-radius: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .upcoming-events-widget__title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--theme-text, #0f172a);
+    margin: 0 0 1rem 0;
+  }
+
+  .upcoming-events-widget__empty {
+    font-size: 0.875rem;
+    color: var(--theme-elevation-600, #64748b);
+    margin: 0;
+  }
+
+  .upcoming-events-widget__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .upcoming-events-widget__item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem 1rem;
+    border-radius: 0.75rem;
+    background-color: var(--theme-elevation-0, #ffffff);
+    border: 1px solid var(--theme-elevation-100, #f1f5f9);
+    transition: box-shadow 0.2s ease;
+  }
+
+  .upcoming-events-widget__item:hover {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  }
+
+  .upcoming-events-widget__date-block {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 0.5rem;
+    background-color: #072c57;
+    color: #ffffff;
+  }
+
+  .upcoming-events-widget__day {
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .upcoming-events-widget__month {
+    font-size: 0.6875rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    line-height: 1;
+  }
+
+  .upcoming-events-widget__content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.125rem;
+    min-width: 0;
+  }
+
+  .upcoming-events-widget__name {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--theme-text, #0f172a);
+  }
+
+  .upcoming-events-widget__location {
+    font-size: 0.8125rem;
+    color: var(--theme-elevation-600, #64748b);
+    text-transform: capitalize;
+  }
+}

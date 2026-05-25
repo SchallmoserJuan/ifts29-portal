@@ -1,0 +1,5 @@
+export { ScholarshipCard } from './ScholarshipCard'
+export { ScholarshipsSection } from './ScholarshipsSection'
+export { TimelineSection } from './TimelineSection'
+export { FaqSection } from './FaqSection'
+export { BecasContactSection } from './BecasContactSection'

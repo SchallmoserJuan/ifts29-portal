@@ -1,0 +1,67 @@
+'use client'
+
+import { motion } from 'framer-motion'
+import Image from 'next/image'
+import { AnimatedSection } from '@/src/components/ui'
+import type { CareerItem } from '@/src/types/content'
+
+const easing: [number, number, number, number] = [0.22, 1, 0.36, 1]
+const METHODOLOGY_IMAGE =
+  'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1800&q=80'
+
+export function CareerMethodology({ career }: { career: CareerItem }) {
+  if (!career.methodologyTitle || !career.methodologyItems?.length) return null
+
+  const bgImage = career.methodologyImage?.url || METHODOLOGY_IMAGE
+
+  return (
+    <section className="relative w-full overflow-hidden bg-[#00152b] text-white">
+      <div className="relative min-h-[600px] md:min-h-[700px]">
+        <Image
+          src={bgImage}
+          alt="Metodologia de formacion IFTS 29"
+          fill
+          className="object-cover opacity-30"
+          unoptimized
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#00152b]/90 via-[#00152b]/70 to-[#00152b]/40" />
+
+        <div className="relative mx-auto flex min-h-[600px] w-full max-w-[1400px] flex-col justify-center px-4 py-24 sm:px-6 md:min-h-[700px] lg:px-10">
+          <AnimatedSection>
+            <div className="max-w-3xl">
+              <h2 className="text-3xl font-medium leading-tight tracking-tight text-white md:text-4xl lg:text-5xl">
+                {career.methodologyTitle}
+              </h2>
+              {career.methodologySubtitle && (
+                <p className="mt-4 text-lg text-slate-300">
+                  {career.methodologySubtitle}
+                </p>
+              )}
+            </div>
+          </AnimatedSection>
+
+          <div className="mt-16 grid gap-10 md:grid-cols-2 lg:grid-cols-3">
+            {career.methodologyItems.map((item, i) => (
+              <motion.div
+                key={item.title}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-40px' }}
+                transition={{ duration: 0.8, delay: i * 0.1, ease: easing }}
+              >
+                <div className="border-t border-white/10 pt-8">
+                  <h3 className="text-lg font-medium text-white">
+                    {item.title}
+                  </h3>
+                  <p className="mt-4 text-base leading-7 text-slate-300">
+                    {item.text}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
