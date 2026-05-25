@@ -219,3 +219,25 @@ export const getBecasPage = cache(async () => {
     return defaultBecasPage
   }
 })
+
+export const getPublicDocuments = cache(async () => {
+  const payload = await getPayloadClient()
+
+  try {
+    const result = await payload.find({
+      collection: 'documents',
+      depth: 1,
+      limit: 50,
+      sort: '-updatedAt',
+      where: {
+        visibility: {
+          equals: 'public',
+        },
+      },
+    })
+
+    return result.docs as DocumentItem[]
+  } catch {
+    return [] as DocumentItem[]
+  }
+})

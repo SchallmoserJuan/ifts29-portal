@@ -18,8 +18,7 @@ const footerLinks = [
     links: [
       {label: 'Ingreso', href: '/login'},
       {label: 'Portal', href: '/portal'},
-      {label: 'Documentación', href: '#'},
-      {label: 'Recursos', href: '#'},
+      {label: 'Documentos y recursos', href: '/documentacion'},
     ],
   },
   {

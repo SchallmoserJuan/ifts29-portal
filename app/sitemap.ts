@@ -19,6 +19,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${BASE_URL}/inscripciones`, changeFrequency: 'yearly', priority: 0.6 },
     { url: `${BASE_URL}/becas`, changeFrequency: 'yearly', priority: 0.6 },
     { url: `${BASE_URL}/portal`, changeFrequency: 'weekly', priority: 0.7 },
+    { url: `${BASE_URL}/documentacion`, changeFrequency: 'monthly', priority: 0.7 },
     { url: `${BASE_URL}/portal/biblioteca`, changeFrequency: 'weekly', priority: 0.7 },
   ]
 
