@@ -44,7 +44,7 @@ const quickLinks = [
     icon: HelpCircle,
     title: 'Preguntas frecuentes',
     description: 'Respuestas sobre inscripción, aranceles y trámites.',
-    href: '/institucional',
+    href: '/inscripciones',
   },
 ]
 
