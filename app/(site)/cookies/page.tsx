@@ -27,11 +27,12 @@ export default function CookiesPage() {
       </p>
 
       <table className="w-full text-sm my-6">
+        <caption className="sr-only">Cookies utilizadas en el sitio</caption>
         <thead>
           <tr className="border-b border-slate-200">
-            <th className="text-left py-2 pr-4">Nombre / Tipo</th>
-            <th className="text-left py-2 pr-4">Finalidad</th>
-            <th className="text-left py-2">Duración</th>
+            <th scope="col" className="text-left py-2 pr-4">Nombre / Tipo</th>
+            <th scope="col" className="text-left py-2 pr-4">Finalidad</th>
+            <th scope="col" className="text-left py-2">Duración</th>
           </tr>
         </thead>
         <tbody>

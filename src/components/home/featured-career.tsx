@@ -47,7 +47,7 @@ export function FeaturedCareer({career}: FeaturedCareerProps) {
                 className="mt-10 inline-flex items-center gap-2 rounded-sm bg-[#00d4ff] px-10 py-4 text-sm font-semibold text-[#00152b] transition hover:brightness-110"
               >
                 Ver plan de estudios
-                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"

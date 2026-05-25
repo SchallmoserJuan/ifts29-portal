@@ -90,7 +90,7 @@ export function EventsTimeline({ events, title = 'Próximos eventos' }: EventsTi
                             {event.location === 'presencial' ? 'Presencial' : event.location === 'virtual' ? 'Virtual' : 'Híbrido'}
                           </span>
                           {event.address ? (
-                            <span className="text-slate-400">{event.address}</span>
+                            <span className="text-slate-500">{event.address}</span>
                           ) : null}
                         </div>
 

@@ -81,8 +81,9 @@ export function HomeProjectsSection({ projects }: HomeProjectsSectionProps) {
                         src={project.image!.url}
                         alt={project.image!.alt || project.title}
                         fill
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                        loading="lazy"
                         className="object-cover transition-transform duration-500 group-hover:scale-105"
-                        unoptimized
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
                       <span
@@ -109,7 +110,7 @@ export function HomeProjectsSection({ projects }: HomeProjectsSectionProps) {
                       {studentName ? (
                         <div className="flex items-center gap-2">
                           <span
-                            className="flex h-7 w-7 items-center justify-center rounded-full text-[10px] font-bold text-white"
+                            className="flex h-7 w-7 items-center justify-center rounded-full text-xs font-bold text-white"
                             style={{ backgroundColor: config.color }}
                           >
                             {studentInitials}
@@ -123,7 +124,7 @@ export function HomeProjectsSection({ projects }: HomeProjectsSectionProps) {
                           {project.tags.split(';').slice(0, 2).map((tag) => (
                             <span
                               key={tag}
-                              className="rounded-md px-2 py-0.5 text-[10px] text-slate-500"
+                              className="rounded-md px-2 py-0.5 text-xs text-slate-500"
                               style={{ backgroundColor: `${config.color}10` }}
                             >
                               {tag.trim()}

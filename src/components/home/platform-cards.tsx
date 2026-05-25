@@ -29,7 +29,7 @@ export function PlatformCards() {
     <section className="bg-[#072c57] py-16 text-white sm:py-20">
       <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-10">
         <AnimatedSection>
-          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-white/50">
+          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-white/70">
             Sistemas
           </p>
           <h2 className="font-heading mt-4 text-3xl font-medium text-white sm:text-4xl">
@@ -47,6 +47,8 @@ export function PlatformCards() {
                       src={platform.image}
                       alt={platform.title}
                       fill
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                      loading="lazy"
                       className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />

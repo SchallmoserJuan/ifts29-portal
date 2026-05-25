@@ -24,7 +24,7 @@ export function HomeHero({children}: {children: React.ReactNode}) {
             radial-gradient(ellipse 80% 50% at 20% 20%, rgba(40,194,243,0.06) 0%, transparent 60%),
             radial-gradient(ellipse 50% 40% at 80% 70%, rgba(30,62,138,0.12) 0%, transparent 50%),
             linear-gradient(180deg, rgba(4,34,68,0.5) 0%, rgba(7,44,87,0.72) 95%, rgba(7,44,87,0.97) 100%),
-            url('/images/campusifts.png')
+            url('/images/campusifts.webp')
           `,
           backgroundPosition: 'center',
           backgroundSize: 'cover',

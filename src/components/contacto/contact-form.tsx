@@ -31,23 +31,23 @@ export function ContactForm() {
     <form onSubmit={handleSubmit} className="space-y-6 bg-white p-8 rounded-lg border border-slate-200 shadow-xl">
       {/* Comentario para el Profesor: Validación client-side mediante atributos HTML5 */}
       <div>
-        <label className="block text-sm font-semibold text-slate-700">Nombre completo</label>
-        <input required name="nombre" type="text" className="mt-1 block w-full rounded-md border-slate-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" />
+        <label htmlFor="contact-nombre" className="block text-sm font-semibold text-slate-700">Nombre completo</label>
+        <input id="contact-nombre" required name="nombre" type="text" className="mt-1 block w-full rounded-md border-slate-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" />
       </div>
 
       <div>
-        <label className="block text-sm font-semibold text-slate-700">Correo Electrónico</label>
-        <input required name="email" type="email" className="mt-1 block w-full rounded-md border-slate-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" />
+        <label htmlFor="contact-email" className="block text-sm font-semibold text-slate-700">Correo Electrónico</label>
+        <input id="contact-email" required name="email" type="email" className="mt-1 block w-full rounded-md border-slate-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" />
       </div>
 
       <div>
-        <label className="block text-sm font-semibold text-slate-700">Asunto</label>
-        <input required name="asunto" type="text" className="mt-1 block w-full rounded-md border-slate-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" />
+        <label htmlFor="contact-asunto" className="block text-sm font-semibold text-slate-700">Asunto</label>
+        <input id="contact-asunto" required name="asunto" type="text" className="mt-1 block w-full rounded-md border-slate-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" />
       </div>
 
       <div>
-        <label className="block text-sm font-semibold text-slate-700">Mensaje / Consulta</label>
-        <textarea required name="mensaje" rows={4} className="mt-1 block w-full rounded-md border-slate-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" />
+        <label htmlFor="contact-mensaje" className="block text-sm font-semibold text-slate-700">Mensaje / Consulta</label>
+        <textarea id="contact-mensaje" required name="mensaje" rows={4} className="mt-1 block w-full rounded-md border-slate-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" />
       </div>
 
       <button
@@ -58,13 +58,18 @@ export function ContactForm() {
         {status === "loading" ? "Procesando envío..." : "Enviar consulta"}
       </button>
 
+      <div aria-live="polite" aria-atomic="true" className="sr-only">
+        {status === "success" && "Mensaje enviado con éxito"}
+        {status === "error" && "No se pudo enviar el mensaje"}
+      </div>
+
       {status === "success" && (
-        <div className="p-4 bg-green-50 text-green-700 rounded-md border border-green-200">
+        <div role="status" className="p-4 bg-green-50 text-green-700 rounded-md border border-green-200">
           ✓ ¡Mensaje enviado con éxito!
         </div>
       )}
       {status === "error" && (
-        <div className="p-4 bg-red-50 text-red-700 rounded-md border border-red-200">
+        <div role="alert" className="p-4 bg-red-50 text-red-700 rounded-md border border-red-200">
           ⚠ No se pudo enviar el mensaje.
         </div>
       )}

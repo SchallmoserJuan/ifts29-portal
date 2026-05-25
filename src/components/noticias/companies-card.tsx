@@ -36,7 +36,7 @@ export function CompaniesCard({ company }: { company: CompanyItem }) {
       </span>
 
       {/* Description */}
-      <p className="mt-3 text-xs leading-relaxed text-slate-400 line-clamp-2">
+      <p className="mt-3 text-xs leading-relaxed text-slate-500 line-clamp-2">
         {company.description}
       </p>
 

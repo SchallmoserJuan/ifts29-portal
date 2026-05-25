@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useRef, useEffect, useCallback } from 'react'
+import { useState, useRef, useEffect, useCallback, useMemo } from 'react'
 import { useRouter } from 'next/navigation'
 import { AnimatePresence, motion } from 'framer-motion'
 import {
@@ -106,12 +106,17 @@ export function SearchBar() {
 
   const hasQuery = query.trim().length > 0
 
-  const filtered = hasQuery
-    ? allSuggestions.filter((s) =>
-        s.label.toLowerCase().includes(query.toLowerCase()) ||
-        s.category.toLowerCase().includes(query.toLowerCase()),
-      )
-    : []
+  const filtered = useMemo(
+    () =>
+      hasQuery
+        ? allSuggestions.filter(
+            (s) =>
+              s.label.toLowerCase().includes(query.toLowerCase()) ||
+              s.category.toLowerCase().includes(query.toLowerCase()),
+          )
+        : [],
+    [hasQuery, query],
+  )
 
   const handleSubmit = useCallback(
     (e: React.FormEvent) => {
@@ -167,16 +172,6 @@ export function SearchBar() {
   )
 
   useEffect(() => {
-    setHighlightedIndex(-1)
-  }, [query])
-
-  useEffect(() => {
-    if (!hasQuery) {
-      setIsOpen(false)
-    }
-  }, [hasQuery])
-
-  useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
       if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
         setIsOpen(false)
@@ -204,11 +199,10 @@ export function SearchBar() {
                 : 'bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0'
             }`}
           />
-
           <div className="flex shrink-0 items-center pl-5 sm:pl-6">
             <Search
               className={`h-5 w-5 transition-colors duration-300 ${
-                isFocused ? 'text-[#28c2f3]' : 'text-white/30'
+                isFocused ? 'text-[#28c2f3]' : 'text-white/70'
               }`}
             />
           </div>
@@ -218,9 +212,13 @@ export function SearchBar() {
             type="text"
             value={query}
             onChange={(e) => {
-              setQuery(e.target.value)
-              if (e.target.value.trim().length > 0) {
+              const value = e.target.value
+              setQuery(value)
+              setHighlightedIndex(-1)
+              if (value.trim().length > 0) {
                 setIsOpen(true)
+              } else {
+                setIsOpen(false)
               }
             }}
             onFocus={() => {
@@ -238,7 +236,7 @@ export function SearchBar() {
             }}
             onKeyDown={handleKeyDown}
             placeholder="Busc&aacute; carreras, noticias, proyectos, becas, documentaci\u00f3n..."
-            className="h-16 w-full bg-transparent px-4 text-base text-white placeholder:text-white/30 outline-none sm:h-[72px] sm:px-5 sm:text-lg"
+            className="h-16 w-full bg-transparent px-4 text-base text-white placeholder:text-white/70 !outline-none sm:h-[72px] sm:px-5 sm:text-lg"
           />
 
           <div className="flex shrink-0 items-center pr-3 sm:pr-4">
@@ -290,7 +288,7 @@ export function SearchBar() {
                       </p>
                       <div className="mt-1 flex items-center gap-2">
                         <span
-                          className={`inline-flex rounded-md border px-1.5 py-0.5 text-[10px] font-medium leading-none ${colorClasses}`}
+                          className={`inline-flex rounded-md border px-1.5 py-0.5 text-xs font-medium leading-none ${colorClasses}`}
                         >
                           {suggestion.category}
                         </span>

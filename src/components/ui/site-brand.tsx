@@ -19,7 +19,7 @@ export function SiteBrand({ dark = false }: { dark?: boolean }) {
         <span className="flex items-center justify-center bg-[#24a34a] text-base font-bold text-white">T</span>
         <span className="flex items-center justify-center bg-[#0b5f44] text-base font-bold text-white">S</span>
         <span className="absolute inset-0 flex items-center justify-center">
-          <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#f3c624] text-[10px] font-bold text-slate-950">
+          <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#f3c624] text-xs font-bold text-slate-950">
             29
           </span>
         </span>

@@ -21,7 +21,7 @@ export function MenuButton({latestNews, latestEvents}: MenuButtonProps) {
         className="flex cursor-pointer items-center gap-1 px-2 py-1 text-sm font-semibold text-white whitespace-nowrap"
       >
         <span className="navbar-underline">Menu</span>
-        <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg aria-hidden="true" className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
         </svg>
       </button>

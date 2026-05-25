@@ -69,6 +69,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
         onClick={() => setIsOpen(!isOpen)}
         className="w-full text-left flex flex-col flex-1"
         aria-expanded={isOpen}
+        aria-controls={`project-panel-${project.id}`}
       >
         {/* Image */}
         {hasImage ? (
@@ -128,7 +129,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
             {studentName ? (
               <div className="flex items-center gap-2">
                 <span
-                  className="flex h-7 w-7 items-center justify-center rounded-full text-[10px] font-bold text-white"
+                  className="flex h-7 w-7 items-center justify-center rounded-full text-xs font-bold text-white"
                   style={{ backgroundColor: config.color }}
                 >
                   {studentInitials}
@@ -142,7 +143,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
                 {project.tags.split(';').slice(0, 2).map((tag) => (
                   <span
                     key={tag}
-                    className="rounded-md px-2 py-0.5 text-[10px] text-slate-500"
+                    className="rounded-md px-2 py-0.5 text-xs text-slate-500"
                     style={{ backgroundColor: `${config.color}08` }}
                   >
                     {tag.trim()}
@@ -158,6 +159,8 @@ export function ProjectCard({ project }: ProjectCardProps) {
       <AnimatePresence initial={false}>
         {isOpen && (
           <motion.div
+            id={`project-panel-${project.id}`}
+            role="region"
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
@@ -233,7 +236,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
                     onClick={(e) => e.stopPropagation()}
                     className="inline-flex items-center gap-2 rounded-lg border border-slate-300 bg-white px-5 py-2.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-50"
                   >
-                    <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                    <svg aria-hidden="true" className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.898-.015 3.3 0 .315.21.69.825.57C20.565 21.795 24 17.298 24 12c0-6.627-5.373-12-12-12z" />
                     </svg>
                     Ver código
