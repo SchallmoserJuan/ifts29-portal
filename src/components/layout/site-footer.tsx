@@ -9,16 +9,17 @@ const footerLinks = [
       {label: 'Institucional', href: '/institucional'},
       {label: 'Carreras', href: '/carreras'},
       {label: 'Noticias', href: '/noticias'},
-      {label: 'Becas', href: '/becas'},
-      {label: 'Alumni', href: '/login'},
+      {label: 'Eventos', href: '/eventos'},
+      {label: 'Proyectos', href: '/proyectos'},
     ],
   },
   {
-    title: 'Comunidad',
+    title: 'Estudiantes',
     links: [
-      {label: 'Ingreso', href: '/login'},
+      {label: 'Becas', href: '/becas'},
+      {label: 'Inscripciones', href: '/inscripciones'},
+      {label: 'Documentación', href: '/documentacion'},
       {label: 'Portal', href: '/portal'},
-      {label: 'Documentos y recursos', href: '/documentacion'},
     ],
   },
   {
@@ -27,6 +28,7 @@ const footerLinks = [
       {
         label: 'LinkedIn',
         href: 'https://www.linkedin.com/school/instituto-de-formaci%C3%B3n-t%C3%A9cnica-superior-29/',
+        external: true,
       },
     ],
   },
@@ -72,12 +74,21 @@ export async function SiteFooter() {
               className="space-y-3 text-sm text-[#002649] lg:block lg:border-l lg:border-[#002649]/20 lg:pl-10"
             >
               <p className="font-semibold text-[#002649]">{column.title}</p>
-              {column.links.map((link) => (
-                <a key={link.label} href={link.href} className="group relative block w-fit">
-                  {link.label}
-                  <span className="absolute bottom-0 left-0 h-[1px] w-0 bg-[#002649] transition-all duration-300 group-hover:w-full" />
-                </a>
-              ))}
+              {column.links.map((link) => {
+                const isExternal = link.href.startsWith('http')
+                const LinkTag = isExternal ? 'a' : Link
+                return (
+                  <LinkTag
+                    key={link.label}
+                    href={link.href}
+                    {...(isExternal ? {target: '_blank', rel: 'noopener noreferrer'} : {})}
+                    className="group relative block w-fit"
+                  >
+                    {link.label}
+                    <span className="absolute bottom-0 left-0 h-[1px] w-0 bg-[#002649] transition-all duration-300 group-hover:w-full" />
+                  </LinkTag>
+                )
+              })}
             </div>
           ))}
         </div>
@@ -88,10 +99,10 @@ export async function SiteFooter() {
             <ul className="flex gap-6">
               {bottomLinks.map((link) => (
                 <li key={link.label}>
-                  <a href={link.href} className="group relative text-[#002649]">
+                  <Link href={link.href} className="group relative text-[#002649]">
                     {link.label}
                     <span className="absolute bottom-0 left-0 h-[1px] w-0 bg-[#002649] transition-all duration-300 group-hover:w-full" />
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>

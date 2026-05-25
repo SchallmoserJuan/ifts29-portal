@@ -26,7 +26,7 @@ const quickLinks = [
     icon: FileText,
     title: 'Documentación',
     description: 'Plan de estudios, calendario académico y normativas.',
-    href: '/institucional',
+    href: '/documentacion',
   },
   {
     icon: CalendarDays,

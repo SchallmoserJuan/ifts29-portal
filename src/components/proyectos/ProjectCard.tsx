@@ -79,7 +79,6 @@ export function ProjectCard({ project }: ProjectCardProps) {
               fill
               className="object-cover"
               onError={() => setImageError(true)}
-              unoptimized
             />
           </div>
         ) : null}
