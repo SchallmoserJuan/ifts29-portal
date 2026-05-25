@@ -56,6 +56,12 @@ El proyecto usa una arquitectura **Headless CMS desacoplada**: el frontend consu
 | Repositorio | GitHub | Control de versiones y PR reviews |
 | Diseño | Figma | Wireframes y sistema de diseño |
 
+### Guía para crear documentación en Payload
+
+[Creación de Noticias](https://drive.google.com/file/d/1WACqgy_Yh9wZZY1R7nQpo64nF5BT_zHy/view?usp=drive_link)
+[Creación de Carreras](https://drive.google.com/file/d/1-KvFlfl7S0hnfLrI6N18cg13Rm0fsa3U/view?usp=drive_link)
+[Creación de Documentos](https://drive.google.com/file/d/14dfRqVEbI0iaPSkHjDvgHMeMpEJwzFWS/view?usp=drive_link)
+
 ### Decisiones de arquitectura
 
 **¿Por qué Headless CMS?**
