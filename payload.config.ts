@@ -17,7 +17,9 @@ import { Media } from './src/collections/Media'
 import { News } from './src/collections/News'
 import { Notifications } from './src/collections/Notifications'
 import { Projects } from './src/collections/Projects'
+import { Scholarships } from './src/collections/Scholarships'
 import { Users } from './src/collections/Users'
+import { BecasPage } from './src/globals/BecasPage'
 import { InstitutionalContent } from './src/globals/InstitutionalContent'
 import { SiteSettings } from './src/globals/SiteSettings'
 
@@ -46,8 +48,8 @@ export default buildConfig({
     supportedLanguages: { es },
     fallbackLanguage: 'es',
   },
-  collections: [Users, Media, Careers, News, Documents, Events, Projects, Companies, Contacts, Notifications],
-  globals: [SiteSettings, InstitutionalContent],
+  collections: [Users, Media, Careers, News, Documents, Events, Projects, Companies, Contacts, Notifications, Scholarships],
+  globals: [SiteSettings, InstitutionalContent, BecasPage],
   plugins: [
     vercelBlobStorage({
       enabled: !!process.env.BLOB_READ_WRITE_TOKEN,

@@ -1,8 +1,8 @@
 import { cache } from 'react'
 
-import { defaultCareers, defaultCompanies, defaultEvents, defaultInstitutional, defaultNews, defaultProjects, defaultSettings } from '@/src/data/defaults'
+import { defaultBecasPage, defaultCareers, defaultCompanies, defaultEvents, defaultInstitutional, defaultNews, defaultProjects, defaultScholarships, defaultSettings } from '@/src/data/defaults'
 import { getPayloadClient } from '@/src/lib/payload'
-import type { CareerItem, CompanyItem, DocumentItem, EventItem, InstitutionalContentData, NewsItem, ProjectItem, SiteSettingsData } from '@/src/types/content'
+import type { BecasPageData, CareerItem, CompanyItem, DocumentItem, EventItem, InstitutionalContentData, NewsItem, ProjectItem, ScholarshipItem, SiteSettingsData } from '@/src/types/content'
 import type { AppUser } from '@/src/types/app'
 
 export const getSiteSettings = cache(async () => {
@@ -181,5 +181,41 @@ export const getCompaniesList = cache(async () => {
     return (result.docs.length > 0 ? result.docs : defaultCompanies) as CompanyItem[]
   } catch {
     return defaultCompanies
+  }
+})
+
+export const getScholarships = cache(async () => {
+  const payload = await getPayloadClient()
+
+  try {
+    const result = await payload.find({
+      collection: 'scholarships',
+      depth: 0,
+      limit: 20,
+      sort: 'order',
+      where: {
+        status: {
+          equals: 'published',
+        },
+      },
+    })
+
+    return (result.docs.length > 0 ? result.docs : defaultScholarships) as ScholarshipItem[]
+  } catch {
+    return defaultScholarships
+  }
+})
+
+export const getBecasPage = cache(async () => {
+  const payload = await getPayloadClient()
+
+  try {
+    const page = await payload.findGlobal({
+      slug: 'becas-page',
+    })
+
+    return { ...defaultBecasPage, ...page } as BecasPageData
+  } catch {
+    return defaultBecasPage
   }
 })

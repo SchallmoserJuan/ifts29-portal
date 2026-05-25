@@ -77,6 +77,7 @@ export interface Config {
     companies: Company;
     contacts: Contact;
     notifications: Notification;
+    scholarships: Scholarship;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -94,6 +95,7 @@ export interface Config {
     companies: CompaniesSelect<false> | CompaniesSelect<true>;
     contacts: ContactsSelect<false> | ContactsSelect<true>;
     notifications: NotificationsSelect<false> | NotificationsSelect<true>;
+    scholarships: ScholarshipsSelect<false> | ScholarshipsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -106,10 +108,12 @@ export interface Config {
   globals: {
     'site-settings': SiteSetting;
     'institutional-content': InstitutionalContent;
+    'becas-page': BecasPage;
   };
   globalsSelect: {
     'site-settings': SiteSettingsSelect<false> | SiteSettingsSelect<true>;
     'institutional-content': InstitutionalContentSelect<false> | InstitutionalContentSelect<true>;
+    'becas-page': BecasPageSelect<false> | BecasPageSelect<true>;
   };
   locale: null;
   widgets: {
@@ -542,6 +546,42 @@ export interface Notification {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "scholarships".
+ */
+export interface Scholarship {
+  id: number;
+  title: string;
+  slug: string;
+  summary: string;
+  description?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  requirements?:
+    | {
+        item: string;
+        id?: string | null;
+      }[]
+    | null;
+  externalLink?: string | null;
+  order?: number | null;
+  status: 'draft' | 'published';
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -603,6 +643,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'notifications';
         value: number | Notification;
+      } | null)
+    | ({
+        relationTo: 'scholarships';
+        value: number | Scholarship;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -921,6 +965,27 @@ export interface NotificationsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "scholarships_select".
+ */
+export interface ScholarshipsSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  summary?: T;
+  description?: T;
+  requirements?:
+    | T
+    | {
+        item?: T;
+        id?: T;
+      };
+  externalLink?: T;
+  order?: T;
+  status?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv_select".
  */
 export interface PayloadKvSelect<T extends boolean = true> {
@@ -1008,6 +1073,66 @@ export interface InstitutionalContent {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "becas-page".
+ */
+export interface BecasPage {
+  id: number;
+  pageTitle: string;
+  pageSubtitle?: string | null;
+  introduction?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  scholarshipsTitle?: string | null;
+  timelineTitle?: string | null;
+  timelineItems?:
+    | {
+        date: string;
+        title: string;
+        description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  faqTitle?: string | null;
+  faqItems?:
+    | {
+        question: string;
+        answer?: {
+          root: {
+            type: string;
+            children: {
+              type: any;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        id?: string | null;
+      }[]
+    | null;
+  contactTitle?: string | null;
+  contactText?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "site-settings_select".
  */
 export interface SiteSettingsSelect<T extends boolean = true> {
@@ -1035,6 +1160,38 @@ export interface InstitutionalContentSelect<T extends boolean = true> {
         role?: T;
         id?: T;
       };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "becas-page_select".
+ */
+export interface BecasPageSelect<T extends boolean = true> {
+  pageTitle?: T;
+  pageSubtitle?: T;
+  introduction?: T;
+  scholarshipsTitle?: T;
+  timelineTitle?: T;
+  timelineItems?:
+    | T
+    | {
+        date?: T;
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  faqTitle?: T;
+  faqItems?:
+    | T
+    | {
+        question?: T;
+        answer?: T;
+        id?: T;
+      };
+  contactTitle?: T;
+  contactText?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
