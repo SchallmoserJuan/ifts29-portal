@@ -3,7 +3,28 @@
 import { useState, useRef, useEffect, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
 import { AnimatePresence, motion } from 'framer-motion'
-import { Search, ArrowRight, FileText, GraduationCap, Newspaper, MapPin } from 'lucide-react'
+import {
+  Search,
+  ArrowRight,
+  FileText,
+  GraduationCap,
+  Newspaper,
+  MapPin,
+  BookOpen,
+  Code2,
+  Award,
+  ClipboardList,
+  FolderOpen,
+  Shield,
+  User,
+  CalendarDays,
+  Clock,
+  Info,
+  Building2,
+  LayoutGrid,
+  Mail,
+  HelpCircle,
+} from 'lucide-react'
 
 interface SearchSuggestion {
   label: string
@@ -16,20 +37,62 @@ const categoryColors: Record<string, string> = {
   Carrera: 'bg-[#28c2f3]/15 text-[#28c2f3] border-[#28c2f3]/20',
   Noticias: 'bg-blue-400/15 text-blue-400 border-blue-400/20',
   Eventos: 'bg-amber-400/15 text-amber-400 border-amber-400/20',
+  Proyectos: 'bg-rose-400/15 text-rose-400 border-rose-400/20',
+  Becas: 'bg-yellow-400/15 text-yellow-400 border-yellow-400/20',
+  Inscripciones: 'bg-orange-400/15 text-orange-400 border-orange-400/20',
+  Documentaci\u00f3n: 'bg-cyan-400/15 text-cyan-400 border-cyan-400/20',
   Portal: 'bg-violet-400/15 text-violet-400 border-violet-400/20',
   Instituci\u00f3n: 'bg-emerald-400/15 text-emerald-400 border-emerald-400/20',
+  Legal: 'bg-slate-400/15 text-slate-400 border-slate-400/20',
 }
 
 const allSuggestions: SearchSuggestion[] = [
+  // Carreras
   { label: 'Tecnicatura en Desarrollo de Software', href: '/carreras/tecnicatura-superior-en-desarrollo-de-software', category: 'Carrera', icon: GraduationCap },
-  { label: 'Plan de estudios', href: '/carreras/tecnicatura-superior-en-desarrollo-de-software', category: 'Carrera', icon: GraduationCap },
+  { label: 'Carreras del IFTS 29', href: '/carreras', category: 'Carrera', icon: LayoutGrid },
+  { label: 'Plan de estudios', href: '/carreras/tecnicatura-superior-en-desarrollo-de-software', category: 'Carrera', icon: FileText },
+  { label: 'Horarios de cursado', href: '/carreras/horarios', category: 'Carrera', icon: Clock },
+
+  // Noticias
   { label: 'Noticias del instituto', href: '/noticias', category: 'Noticias', icon: Newspaper },
+
+  // Eventos
   { label: 'Eventos y actividades', href: '/eventos', category: 'Eventos', icon: MapPin },
-  { label: 'Biblioteca virtual', href: '/portal/library', category: 'Portal', icon: FileText },
-  { label: 'Portal estudiantil', href: '/portal', category: 'Portal', icon: FileText },
-  { label: 'Informaci\u00f3n institucional', href: '/institucional', category: 'Instituci\u00f3n', icon: FileText },
-  { label: 'Contacto y ubicaci\u00f3n', href: '/contacto', category: 'Instituci\u00f3n', icon: FileText },
-  { label: 'Documentaci\u00f3n acad\u00e9mica', href: '/institucional', category: 'Instituci\u00f3n', icon: FileText },
+  { label: 'Agenda académica', href: '/agenda', category: 'Eventos', icon: CalendarDays },
+
+  // Proyectos
+  { label: 'Proyectos de estudiantes', href: '/proyectos', category: 'Proyectos', icon: Code2 },
+
+  // Becas
+  { label: 'Becas y financiamiento', href: '/becas', category: 'Becas', icon: Award },
+
+  // Inscripciones
+  { label: 'Inscripciones', href: '/inscripciones', category: 'Inscripciones', icon: ClipboardList },
+  { label: 'Requisitos de inscripción', href: '/inscripciones', category: 'Inscripciones', icon: Info },
+
+  // Documentación
+  { label: 'Documentación académica', href: '/documentacion', category: 'Documentaci\u00f3n', icon: FolderOpen },
+
+  // Portal
+  { label: 'Portal estudiantil', href: '/portal', category: 'Portal', icon: User },
+  { label: 'Biblioteca virtual', href: '/portal/biblioteca', category: 'Portal', icon: BookOpen },
+  { label: 'Iniciar sesi\u00f3n', href: '/login', category: 'Portal', icon: User },
+  { label: 'Registro', href: '/registro', category: 'Portal', icon: User },
+
+  // Institucional
+  { label: 'Informaci\u00f3n institucional', href: '/institucional', category: 'Instituci\u00f3n', icon: Building2 },
+  { label: 'Historia y misi\u00f3n', href: '/institucional', category: 'Instituci\u00f3n', icon: Info },
+  { label: 'Autoridades', href: '/institucional', category: 'Instituci\u00f3n', icon: User },
+  { label: 'Contacto y ubicaci\u00f3n', href: '/contacto', category: 'Instituci\u00f3n', icon: Mail },
+
+  // Legal
+  { label: 'Pol\u00edtica de privacidad', href: '/privacidad', category: 'Legal', icon: Shield },
+  { label: 'Accesibilidad', href: '/accesibilidad', category: 'Legal', icon: Info },
+  { label: 'Uso de cookies', href: '/cookies', category: 'Legal', icon: Info },
+  { label: 'Aviso legal', href: '/legal', category: 'Legal', icon: Shield },
+
+  // Ayuda
+  { label: 'Preguntas frecuentes', href: '/inscripciones', category: 'Inscripciones', icon: HelpCircle },
 ]
 
 export function SearchBar() {
@@ -174,7 +237,7 @@ export function SearchBar() {
               }, 0)
             }}
             onKeyDown={handleKeyDown}
-            placeholder="Busc&aacute; carreras, noticias, eventos..."
+            placeholder="Busc&aacute; carreras, noticias, proyectos, becas, documentaci\u00f3n..."
             className="h-16 w-full bg-transparent px-4 text-base text-white placeholder:text-white/30 outline-none sm:h-[72px] sm:px-5 sm:text-lg"
           />
 

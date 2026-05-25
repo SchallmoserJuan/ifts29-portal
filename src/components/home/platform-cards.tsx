@@ -41,7 +41,7 @@ export function PlatformCards() {
           {platforms.map((platform) => (
             <StaggerItem key={platform.title}>
               <Link href={platform.href} className="group block">
-                <article className="relative overflow-hidden rounded-lg">
+                <div className="relative overflow-hidden rounded-lg border border-white/10 shadow-lg">
                   <div className="relative h-[340px] w-full overflow-hidden sm:h-[380px]">
                     <Image
                       src={platform.image}
@@ -50,14 +50,14 @@ export function PlatformCards() {
                       className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
                       unoptimized
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#072c57] via-[#072c57]/40 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
 
                     <div className="absolute inset-x-0 bottom-0 p-6 sm:p-8">
                       <h3 className="relative inline-block text-2xl font-semibold text-white">
                         {platform.title}
                         <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-[#2fd0ff] transition-all duration-500 group-hover:w-full" />
                       </h3>
-                      <p className="mt-3 max-w-xs text-sm leading-relaxed text-white/70">
+                      <p className="mt-3 max-w-xs text-sm leading-relaxed text-white/90">
                         {platform.description}
                       </p>
                       <div className="mt-5 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.15em] text-[#28c2f3]">
@@ -66,7 +66,7 @@ export function PlatformCards() {
                       </div>
                     </div>
                   </div>
-                </article>
+                </div>
               </Link>
             </StaggerItem>
           ))}

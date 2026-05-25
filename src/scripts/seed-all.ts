@@ -163,28 +163,84 @@ const eventsData = [
 // ============================================================
 const projectsData = [
   {
-    title: 'Sistema de Gestion de Biblioteca',
+    title: 'LibroVault',
     status: 'published' as const,
     category: 'desarrollo' as const,
-    summary: 'Desarrollo de un sistema integral para la gestion de prestamos y inventario de la biblioteca institucional.',
-    publishedAt: '2026-04-10T00:00:00.000Z',
-    tags: 'Software;Gestion;Biblioteca',
+    summary: 'Sistema web completo para la gestión de préstamos, reservas e inventario de la biblioteca del IFTS 29. Incluye panel de administración, notificaciones por email y reportes automatizados.',
+    publishedAt: '2026-05-20T00:00:00.000Z',
+    tags: 'React;Node.js;PostgreSQL;Tailwind',
+    githubUrl: 'https://github.com/ifts29/librovault',
+    demoUrl: 'https://librovault.vercel.app',
   },
   {
-    title: 'Analisis de Datos de Encuesta Socioeconomica',
+    title: 'DataViz CABA',
     status: 'published' as const,
     category: 'datos' as const,
-    summary: 'Procesamiento y analisis de datos de una encuesta realizada a familias del distrito.',
-    publishedAt: '2026-03-25T00:00:00.000Z',
-    tags: 'Datos;Analisis;Estadistica',
+    summary: 'Plataforma de visualización interactiva de datos abiertos de la Ciudad de Buenos Aires. Permite explorar estadísticas de transporte, educación y salud con gráficos dinámicos y mapas.',
+    publishedAt: '2026-04-15T00:00:00.000Z',
+    tags: 'Python;D3.js;Pandas;Mapbox',
+    githubUrl: 'https://github.com/ifts29/dataviz-caba',
+    demoUrl: 'https://dataviz-caba.vercel.app',
   },
   {
-    title: 'App Movil para Seguimiento de Rutas de Transporte',
+    title: 'TrackBus',
     status: 'published' as const,
     category: 'desarrollo' as const,
-    summary: 'Desarrollo de una aplicacion movil para el seguimiento en tiempo real de rutas de transporte publico.',
-    publishedAt: '2026-03-15T00:00:00.000Z',
-    tags: 'Mobile;Transporte;GPS',
+    summary: 'Aplicación web progresiva para el seguimiento en tiempo real de colectivos de Buenos Aires. Integra la API de transporte público y muestra tiempos de llegada estimados por parada.',
+    publishedAt: '2026-03-10T00:00:00.000Z',
+    tags: 'React;PWA;API REST;Geolocalización',
+    githubUrl: 'https://github.com/ifts29/trackbus',
+    demoUrl: 'https://trackbus-demo.vercel.app',
+  },
+  {
+    title: 'CloudMonitor',
+    status: 'published' as const,
+    category: 'infraestructura' as const,
+    summary: 'Herramienta de monitoreo de infraestructura cloud que permite supervisar servidores, contenedores y bases de datos en tiempo real con alertas configurables y dashboards personalizables.',
+    publishedAt: '2026-06-01T00:00:00.000Z',
+    tags: 'Docker;Prometheus;Grafana;AWS',
+    githubUrl: 'https://github.com/ifts29/cloudmonitor',
+    demoUrl: 'https://cloudmonitor.vercel.app',
+  },
+]
+
+// Estudiantes de ejemplo para asociar a proyectos
+const studentUsers = [
+  {
+    email: 'maria.gonzalez@example.com',
+    password: 'student123',
+    dni: '40123456',
+    firstName: 'María',
+    lastName: 'González',
+    role: 'student' as const,
+    status: 'approved' as const,
+  },
+  {
+    email: 'lucas.martinez@example.com',
+    password: 'student123',
+    dni: '41234567',
+    firstName: 'Lucas',
+    lastName: 'Martínez',
+    role: 'student' as const,
+    status: 'approved' as const,
+  },
+  {
+    email: 'camila.rodriguez@example.com',
+    password: 'student123',
+    dni: '42345678',
+    firstName: 'Camila',
+    lastName: 'Rodríguez',
+    role: 'student' as const,
+    status: 'approved' as const,
+  },
+  {
+    email: 'julian.fernandez@example.com',
+    password: 'student123',
+    dni: '43456789',
+    firstName: 'Julián',
+    lastName: 'Fernández',
+    role: 'student' as const,
+    status: 'approved' as const,
   },
 ]
 
@@ -643,8 +699,50 @@ async function seedEvents(payload: Awaited<ReturnType<typeof getPayload>>) {
   }
 }
 
-async function seedProjects(payload: Awaited<ReturnType<typeof getPayload>>) {
+async function seedStudentUsers(payload: Awaited<ReturnType<typeof getPayload>>) {
+  console.log('\n[Seed] Estudiantes de ejemplo...')
+
+  const createdStudents: Record<string, string | number> = {}
+
+  for (const student of studentUsers) {
+    const existing = await payload.find({
+      collection: 'users',
+      limit: 1,
+      where: { email: { equals: student.email } },
+    })
+
+    if (existing.docs.length > 0) {
+      createdStudents[student.email] = existing.docs[0].id
+      console.log('   Estudiante ya existe:', student.email)
+    } else {
+      const created = await payload.create({
+        collection: 'users',
+        data: student,
+      })
+      createdStudents[student.email] = created.id
+      console.log('   Estudiante creado. ID:', created.id, '-', student.email)
+    }
+  }
+
+  return createdStudents
+}
+
+async function seedProjects(payload: Awaited<ReturnType<typeof getPayload>>, studentIds: Record<string, string | number>) {
   console.log('\n[4/10] Seed de Proyectos...')
+
+  // Borrar proyectos existentes para evitar duplicados con datos viejos
+  const existingProjects = await payload.find({collection: 'projects', limit: 100})
+  for (const doc of existingProjects.docs) {
+    await payload.delete({collection: 'projects', id: doc.id})
+    console.log('   Proyecto eliminado:', doc.title)
+  }
+
+  const projectStudentMap: Record<string, string> = {
+    'LibroVault': 'maria.gonzalez@example.com',
+    'DataViz CABA': 'lucas.martinez@example.com',
+    'TrackBus': 'camila.rodriguez@example.com',
+    'CloudMonitor': 'julian.fernandez@example.com',
+  }
 
   for (const item of projectsData) {
     const existing = await payload.find({
@@ -653,12 +751,25 @@ async function seedProjects(payload: Awaited<ReturnType<typeof getPayload>>) {
       where: { slug: { equals: item.title.toLowerCase().replace(/[^a-z0-9]+/g, '-') } },
     })
 
+    const studentEmail = projectStudentMap[item.title]
+    const studentId = studentEmail ? studentIds[studentEmail] : undefined
+
+    const projectData = {
+      ...item,
+      ...(studentId ? { student: studentId } : {}),
+    }
+
     if (existing.docs.length > 0) {
-      console.log('   Proyecto ya existe:', item.title)
+      await payload.update({
+        collection: 'projects',
+        id: existing.docs[0].id,
+        data: projectData,
+      })
+      console.log('   Proyecto actualizado:', item.title)
     } else {
       const created = await payload.create({
         collection: 'projects',
-        data: item,
+        data: projectData,
       })
       console.log('   Proyecto creado. ID:', created.id, '-', item.title)
     }
@@ -771,7 +882,8 @@ async function seed() {
   await seedCareer(payload)
   await seedNews(payload)
   await seedEvents(payload)
-  await seedProjects(payload)
+  const studentIds = await seedStudentUsers(payload)
+  await seedProjects(payload, studentIds)
   await seedCompanies(payload)
   await seedInstitutional(payload)
   await seedSiteSettings(payload)
