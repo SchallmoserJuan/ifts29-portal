@@ -58,6 +58,7 @@ export default buildConfig({
         media: true,
         documents: true,
       },
+      clientUploads: true,
     }),
   ],
   editor: lexicalEditor(),
