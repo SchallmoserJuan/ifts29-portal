@@ -25,7 +25,7 @@ import { BackToPortalButton as BackToPortalButton_810afd87c2d75efc2b9172d1f4471e
 import { DashboardStatsWidget as DashboardStatsWidget_72340cbfcadf38445cb469d18763e8b6 } from '../../../src/components/admin/widgets/dashboard-stats'
 import { RecentNewsWidget as RecentNewsWidget_ff52be021b0a0d9d3425ab5c5f807dd5 } from '../../../src/components/admin/widgets/recent-news'
 import { UpcomingEventsWidget as UpcomingEventsWidget_77aaafaf53173979fda8562bf2bb46e1 } from '../../../src/components/admin/widgets/upcoming-events'
-import { VercelBlobClientUploadHandler as VercelBlobClientUploadHandler_16c82c5e25f430251a3e3ba57219ff4e } from '@payloadcms/storage-vercel-blob/client'
+import { UploadthingClientUploadHandler as UploadthingClientUploadHandler_749dcaa11bb61b873d113cb6c609bc10 } from '@payloadcms/storage-uploadthing/client'
 import { CollectionCards as CollectionCards_f9c02e79a4aed9a3924487c0cd4cafb1 } from '@payloadcms/next/rsc'
 
 /** @type import('payload').ImportMap */
@@ -57,6 +57,6 @@ export const importMap = {
   "/src/components/admin/widgets/dashboard-stats#DashboardStatsWidget": DashboardStatsWidget_72340cbfcadf38445cb469d18763e8b6,
   "/src/components/admin/widgets/recent-news#RecentNewsWidget": RecentNewsWidget_ff52be021b0a0d9d3425ab5c5f807dd5,
   "/src/components/admin/widgets/upcoming-events#UpcomingEventsWidget": UpcomingEventsWidget_77aaafaf53173979fda8562bf2bb46e1,
-  "@payloadcms/storage-vercel-blob/client#VercelBlobClientUploadHandler": VercelBlobClientUploadHandler_16c82c5e25f430251a3e3ba57219ff4e,
+  "@payloadcms/storage-uploadthing/client#UploadthingClientUploadHandler": UploadthingClientUploadHandler_749dcaa11bb61b873d113cb6c609bc10,
   "@payloadcms/next/rsc#CollectionCards": CollectionCards_f9c02e79a4aed9a3924487c0cd4cafb1
 }
