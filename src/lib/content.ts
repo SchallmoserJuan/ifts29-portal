@@ -101,6 +101,7 @@ export const getNewsBySlug = cache(async (slug: string) => {
   try {
     const result = await payload.find({
       collection: 'news',
+      depth: 1,
       limit: 1,
       where: {
         slug: {
