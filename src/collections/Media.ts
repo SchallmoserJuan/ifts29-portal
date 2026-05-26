@@ -30,14 +30,14 @@ export const Media: CollectionConfig = {
     },
   ],
   upload: {
-    imageSizes: [
-      {
-        name: 'card',
-        width: 960,
-        height: 640,
-        position: 'centre',
-      },
-    ],
+    // imageSizes: [
+    //   {
+    //     name: 'card',
+    //     width: 960,
+    //     height: 640,
+    //     position: 'centre',
+    //   },
+    // ],
     mimeTypes: ['image/*'],
   },
 }
