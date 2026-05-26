@@ -40,6 +40,7 @@
     "@payloadcms/storage-vercel-blob": "^3.84.0",
     "@payloadcms/translations": "^3.84.1",
     "@payloadcms/ui": "^3.84.1",
+    "@vercel/blob": "^2.4.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "esbuild": "^0.28.0",
