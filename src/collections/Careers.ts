@@ -71,7 +71,7 @@ export const Careers: CollectionConfig = {
             {
               name: 'heroImage',
               label: 'Imagen de hero',
-              type: 'upload',
+              type: 'relationship',
               relationTo: 'media',
             },
             {
@@ -134,7 +134,7 @@ export const Careers: CollectionConfig = {
             {
               name: 'introImage',
               label: 'Imagen de introduccion',
-              type: 'upload',
+              type: 'relationship',
               relationTo: 'media',
             },
           ],
@@ -224,7 +224,7 @@ export const Careers: CollectionConfig = {
             {
               name: 'studyPlanImage',
               label: 'Imagen del plan de estudios',
-              type: 'upload',
+              type: 'relationship',
               relationTo: 'media',
             },
           ],
@@ -262,7 +262,7 @@ export const Careers: CollectionConfig = {
             {
               name: 'methodologyImage',
               label: 'Imagen de fondo',
-              type: 'upload',
+              type: 'relationship',
               relationTo: 'media',
             },
           ],
@@ -393,7 +393,7 @@ export const Careers: CollectionConfig = {
             {
               name: 'floatingImage',
               label: 'Imagen flotante (entre hero e intro)',
-              type: 'upload',
+              type: 'relationship',
               relationTo: 'media',
             },
           ],

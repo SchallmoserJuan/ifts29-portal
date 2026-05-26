@@ -3,7 +3,7 @@ import { fileURLToPath } from 'url'
 
 import { sqliteAdapter } from '@payloadcms/db-sqlite'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
-import { uploadthingStorage } from '@payloadcms/storage-uploadthing'
+// Storage plugins removed - using direct Vercel Blob or external URLs
 import { es } from '@payloadcms/translations/languages/es'
 import { buildConfig } from 'payload'
 import sharp from 'sharp'
@@ -50,18 +50,7 @@ export default buildConfig({
   },
   collections: [Users, Media, Careers, News, Documents, Events, Projects, Companies, Contacts, Notifications, Scholarships],
   globals: [SiteSettings, InstitutionalContent, BecasPage],
-  plugins: [
-    uploadthingStorage({
-      collections: {
-        media: true,
-        documents: true,
-      },
-      options: {
-        token: process.env.UPLOADTHING_TOKEN,
-        acl: 'public-read',
-      },
-    }),
-  ],
+  plugins: [],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || 'desarrollo-super-seguro-cambiar-en-produccion',
   typescript: {
