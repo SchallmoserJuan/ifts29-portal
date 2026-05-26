@@ -7,12 +7,7 @@ const nextConfig: NextConfig = {
     position: 'bottom-right',
   },
   images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'images.unsplash.com',
-      },
-    ],
+    unoptimized: true,
   },
 }
 
