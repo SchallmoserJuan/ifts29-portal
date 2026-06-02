@@ -27,6 +27,14 @@ export async function generateMetadata(): Promise<Metadata> {
       type: 'website',
       locale: 'es_AR',
       siteName: settings.siteTitle,
+      images: [
+        {
+          url: '/og-default.png',
+          width: 1200,
+          height: 630,
+          alt: settings.siteTitle,
+        },
+      ],
     },
     twitter: {
       card: 'summary_large_image',
@@ -45,6 +53,32 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'EducationalOrganization',
+              name: 'IFTS N° 29',
+              alternateName: 'Instituto de Formación Técnica Superior 29',
+              url: 'https://ifts29.edu.ar',
+              description:
+                'Instituto de Formación Técnica Superior. Tecnicatura Superior en Desarrollo de Software con título oficial de validez nacional.',
+              address: {
+                '@type': 'PostalAddress',
+                addressLocality: 'Buenos Aires',
+                addressRegion: 'CABA',
+                addressCountry: 'AR',
+              },
+              email: 'info@ifts29.edu.ar',
+              sameAs: [
+                'https://www.linkedin.com/school/instituto-de-formaci%C3%B3n-t%C3%A9cnica-superior-29/',
+              ],
+            }),
+          }}
+        />
+      </head>
       <body className="min-h-screen bg-background text-foreground antialiased">
         <SkipToContent />
         <AuthProvider>{children}</AuthProvider>

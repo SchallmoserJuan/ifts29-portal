@@ -15,7 +15,6 @@ interface MegaMenuProps {
   open: boolean
   onClose: () => void
   latestNews: {slug: string; title: string}[]
-  latestEvents: {slug: string; title: string}[]
 }
 
 const easing: [number, number, number, number] = [0.22, 1, 0.36, 1]
@@ -99,7 +98,7 @@ const noop = () => () => {}
 const getServerSnapshot = () => false
 const getClientSnapshot = () => true
 
-export function MegaMenu({open, onClose, latestNews, latestEvents}: MegaMenuProps) {
+export function MegaMenu({open, onClose, latestNews}: MegaMenuProps) {
   const mounted = useSyncExternalStore(noop, getClientSnapshot, getServerSnapshot)
   const [stack, setStack] = useState<MenuItem[]>([])
   const containerRef = useRef<HTMLDivElement>(null)
@@ -158,7 +157,7 @@ export function MegaMenu({open, onClose, latestNews, latestEvents}: MegaMenuProp
           {label: 'Inscripciones', href: '/inscripciones'},
           {label: 'Becas', href: '/becas'},
           {label: 'Articulaciones', href: '/carreras/tecnicatura-superior-en-desarrollo-de-software#articulaciones'},
-          {label: 'Agenda académica', href: '/agenda'},
+          {label: 'Agenda académica', href: '/eventos'},
           {label: 'Horarios', href: '/carreras/horarios'},
         ],
       },
@@ -173,7 +172,6 @@ export function MegaMenu({open, onClose, latestNews, latestEvents}: MegaMenuProp
         label: 'Eventos',
         items: [
           {label: 'Ver todos los eventos', href: '/eventos'},
-          ...latestEvents.map((e) => ({label: e.title, href: `/eventos/${e.slug}`})),
         ],
       },
       {
@@ -185,7 +183,7 @@ export function MegaMenu({open, onClose, latestNews, latestEvents}: MegaMenuProp
       },
       {label: 'Contacto', href: '/contacto'},
     ],
-    [latestNews, latestEvents],
+    [latestNews],
   )
 
   const currentLevel = stack.length === 0 ? menuItems : (stack[stack.length - 1].items ?? [])

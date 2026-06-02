@@ -67,8 +67,7 @@ export function HomeProjectsSection({ projects }: HomeProjectsSectionProps) {
 
             return (
               <StaggerItem key={project.id} className="h-full">
-                <Link
-                  href="/proyectos"
+                <div
                   className="group flex h-full flex-col overflow-hidden rounded-2xl border border-slate-100 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-[#28c2f3]/30 hover:shadow-xl"
                   style={{
                     boxShadow: `0 2px 8px ${config.color}08`,
@@ -137,26 +136,30 @@ export function HomeProjectsSection({ projects }: HomeProjectsSectionProps) {
                     {/* Links */}
                     <div className="mt-4 flex gap-3">
                       {project.demoUrl ? (
-                        <span
-                          className="inline-flex items-center gap-1 text-xs font-medium text-slate-400 transition group-hover:text-[#214ca0]"
-                          onClick={(e) => e.stopPropagation()}
+                        <a
+                          href={project.demoUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1 text-xs font-medium text-slate-400 transition hover:text-[#214ca0]"
                         >
                           <ExternalLink className="h-3 w-3" />
                           Demo
-                        </span>
+                        </a>
                       ) : null}
                       {project.githubUrl ? (
-                        <span
-                          className="inline-flex items-center gap-1 text-xs font-medium text-slate-400 transition group-hover:text-[#214ca0]"
-                          onClick={(e) => e.stopPropagation()}
+                        <a
+                          href={project.githubUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1 text-xs font-medium text-slate-400 transition hover:text-[#214ca0]"
                         >
                           <Code className="h-3 w-3" />
                           Código
-                        </span>
+                        </a>
                       ) : null}
                     </div>
                   </div>
-                </Link>
+                </div>
               </StaggerItem>
             )
           })}

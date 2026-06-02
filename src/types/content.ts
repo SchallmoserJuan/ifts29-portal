@@ -223,6 +223,7 @@ export type CompanyItem = {
   practicesArea: string
   website?: string
   contactEmail?: string
+  status?: string
   logo?: {
     url: string
     alt?: string

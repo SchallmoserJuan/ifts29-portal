@@ -14,13 +14,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${BASE_URL}/eventos`, changeFrequency: 'weekly', priority: 0.8 },
     { url: `${BASE_URL}/institucional`, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${BASE_URL}/proyectos`, changeFrequency: 'monthly', priority: 0.7 },
+    { url: `${BASE_URL}/empresas`, changeFrequency: 'monthly', priority: 0.6 },
     { url: `${BASE_URL}/contacto`, changeFrequency: 'yearly', priority: 0.6 },
-    { url: `${BASE_URL}/agenda`, changeFrequency: 'weekly', priority: 0.7 },
     { url: `${BASE_URL}/inscripciones`, changeFrequency: 'yearly', priority: 0.6 },
     { url: `${BASE_URL}/becas`, changeFrequency: 'yearly', priority: 0.6 },
-    { url: `${BASE_URL}/portal`, changeFrequency: 'weekly', priority: 0.7 },
     { url: `${BASE_URL}/documentacion`, changeFrequency: 'monthly', priority: 0.7 },
-    { url: `${BASE_URL}/portal/biblioteca`, changeFrequency: 'weekly', priority: 0.7 },
+    { url: `${BASE_URL}/buscar`, changeFrequency: 'monthly', priority: 0.5 },
+    { url: `${BASE_URL}/accesibilidad`, changeFrequency: 'yearly', priority: 0.3 },
+    { url: `${BASE_URL}/privacidad`, changeFrequency: 'yearly', priority: 0.3 },
+    { url: `${BASE_URL}/cookies`, changeFrequency: 'yearly', priority: 0.3 },
+    { url: `${BASE_URL}/legal`, changeFrequency: 'yearly', priority: 0.3 },
+    { url: `${BASE_URL}/carreras/horarios`, changeFrequency: 'monthly', priority: 0.6 },
   ]
 
   let careerRoutes: MetadataRoute.Sitemap = []
@@ -42,15 +46,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       }),
     ])
 
-    careerRoutes = careersResult.docs.map((career: any) => ({
-      url: `${BASE_URL}/carreras/${career.slug}`,
+    careerRoutes = careersResult.docs.map((career) => ({
+      url: `${BASE_URL}/carreras/${(career as { slug: string }).slug}`,
       lastModified: career.updatedAt ? new Date(career.updatedAt) : new Date(),
       changeFrequency: 'weekly',
       priority: 0.8,
     }))
 
-    newsRoutes = newsResult.docs.map((item: any) => ({
-      url: `${BASE_URL}/noticias/${item.slug}`,
+    newsRoutes = newsResult.docs.map((item) => ({
+      url: `${BASE_URL}/noticias/${(item as { slug: string }).slug}`,
       lastModified: item.updatedAt ? new Date(item.updatedAt) : new Date(),
       changeFrequency: 'weekly',
       priority: 0.7,

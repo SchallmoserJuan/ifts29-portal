@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import {AnimatedSection} from '../ui/animated-section'
 import {SectionLabel} from '../ui/section-label'
 
@@ -51,10 +52,12 @@ export function HistorySection() {
 
         <AnimatedSection delay={0.2} className="relative">
           <div className="aspect-[3/4] overflow-hidden rounded-sm bg-slate-200 lg:mt-12">
-            <img
+            <Image
               src="https://images.unsplash.com/photo-1653990603052-17a7198a9a99?q=80&w=705&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
               alt="Estudiantes en ceremonia de graduación"
-              className="h-full w-full object-cover"
+              fill
+              className="object-cover"
+              unoptimized
             />
           </div>
           <p className="mt-4 text-xs text-slate-400">Ceremonia de graduación 2025</p>

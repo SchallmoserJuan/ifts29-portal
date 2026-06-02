@@ -40,8 +40,13 @@ export const requireApprovedStudent = async () => {
     redirect('/login')
   }
 
-  if (user.role === 'student' && user.status === 'pending') {
-    redirect('/pendiente')
+  if (user.role === 'student') {
+    if (user.status === 'pending') {
+      redirect('/pendiente')
+    }
+    if (user.status === 'rejected') {
+      redirect('/login')
+    }
   }
 
   return user

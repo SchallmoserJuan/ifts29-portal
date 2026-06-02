@@ -5,10 +5,9 @@ import {MegaMenu} from './mega-menu'
 
 interface MobileMenuProps {
   latestNews: {slug: string; title: string}[]
-  latestEvents: {slug: string; title: string}[]
 }
 
-export function MobileMenu({latestNews, latestEvents}: MobileMenuProps) {
+export function MobileMenu({latestNews}: MobileMenuProps) {
   const [open, setOpen] = useState(false)
 
   return (
@@ -37,7 +36,7 @@ export function MobileMenu({latestNews, latestEvents}: MobileMenuProps) {
         />
       </button>
 
-      <MegaMenu open={open} onClose={() => setOpen(false)} latestNews={latestNews} latestEvents={latestEvents} />
+      <MegaMenu open={open} onClose={() => setOpen(false)} latestNews={latestNews} />
     </>
   )
 }

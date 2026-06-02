@@ -3,8 +3,8 @@ import { ExternalLink, BookOpen, Code2, GraduationCap, Briefcase, FileText } fro
 const resources = [
   {
     label: 'Plataforma de cursado',
-    description: 'Accedé a Moodle, el aula virtual del IFTS 29.',
-    href: '#',
+    description: 'Accedé a Moodle, el aula virtual del IFTS 29. (Próximamente)',
+    href: null,
     icon: GraduationCap,
   },
   {
@@ -33,8 +33,8 @@ const resources = [
   },
   {
     label: 'Bolsa de trabajo',
-    description: 'Oportunidades laborales y convenios con empresas.',
-    href: '#',
+    description: 'Oportunidades laborales y convenios con empresas. (Próximamente)',
+    href: null,
     icon: Briefcase,
   },
 ]
@@ -53,26 +53,27 @@ export function ResourcesSection() {
         </div>
 
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {resources.map((resource) => (
-            <a
-              key={resource.label}
-              href={resource.href}
-              target={resource.href.startsWith('http') ? '_blank' : undefined}
-              rel={resource.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-              className="group flex items-start gap-4 rounded-2xl border border-slate-200 bg-[#f8f7f4] p-5 transition hover:border-[#28c2f3]/40 hover:bg-white hover:shadow-sm"
-            >
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[#072c57]/10 text-[#072c57] transition group-hover:bg-[#072c57]/20">
-                <resource.icon className="h-5 w-5" />
-              </div>
-              <div className="min-w-0">
-                <div className="flex items-center gap-2">
-                  <h3 className="font-semibold text-slate-900">{resource.label}</h3>
-                  <ExternalLink className="h-3.5 w-3.5 shrink-0 text-slate-400 opacity-0 transition group-hover:opacity-100" />
+          {resources.map((resource) => {
+            const Wrapper = resource.href ? 'a' : 'div'
+            return (
+              <Wrapper
+                key={resource.label}
+                {...(resource.href ? { href: resource.href, target: '_blank', rel: 'noopener noreferrer' } : {})}
+                className={`group flex items-start gap-4 rounded-2xl border border-slate-200 bg-[#f8f7f4] p-5 transition hover:border-[#28c2f3]/40 hover:bg-white hover:shadow-sm ${!resource.href ? 'opacity-60' : ''}`}
+              >
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[#072c57]/10 text-[#072c57] transition group-hover:bg-[#072c57]/20">
+                  <resource.icon className="h-5 w-5" />
                 </div>
-                <p className="mt-1 text-sm text-slate-600">{resource.description}</p>
-              </div>
-            </a>
-          ))}
+                <div className="min-w-0">
+                  <div className="flex items-center gap-2">
+                    <h3 className="font-semibold text-slate-900">{resource.label}</h3>
+                    {resource.href && <ExternalLink className="h-3.5 w-3.5 shrink-0 text-slate-400 opacity-0 transition group-hover:opacity-100" />}
+                  </div>
+                  <p className="mt-1 text-sm text-slate-600">{resource.description}</p>
+                </div>
+              </Wrapper>
+            )
+          })}
         </div>
       </div>
     </section>

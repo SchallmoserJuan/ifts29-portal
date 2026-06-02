@@ -1,7 +1,6 @@
 import { CompaniesCard } from './companies-card'
 import { SectionHeader } from '../ui/section-header'
-import { AnimatedSection, StaggerContainer, StaggerItem } from '../ui/animated-section'
-import { Briefcase } from 'lucide-react'
+import { StaggerContainer, StaggerItem } from '../ui/animated-section'
 import type { CompanyItem } from '@/src/types/content'
 
 export function CompaniesSection({ companies }: { companies: CompanyItem[] }) {
@@ -12,8 +11,8 @@ export function CompaniesSection({ companies }: { companies: CompanyItem[] }) {
       <div className="relative mx-auto w-full max-w-7xl px-6 sm:px-8 lg:px-12">
         <SectionHeader
           title="Convenios con empresas"
-          href="/noticias"
-          linkText="Ver noticias"
+          href="/empresas"
+          linkText="Ver convenios"
         />
 
         {/* Companies grid */}
