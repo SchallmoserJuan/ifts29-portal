@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import {AnimatedSection} from '../ui/animated-section'
 import {SectionLabel} from '../ui/section-label'
 
@@ -48,10 +49,12 @@ export function AuthoritiesSection() {
               >
                 <div className="w-full md:w-[45%]">
                   <div className="aspect-[4/5] overflow-hidden rounded-sm bg-slate-200">
-                    <img
+                    <Image
                       src={auth.image}
                       alt={auth.name}
-                      className="h-full w-full object-cover transition duration-700 hover:scale-105"
+                      fill
+                      className="object-cover transition duration-700 hover:scale-105"
+                      unoptimized
                     />
                   </div>
                 </div>

@@ -22,7 +22,7 @@ export default async function CareersListingPage() {
   const careers = await getCareers()
 
   // Solo mostrar carreras publicadas
-  const publishedCareers = careers.filter((c) => 'status' in c && (c as any).status === 'published')
+  const publishedCareers = careers.filter((c) => 'status' in c && (c as { status?: string }).status === 'published')
 
   const careersToShow = publishedCareers.length > 0 ? publishedCareers : careers
 

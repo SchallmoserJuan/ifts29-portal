@@ -69,11 +69,13 @@ export async function POST(request: Request) {
     const response = NextResponse.json(result)
 
     if (result.token) {
+      const isSecure = process.env.NODE_ENV === 'production'
       response.cookies.set('payload-token', result.token, {
         httpOnly: true,
         path: '/',
         maxAge: 60 * 60 * 8,
         sameSite: 'lax',
+        secure: isSecure,
       })
     }
 

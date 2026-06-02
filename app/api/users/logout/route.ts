@@ -17,6 +17,7 @@ export async function POST(request: Request) {
   }
 
   try {
+    const isSecure = process.env.NODE_ENV === 'production'
     const response = NextResponse.json({ success: true })
 
     response.cookies.set('payload-token', '', {
@@ -24,6 +25,7 @@ export async function POST(request: Request) {
       path: '/',
       expires: new Date(0),
       sameSite: 'lax',
+      secure: isSecure,
     })
 
     response.cookies.set('csrftoken', '', {
@@ -31,6 +33,7 @@ export async function POST(request: Request) {
       path: '/',
       expires: new Date(0),
       sameSite: 'lax',
+      secure: isSecure,
     })
 
     return response

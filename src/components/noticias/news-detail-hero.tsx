@@ -3,29 +3,14 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import type { NewsItem } from '@/src/types/content'
+import { newsCategoryLabels, formatNewsDate } from '@/src/lib/news-utils'
 
 const FALLBACK_IMAGE = 'https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=1800&q=80'
-
-const categoryLabels: Record<string, string> = {
-  general: 'General',
-  academic: 'Academica',
-  institutional: 'Institucional',
-  events: 'Eventos',
-}
-
-function formatDate(dateString: string): string {
-  const date = new Date(dateString)
-  return date.toLocaleDateString('es-AR', {
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric',
-  })
-}
 
 export function NewsDetailHero({ news }: { news: NewsItem }) {
   const imageUrl = news.heroImage?.url || FALLBACK_IMAGE
 
-  const tags = news.tags ? news.tags.split(';').map((t) => t.trim()) : [categoryLabels[news.category] || news.category]
+  const tags = news.tags ? news.tags.split(';').map((t) => t.trim()) : [newsCategoryLabels[news.category] || news.category]
 
   return (
     <section className="relative">
@@ -34,7 +19,7 @@ export function NewsDetailHero({ news }: { news: NewsItem }) {
       <div className="relative z-10 py-12">
         <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-10">
           <div className="flex flex-col gap-4">
-            <p className="text-sm text-white">{formatDate(news.publishedAt)}</p>
+            <p className="text-sm text-white">{formatNewsDate(news.publishedAt)}</p>
 
             <div className="flex flex-col gap-6 lg:flex-row lg:justify-between lg:items-start">
               <h1 className="max-w-4xl text-[53px] leading-[64px] font-medium text-white">{news.title}</h1>

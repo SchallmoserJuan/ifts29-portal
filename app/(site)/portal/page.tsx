@@ -8,6 +8,7 @@ import {
   StudentDashboard,
   ComingSoonGrid,
 } from '@/src/components/portal'
+import { PortalSection } from '@/src/components/portal/portal-section'
 import { PageShell } from '@/src/components/layout'
 import { requireApprovedStudent } from '@/src/lib/auth'
 import { LogoutButton } from './logout-button'
@@ -84,16 +85,22 @@ export default async function PortalPage() {
             /* ====== STAFF DASHBOARD ====== */
             <>
               <section className="mb-8">
-                <DashboardStats />
+                <PortalSection>
+                  <DashboardStats />
+                </PortalSection>
               </section>
 
               <div className="grid gap-8 lg:grid-cols-[1fr_320px]">
                 <div className="space-y-8">
                   <section>
-                    <PendingUsersTable />
+                    <PortalSection>
+                      <PendingUsersTable />
+                    </PortalSection>
                   </section>
                   <section>
-                    <NotificationsCard />
+                    <PortalSection>
+                      <NotificationsCard />
+                    </PortalSection>
                   </section>
                 </div>
                 <aside className="space-y-8">
@@ -120,8 +127,12 @@ export default async function PortalPage() {
             /* ====== STUDENT DASHBOARD ====== */
             <div className="grid gap-8 lg:grid-cols-[1fr_320px]">
               <div className="space-y-8">
-                <StudentDashboard />
-                <ComingSoonGrid />
+                <PortalSection>
+                  <StudentDashboard />
+                </PortalSection>
+                <PortalSection>
+                  <ComingSoonGrid />
+                </PortalSection>
               </div>
               <aside className="space-y-8">
                 <QuickLinks />

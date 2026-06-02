@@ -63,11 +63,9 @@ export async function sendReplyEmail(
   }
 
   try {
-    const result = await sendEmailJS(EMAILJS_TEMPLATE_ID_REPLY, templateParams)
-    console.log('Email sent successfully:', result)
+    await sendEmailJS(EMAILJS_TEMPLATE_ID_REPLY, templateParams)
     return true
-  } catch (error) {
-    console.error('Error sending email:', error)
+  } catch {
     return false
   }
 }
@@ -82,11 +80,9 @@ export async function sendNewContactNotification(contact: ContactData) {
   }
 
   try {
-    const result = await sendEmailJS(EMAILJS_TEMPLATE_ID_NOTIFICATION, templateParams)
-    console.log('Notification email sent:', result)
+    await sendEmailJS(EMAILJS_TEMPLATE_ID_NOTIFICATION, templateParams)
     return true
-  } catch (error) {
-    console.error('Error sending notification email:', error)
+  } catch {
     return false
   }
 }

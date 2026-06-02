@@ -8,33 +8,10 @@ import {Calendar, Clock, ArrowRight} from 'lucide-react'
 import type {NewsItem} from '@/src/types/content'
 import {useHero} from '../layout/hero-context'
 import {TechBadge} from '../ui/tech-badge'
+import {newsCategoryLabels, formatNewsDate, calculateReadTime} from '@/src/lib/news-utils'
 
 const FALLBACK_IMAGE =
   'https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=1800&q=80'
-
-const categoryLabels: Record<string, string> = {
-  general: 'General',
-  academic: 'Academica',
-  institutional: 'Institucional',
-  events: 'Eventos',
-}
-
-function formatDate(dateString: string): string {
-  const date = new Date(dateString)
-  return date.toLocaleDateString('es-AR', {
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric',
-  })
-}
-
-function calculateReadTime(content: unknown): string {
-  if (!content || typeof content !== 'object') return '5 min'
-  const contentStr = JSON.stringify(content)
-  const wordCount = contentStr.split(/\s+/).length
-  const minutes = Math.max(1, Math.ceil(wordCount / 200))
-  return `${minutes} min`
-}
 
 export function NewsHero({news}: {news: NewsItem}) {
   const imageUrl = news.heroImage?.url || FALLBACK_IMAGE
@@ -65,7 +42,7 @@ export function NewsHero({news}: {news: NewsItem}) {
         <div className="max-w-3xl">
           {/* Badges */}
           <motion.div className="flex flex-wrap items-center gap-2">
-            <TechBadge variant="dark">{categoryLabels[news.category] || news.category}</TechBadge>
+            <TechBadge variant="dark">{newsCategoryLabels[news.category] || news.category}</TechBadge>
             {(news.tags ? news.tags.split(';').slice(0, 2) : ['Innovacion', 'Software']).map(
               (tag, i) => (
                 <TechBadge key={i} variant="dark">
@@ -89,7 +66,7 @@ export function NewsHero({news}: {news: NewsItem}) {
           <motion.div className="mt-5 flex flex-wrap items-center gap-4 text-sm text-slate-300">
             <span className="inline-flex items-center gap-1.5">
               <Calendar className="h-4 w-4 text-[#28c2f3]" />
-              {formatDate(news.publishedAt)}
+              {formatNewsDate(news.publishedAt)}
             </span>
             <span className="inline-flex items-center gap-1.5">
               <Clock className="h-4 w-4 text-[#28c2f3]" />

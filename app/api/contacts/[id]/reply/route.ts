@@ -62,11 +62,6 @@ export async function POST(req: Request, { params }: { params: Params }) {
     }
 
     const { sendReplyEmail } = await import('@/src/lib/email')
-    const emailSent = await sendReplyEmail(contact.email as string, contactData, reply)
-
-    if (!emailSent) {
-      return NextResponse.json({ error: 'Error sending email' }, { status: 500 })
-    }
 
     await payload.update({
       collection: 'contacts',
@@ -99,6 +94,11 @@ export async function POST(req: Request, { params }: { params: Params }) {
           readAt: new Date().toISOString(),
         },
       })
+    }
+
+    const emailSent = await sendReplyEmail(contact.email as string, contactData, reply)
+    if (!emailSent) {
+      console.error('Reply saved but email failed to send for contact:', id)
     }
 
     return NextResponse.json({ success: true })

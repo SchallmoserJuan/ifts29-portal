@@ -3,32 +3,9 @@ import Image from 'next/image'
 import { Calendar, Clock } from 'lucide-react'
 import type { NewsItem } from '@/src/types/content'
 import { TechBadge } from '../ui/tech-badge'
+import { newsCategoryLabels, formatNewsDate, calculateReadTime } from '@/src/lib/news-utils'
 
 const FALLBACK_IMAGE = 'https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=600&q=80'
-
-const categoryLabels: Record<string, string> = {
-  general: 'General',
-  academic: 'Academica',
-  institutional: 'Institucional',
-  events: 'Eventos',
-}
-
-function formatDate(dateString: string): string {
-  const date = new Date(dateString)
-  return date.toLocaleDateString('es-AR', {
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric',
-  })
-}
-
-function calculateReadTime(content: unknown): string {
-  if (!content || typeof content !== 'object') return '5 min'
-  const contentStr = JSON.stringify(content)
-  const wordCount = contentStr.split(/\s+/).length
-  const minutes = Math.max(1, Math.ceil(wordCount / 200))
-  return `${minutes} min`
-}
 
 interface NewsCardProps {
   news: NewsItem
@@ -57,7 +34,7 @@ export function NewsCard({ news, variant = 'default' }: NewsCardProps) {
           {/* Date & read time badge */}
           <div className="absolute left-3 top-3 flex items-center gap-2 rounded bg-[#f7ee66] px-2.5 py-1.5 text-xs font-medium text-[#002649] shadow-sm">
             <Calendar className="h-3 w-3" />
-            <time>{formatDate(news.publishedAt)}</time>
+            <time>{formatNewsDate(news.publishedAt)}</time>
             <span>•</span>
             <span className="inline-flex items-center gap-1">
               <Clock className="h-3 w-3" />
@@ -68,7 +45,7 @@ export function NewsCard({ news, variant = 'default' }: NewsCardProps) {
 
         {/* Content */}
         <div className="flex flex-1 flex-col mt-4">
-          <h3 className={`text-2xl font-miedum leading-snug ${titleColor}`}>
+          <h3 className={`text-2xl font-medium leading-snug ${titleColor}`}>
             <span className={isDark ? 'news-card-underline-dark' : 'news-card-underline'}>
               {news.title}
             </span>
@@ -76,7 +53,7 @@ export function NewsCard({ news, variant = 'default' }: NewsCardProps) {
 
           {/* Tags */}
           <div className="mt-4 flex flex-wrap gap-2">
-            {(news.tags ? news.tags.split(';') : [categoryLabels[news.category] || news.category])
+            {(news.tags ? news.tags.split(';') : [newsCategoryLabels[news.category] || news.category])
               .slice(0, 3)
               .map((tag, index) => (
                 <TechBadge key={index} variant="default">

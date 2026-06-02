@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import { redirect } from 'next/navigation'
 import Link from 'next/link'
 import { PageShell } from '@/src/components/layout'
 import {
@@ -12,6 +11,14 @@ import {
   getPublicDocuments,
 } from '@/src/lib/content'
 import { Search, FileText, Home, GraduationCap, Newspaper, CalendarDays, Code2, Award, ClipboardList, FolderOpen, Mail, Building2, User, BookOpen, Shield, LogIn, UserPlus } from 'lucide-react'
+
+function stripAccents(str: string): string {
+  return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/ñ/g, 'n').replace(/Ñ/g, 'N')
+}
+
+function matchField(field: string, query: string): boolean {
+  return stripAccents(field.toLowerCase()).includes(stripAccents(query))
+}
 
 interface SitePage {
   title: string
@@ -60,7 +67,8 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
   const query = params.q?.trim().toLowerCase()
 
   if (!query) {
-    redirect('/')
+    const [news, events] = await Promise.all([getNewsList(), getEventsList()])
+    return <EmptySearchState latestNews={news.slice(0, 3)} latestEvents={events.slice(0, 3)} />
   }
 
   const [news, careers, events, projects, scholarships, companies, documents] = await Promise.all([
@@ -75,64 +83,64 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
 
   const newsResults = news.filter(
     (item) =>
-      item.title.toLowerCase().includes(query) ||
-      item.summary.toLowerCase().includes(query) ||
-      item.category.toLowerCase().includes(query) ||
-      (item.tags && item.tags.toLowerCase().includes(query))
+      matchField(item.title, query) ||
+      matchField(item.summary, query) ||
+      matchField(item.category, query) ||
+      (item.tags && matchField(item.tags, query))
   )
 
   const careerResults = careers.filter(
     (item) =>
-      item.name.toLowerCase().includes(query) ||
-      item.summary.toLowerCase().includes(query) ||
-      item.duration.toLowerCase().includes(query) ||
-      item.modality.toLowerCase().includes(query)
+      matchField(item.name, query) ||
+      matchField(item.summary, query) ||
+      matchField(item.duration, query) ||
+      matchField(item.modality, query)
   )
 
   const eventResults = events.filter(
     (item) =>
-      item.title.toLowerCase().includes(query) ||
-      item.description.toLowerCase().includes(query) ||
-      item.location.toLowerCase().includes(query)
+      matchField(item.title, query) ||
+      matchField(item.description, query) ||
+      matchField(item.location, query)
   )
 
   const projectResults = projects.filter(
     (item) =>
-      item.title.toLowerCase().includes(query) ||
-      item.summary.toLowerCase().includes(query) ||
-      item.category.toLowerCase().includes(query) ||
-      (item.tags && item.tags.toLowerCase().includes(query)) ||
-      (item.student?.firstName && item.student.firstName.toLowerCase().includes(query)) ||
-      (item.student?.lastName && item.student.lastName.toLowerCase().includes(query))
+      matchField(item.title, query) ||
+      matchField(item.summary, query) ||
+      matchField(item.category, query) ||
+      (item.tags && matchField(item.tags, query)) ||
+      (item.student?.firstName && matchField(item.student.firstName, query)) ||
+      (item.student?.lastName && matchField(item.student.lastName, query))
   )
 
   const scholarshipResults = scholarships.filter(
     (item) =>
-      item.title.toLowerCase().includes(query) ||
-      item.summary.toLowerCase().includes(query) ||
+      matchField(item.title, query) ||
+      matchField(item.summary, query) ||
       (item.requirements &&
-        item.requirements.some((r) => r.item.toLowerCase().includes(query)))
+        item.requirements.some((r) => matchField(r.item, query)))
   )
 
   const companyResults = companies.filter(
     (item) =>
-      item.name.toLowerCase().includes(query) ||
-      item.description.toLowerCase().includes(query) ||
-      item.practicesArea.toLowerCase().includes(query)
+      matchField(item.name, query) ||
+      matchField(item.description, query) ||
+      matchField(item.practicesArea, query)
   )
 
   const documentResults = documents.filter(
     (item) =>
-      item.title.toLowerCase().includes(query) ||
-      (item.description && item.description.toLowerCase().includes(query)) ||
-      item.category.toLowerCase().includes(query)
+      matchField(item.title, query) ||
+      (item.description && matchField(item.description, query)) ||
+      matchField(item.category, query)
   )
 
   const pageResults = sitePages.filter(
     (page) =>
-      page.title.toLowerCase().includes(query) ||
-      page.description.toLowerCase().includes(query) ||
-      page.keywords.some((k) => k.toLowerCase().includes(query))
+      matchField(page.title, query) ||
+      matchField(page.description, query) ||
+      page.keywords.some((k) => matchField(k, query))
   )
 
   const totalResults =
@@ -340,7 +348,7 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
                 {companyResults.map((company) => (
                   <Link
                     key={company.id}
-                    href="/noticias"
+                    href="/empresas"
                     className="block rounded-lg border border-slate-200 bg-white p-6 transition hover:border-[#28c2f3]/50 hover:shadow-md"
                   >
                     <div className="flex items-center gap-2 text-xs text-slate-400">
@@ -380,6 +388,82 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
               </div>
             </div>
           )}
+        </div>
+      </section>
+    </PageShell>
+  )
+}
+
+function EmptySearchState({
+  latestNews,
+  latestEvents,
+}: {
+  latestNews: { id: string | number; title: string; slug: string }[]
+  latestEvents: { id: string | number; title: string; date: string }[]
+}) {
+  return (
+    <PageShell>
+      <section className="bg-[#072c57] py-16 text-white sm:py-20">
+        <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-10">
+          <h1 className="font-heading text-4xl font-semibold sm:text-5xl">Buscar</h1>
+          <p className="mt-4 text-lg text-white/70">
+            Encontrá noticias, eventos, proyectos y más contenido del IFTS 29.
+          </p>
+          <form action="/buscar" method="GET" className="mt-8">
+            <div className="relative max-w-xl">
+              <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-400" />
+              <input
+                type="text"
+                name="q"
+                placeholder="¿Qué estás buscando?"
+                autoFocus
+                className="w-full rounded-xl border-0 bg-white/10 py-4 pl-12 pr-4 text-white placeholder:text-white/40 focus:bg-white/20 focus:outline-none focus:ring-2 focus:ring-[#28c2f3]/50"
+              />
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <section className="bg-[#f8f7f4] py-16 sm:py-20">
+        <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-10">
+          <div className="grid gap-10 md:grid-cols-2">
+            {latestNews.length > 0 && (
+              <div>
+                <h2 className="mb-4 text-xs font-semibold uppercase tracking-[0.28em] text-slate-400">
+                  Últimas noticias
+                </h2>
+                <div className="space-y-3">
+                  {latestNews.map((item) => (
+                    <Link
+                      key={item.id}
+                      href={`/noticias/${item.slug}`}
+                      className="block rounded-lg border border-slate-200 bg-white p-4 transition hover:border-[#28c2f3]/50 hover:shadow-sm"
+                    >
+                      {item.title}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
+            {latestEvents.length > 0 && (
+              <div>
+                <h2 className="mb-4 text-xs font-semibold uppercase tracking-[0.28em] text-slate-400">
+                  Próximos eventos
+                </h2>
+                <div className="space-y-3">
+                  {latestEvents.map((item) => (
+                    <Link
+                      key={item.id}
+                      href="/eventos"
+                      className="block rounded-lg border border-slate-200 bg-white p-4 transition hover:border-[#28c2f3]/50 hover:shadow-sm"
+                    >
+                      {item.title}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
         </div>
       </section>
     </PageShell>
