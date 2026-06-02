@@ -3,7 +3,7 @@ import { fileURLToPath } from 'url'
 
 import { sqliteAdapter } from '@payloadcms/db-sqlite'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
-import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
+// Storage plugins removed - using direct Vercel Blob or external URLs
 import { es } from '@payloadcms/translations/languages/es'
 import { buildConfig } from 'payload'
 import sharp from 'sharp'
@@ -25,6 +25,10 @@ import { SiteSettings } from './src/globals/SiteSettings'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
+
+if (!process.env.PAYLOAD_SECRET) {
+  throw new Error('PAYLOAD_SECRET environment variable is required')
+}
 
 export default buildConfig({
   admin: {
@@ -50,18 +54,9 @@ export default buildConfig({
   },
   collections: [Users, Media, Careers, News, Documents, Events, Projects, Companies, Contacts, Notifications, Scholarships],
   globals: [SiteSettings, InstitutionalContent, BecasPage],
-  plugins: [
-    vercelBlobStorage({
-      enabled: !!process.env.BLOB_READ_WRITE_TOKEN,
-      token: process.env.BLOB_READ_WRITE_TOKEN || '',
-      collections: {
-        media: true,
-        documents: true,
-      },
-    }),
-  ],
+  plugins: [],
   editor: lexicalEditor(),
-  secret: process.env.PAYLOAD_SECRET || 'desarrollo-super-seguro-cambiar-en-produccion',
+  secret: process.env.PAYLOAD_SECRET!,
   typescript: {
     outputFile: path.resolve(dirname, 'src/payload-types.ts'),
   },

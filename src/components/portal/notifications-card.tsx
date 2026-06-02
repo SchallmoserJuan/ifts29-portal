@@ -60,8 +60,8 @@ export function NotificationsCard() {
         setTotalPages(data.totalPages)
         setTotalDocs(data.totalDocs)
       }
-    } catch (error) {
-      console.error('Error fetching notifications:', error)
+    } catch {
+      // Notification fetch failed silently
     }
   }, [])
 
@@ -69,7 +69,9 @@ export function NotificationsCard() {
     fetchNotifications(currentPage)
 
     const interval = setInterval(() => {
-      fetchNotifications(currentPage)
+      if (document.visibilityState === 'visible') {
+        fetchNotifications(currentPage)
+      }
     }, 30000)
 
     return () => clearInterval(interval)
@@ -228,6 +230,8 @@ export function NotificationsCard() {
               {notifications.map((notification, index) => (
                 <div
                   key={notification.id}
+                  role="button"
+                  tabIndex={0}
                   className={`px-5 py-4 cursor-pointer transition-colors ${
                     notification.status === 'replied'
                       ? 'bg-green-50/50 hover:bg-green-50'
@@ -236,6 +240,12 @@ export function NotificationsCard() {
                         : 'bg-[#28c2f3]/5 hover:bg-[#28c2f3]/10'
                   }`}
                   onClick={() => handleOpen(notification, index)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault()
+                      handleOpen(notification, index)
+                    }
+                  }}
                 >
                   <div className="flex items-start gap-4">
                     <div className={`mt-0.5 shrink-0 rounded-full p-2 ${

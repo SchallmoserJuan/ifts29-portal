@@ -95,7 +95,7 @@ export async function SiteFooter() {
 
         <div className="border-t border-slate-300 pt-6 text-xs text-slate-500">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-            <p className="text-[#c7c2bc]">{settings.siteTitle} © 2026. All rights reserved.</p>
+            <p className="text-[#c7c2bc]">{settings.siteTitle} © {new Date().getFullYear()}. Desarrollado por alumnos.</p>
             <ul className="flex gap-6">
               {bottomLinks.map((link) => (
                 <li key={link.label}>

@@ -25,8 +25,8 @@ export function PageHeroImage({
     return () => {
       setHasImageHero(false)
       setHasImageBackground(false)
-    } // cleanup al desmontar
-  }, [])
+    }
+  }, [setHasImageHero, setHasImageBackground])
 
   return (
     <section

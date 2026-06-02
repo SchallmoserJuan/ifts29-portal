@@ -65,8 +65,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setUserState(null)
       router.push('/')
       router.refresh()
-    } catch (error) {
-      console.error('Logout error:', error)
+    } catch {
+      setUserState(null)
+      router.push('/')
+      router.refresh()
     }
   }, [router])
 

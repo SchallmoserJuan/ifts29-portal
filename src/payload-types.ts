@@ -318,7 +318,7 @@ export interface Career {
   createdAt: string;
 }
 /**
- * Todas las imágenes del portal. Se usan en noticias, eventos, proyectos y carreras.
+ * Todas las imágenes del portal. Pegá la URL de la imagen (ej. Cloudinary, Imgur, etc.)
  *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "media".
@@ -326,30 +326,15 @@ export interface Career {
 export interface Media {
   id: number;
   alt: string;
+  /**
+   * URL pública de la imagen (ej. https://... )
+   */
+  url: string;
   updatedAt: string;
   createdAt: string;
-  url?: string | null;
-  thumbnailURL?: string | null;
-  filename?: string | null;
-  mimeType?: string | null;
-  filesize?: number | null;
-  width?: number | null;
-  height?: number | null;
-  focalX?: number | null;
-  focalY?: number | null;
-  sizes?: {
-    card?: {
-      url?: string | null;
-      width?: number | null;
-      height?: number | null;
-      mimeType?: string | null;
-      filesize?: number | null;
-      filename?: string | null;
-    };
-  };
 }
 /**
- * Archivos PDF y Word descargables: biblioteca, normativas, guías y bolsa de empleo.
+ * Documentos descargables: biblioteca, normativas, guías y bolsa de empleo. Pegá la URL del archivo.
  *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "documents".
@@ -361,17 +346,12 @@ export interface Document {
   category: 'biblioteca' | 'guias' | 'normativas' | 'empleo';
   visibility: 'public' | 'students' | 'staff';
   career?: (number | null) | Career;
+  /**
+   * URL pública del archivo (ej. PDF en Google Drive, Cloudinary, etc.)
+   */
+  url: string;
   updatedAt: string;
   createdAt: string;
-  url?: string | null;
-  thumbnailURL?: string | null;
-  filename?: string | null;
-  mimeType?: string | null;
-  filesize?: number | null;
-  width?: number | null;
-  height?: number | null;
-  focalX?: number | null;
-  focalY?: number | null;
 }
 /**
  * Artículos informativos y novedades del instituto que se muestran en el portal público.
@@ -736,31 +716,9 @@ export interface UsersSelect<T extends boolean = true> {
  */
 export interface MediaSelect<T extends boolean = true> {
   alt?: T;
+  url?: T;
   updatedAt?: T;
   createdAt?: T;
-  url?: T;
-  thumbnailURL?: T;
-  filename?: T;
-  mimeType?: T;
-  filesize?: T;
-  width?: T;
-  height?: T;
-  focalX?: T;
-  focalY?: T;
-  sizes?:
-    | T
-    | {
-        card?:
-          | T
-          | {
-              url?: T;
-              width?: T;
-              height?: T;
-              mimeType?: T;
-              filesize?: T;
-              filename?: T;
-            };
-      };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -881,17 +839,9 @@ export interface DocumentsSelect<T extends boolean = true> {
   category?: T;
   visibility?: T;
   career?: T;
+  url?: T;
   updatedAt?: T;
   createdAt?: T;
-  url?: T;
-  thumbnailURL?: T;
-  filename?: T;
-  mimeType?: T;
-  filesize?: T;
-  width?: T;
-  height?: T;
-  focalX?: T;
-  focalY?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

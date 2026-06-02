@@ -12,7 +12,8 @@ export const Documents: CollectionConfig = {
     useAsTitle: 'title',
     defaultColumns: ['title', 'category', 'visibility', 'updatedAt'],
     group: 'Archivos y documentos',
-    description: 'Archivos PDF y Word descargables: biblioteca, normativas, guías y bolsa de empleo.',
+    description:
+      'Documentos descargables: biblioteca, normativas, guías y bolsa de empleo. Pegá la URL del archivo.',
   },
   access: {
     read: documentReadAccess,
@@ -65,12 +66,14 @@ export const Documents: CollectionConfig = {
       relationTo: 'careers',
       required: false,
     },
+    {
+      name: 'url',
+      label: 'URL del documento',
+      type: 'text',
+      required: true,
+      admin: {
+        description: 'URL pública del archivo (ej. PDF en Google Drive, Cloudinary, etc.)',
+      },
+    },
   ],
-  upload: {
-    mimeTypes: [
-      'application/pdf',
-      'application/msword',
-      'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-    ],
-  },
 }

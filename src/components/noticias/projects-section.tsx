@@ -42,7 +42,7 @@ export function ProjectsSection({ projects }: { projects: ProjectItem[] }) {
             return (
               <StaggerItem key={item.id}>
                 <article className="news-card group flex flex-col overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-xl">
-                  <Link href={`/proyectos/${item.slug}`} className="flex flex-col h-full">
+                  <Link href="/proyectos" className="flex flex-col h-full">
                     {/* Top accent bar */}
                     <div className={`h-1.5 w-full bg-gradient-to-r ${accentGradient}`} />
 

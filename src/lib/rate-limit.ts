@@ -3,20 +3,26 @@ interface RateLimitEntry {
   resetTime: number
 }
 
-const store = new Map<string, RateLimitEntry>()
-
 const CLEANUP_INTERVAL = 60 * 60 * 1000 // 1 hour
 
-function cleanup() {
-  const now = Date.now()
-  for (const [key, entry] of store.entries()) {
-    if (now > entry.resetTime) {
-      store.delete(key)
-    }
-  }
+const globalForRateLimit = globalThis as unknown as {
+  rateLimitStore?: Map<string, RateLimitEntry>
+  rateLimitCleanup?: ReturnType<typeof setInterval>
 }
 
-setInterval(cleanup, CLEANUP_INTERVAL)
+const store: Map<string, RateLimitEntry> =
+  globalForRateLimit.rateLimitStore ?? (globalForRateLimit.rateLimitStore = new Map())
+
+if (!globalForRateLimit.rateLimitCleanup) {
+  globalForRateLimit.rateLimitCleanup = setInterval(() => {
+    const now = Date.now()
+    for (const [key, entry] of store.entries()) {
+      if (now > entry.resetTime) {
+        store.delete(key)
+      }
+    }
+  }, CLEANUP_INTERVAL)
+}
 
 export interface RateLimitResult {
   success: boolean

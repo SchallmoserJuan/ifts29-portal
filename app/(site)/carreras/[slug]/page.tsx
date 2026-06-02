@@ -22,7 +22,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>
 }): Promise<Metadata> {
   const { slug } = await params
-  const career = (await getCareerBySlug(slug)) as any
+  const career = await getCareerBySlug(slug)
 
   if (!career) {
     return {
@@ -60,7 +60,7 @@ export default async function CareerDetailPage({
   params: Promise<{ slug: string }>
 }) {
   const { slug } = await params
-  const career = (await getCareerBySlug(slug)) as any
+  const career = await getCareerBySlug(slug)
 
   if (!career) {
     notFound()
