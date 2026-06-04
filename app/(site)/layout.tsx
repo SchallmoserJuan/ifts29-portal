@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { Suspense } from 'react'
 
 import '@fontsource/dm-sans/400.css'
 import '@fontsource/dm-sans/500.css'
@@ -8,10 +9,13 @@ import '@fontsource/playfair-display/500.css'
 import '@fontsource/playfair-display/600.css'
 import '@fontsource/playfair-display/700.css'
 
-import { AuthProvider } from '@/src/context/auth-context'
-import { getSiteSettings } from '@/src/lib/content'
-import { SkipToContent } from '@/src/components/ui'
+import {AuthProvider} from '@/src/context/auth-context'
+import {getSiteSettings} from '@/src/lib/content'
+import {SkipToContent} from '@/src/components/ui'
+import {GoogleAnalytics} from './GoogleAnalytics'
 import './globals.css'
+
+const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID
 
 export async function generateMetadata(): Promise<Metadata> {
   const settings = await getSiteSettings()
@@ -78,8 +82,31 @@ export default function RootLayout({
             }),
           }}
         />
+        {GA_MEASUREMENT_ID && (
+          <script
+            async
+            src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+          />
+        )}
+        {GA_MEASUREMENT_ID && (
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${GA_MEASUREMENT_ID}', {
+                  page_path: window.location.pathname,
+                });
+              `,
+            }}
+          />
+        )}
       </head>
       <body className="min-h-screen bg-background text-foreground antialiased">
+        <Suspense fallback={null}>
+          <GoogleAnalytics />
+        </Suspense>
         <SkipToContent />
         <AuthProvider>{children}</AuthProvider>
       </body>
