@@ -22,7 +22,7 @@ export function GoogleAnalytics() {
     const url = pathname + (searchParams.toString() ? `?${searchParams}` : '')
 
     window.gtag('config', GA_MEASUREMENT_ID, {
-      page_path: url,
+      page_location: window.location.origin + url,
     })
   }, [pathname, searchParams])
 
