@@ -30,6 +30,7 @@ export default defineConfig({
         'src/test/**',
         'src/scripts/**',
         'src/payload-types.ts',
+        'src/lib/payload.ts',
         'src/**/*.d.ts',
       ],
       thresholds: {

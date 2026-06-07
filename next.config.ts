@@ -10,6 +10,9 @@ const securityHeaders = [
 
 const nextConfig: NextConfig = {
   serverExternalPackages: ['sharp'],
+  turbopack: {
+    root: process.cwd(),
+  },
   devIndicators: {
     position: 'bottom-right',
   },

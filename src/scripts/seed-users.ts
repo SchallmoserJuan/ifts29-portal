@@ -1,6 +1,5 @@
 import 'dotenv/config'
 import {getPayload} from 'payload'
-import config from '@payload-config'
 
 const TEST_USERS = [
   {
@@ -31,7 +30,7 @@ async function seedUsers() {
   console.log('  SEED USUARIOS DE PRUEBA — IFTS 29')
   console.log('======================================')
 
-  const payload = await getPayload({config})
+  const payload = await getPayload()
 
   for (const user of TEST_USERS) {
     try {
