@@ -9,6 +9,10 @@ import {GET} from '@/app/api/users/me/route'
 
 const mockGetCurrentUser = vi.mocked(getCurrentUser)
 
+function mockRequest(): Request {
+  return new Request('http://localhost', {headers: {'x-forwarded-for': '127.0.0.1'}})
+}
+
 beforeEach(() => {
   mockGetCurrentUser.mockReset()
 })
@@ -27,7 +31,7 @@ describe('GET /api/users/me', () => {
       lastName: 'User',
     } as any)
 
-    const response = await GET()
+    const response = await GET(mockRequest())
     const body = await response.json()
 
     expect(response.status).toBe(200)
@@ -41,7 +45,7 @@ describe('GET /api/users/me', () => {
   it('returns user: null when there is no session', async () => {
     mockGetCurrentUser.mockResolvedValue(null)
 
-    const response = await GET()
+    const response = await GET(mockRequest())
     const body = await response.json()
 
     expect(response.status).toBe(200)
@@ -51,7 +55,7 @@ describe('GET /api/users/me', () => {
   it('returns user: null when getCurrentUser throws', async () => {
     mockGetCurrentUser.mockRejectedValue(new Error('DB error'))
 
-    const response = await GET()
+    const response = await GET(mockRequest())
     const body = await response.json()
 
     expect(response.status).toBe(200)
