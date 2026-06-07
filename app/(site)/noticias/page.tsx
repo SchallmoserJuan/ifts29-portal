@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 
 import { PageShell } from '@/src/components/layout'
 import { NewsHero, NewsSection, EventsSection, ProjectsSection, CompaniesSection, TagFilterBadge } from '@/src/components/noticias'
-import { getNewsList, getEventsList, getProjectsList, getCompaniesList } from '@/src/lib/content'
+import { getNewsListPaginated, getEventsList, getProjectsList, getCompaniesList } from '@/src/lib/content'
 import type { NewsItem } from '@/src/types/content'
 
 export const metadata: Metadata = {
@@ -18,41 +18,51 @@ export default async function NewsPage({
   searchParams: Promise<{ tag?: string }>
 }) {
   const { tag } = await searchParams
-  const news = await getNewsList()
+  const decodedTag = tag ? decodeURIComponent(tag) : undefined
+
   const events = await getEventsList()
   const projects = await getProjectsList()
   const companies = await getCompaniesList()
 
-  const decodedTag = tag ? decodeURIComponent(tag) : undefined
-  const filteredNews = decodedTag
-    ? news.filter((item: NewsItem) =>
-        item.tags?.split(';').some((t) => t.trim() === decodedTag)
-      )
-    : news
+  if (decodedTag) {
+    const { docs: allNews } = await getNewsListPaginated(1, 50)
+    const filteredNews = allNews.filter((item: NewsItem) =>
+      item.tags?.split(';').some((t) => t.trim() === decodedTag)
+    )
 
-  const featuredNews = filteredNews.find((item: NewsItem) => item.featured)
-  const heroNews = decodedTag ? null : (featuredNews || news[0])
+    const heroNews = filteredNews[0] || null
+    const sectionNews = heroNews
+      ? filteredNews.filter((item: NewsItem) => item.id !== heroNews.id)
+      : filteredNews
+
+    return (
+      <PageShell>
+        {heroNews && <NewsHero news={heroNews} />}
+        <TagFilterBadge tag={tag!} />
+        <NewsSection news={sectionNews} />
+      </PageShell>
+    )
+  }
+
+  const { docs: news } = await getNewsListPaginated(1, 50)
+
+  const featuredNews = news.find((item: NewsItem) => item.featured)
+  const heroNews = featuredNews || news[0]
   const sectionNews = heroNews
-    ? filteredNews.filter((item: NewsItem) => item.id !== heroNews.id)
-    : filteredNews
+    ? news.filter((item: NewsItem) => item.id !== heroNews.id)
+    : news
 
   return (
     <PageShell>
       {heroNews && <NewsHero news={heroNews} />}
 
-      {decodedTag && <TagFilterBadge tag={tag!} />}
+      <NewsSection news={sectionNews} />
 
-      <NewsSection news={sectionNews} limit={decodedTag ? sectionNews.length : 3} />
+      <EventsSection events={events} />
 
-      {!decodedTag && (
-        <>
-          <EventsSection events={events} />
+      <ProjectsSection projects={projects} />
 
-          <ProjectsSection projects={projects} />
-
-          <CompaniesSection companies={companies} />
-        </>
-      )}
+      <CompaniesSection companies={companies} />
     </PageShell>
   )
 }

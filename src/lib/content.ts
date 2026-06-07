@@ -95,6 +95,34 @@ export const getNewsList = cache(async () => {
   }
 })
 
+export const getNewsListPaginated = cache(async (page = 1, limit = 9) => {
+  const payload = await getPayloadClient()
+
+  try {
+    const result = await payload.find({
+      collection: 'news',
+      depth: 1,
+      limit,
+      page,
+      sort: '-publishedAt',
+    })
+
+    return {
+      docs: (result.docs.length > 0 ? result.docs : defaultNews) as NewsItem[],
+      totalDocs: result.totalDocs,
+      totalPages: result.totalPages,
+      page: result.page,
+    }
+  } catch {
+    return {
+      docs: defaultNews,
+      totalDocs: defaultNews.length,
+      totalPages: 1,
+      page: 1,
+    }
+  }
+})
+
 export const getNewsBySlug = cache(async (slug: string) => {
   const payload = await getPayloadClient()
 
