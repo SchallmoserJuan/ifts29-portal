@@ -157,7 +157,7 @@ export function MegaMenu({open, onClose, latestNews}: MegaMenuProps) {
           {label: 'Inscripciones', href: '/inscripciones'},
           {label: 'Becas', href: '/becas'},
           {label: 'Articulaciones', href: '/carreras/tecnicatura-superior-en-desarrollo-de-software#articulaciones'},
-          {label: 'Agenda académica', href: '/eventos'},
+          {label: 'Agenda académica', href: '/agenda'},
           {label: 'Horarios', href: '/carreras/horarios'},
         ],
       },
@@ -171,7 +171,7 @@ export function MegaMenu({open, onClose, latestNews}: MegaMenuProps) {
       {
         label: 'Eventos',
         items: [
-          {label: 'Ver todos los eventos', href: '/eventos'},
+          {label: 'Ver todos los eventos', href: '/agenda'},
         ],
       },
       {

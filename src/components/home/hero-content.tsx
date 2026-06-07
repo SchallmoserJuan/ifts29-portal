@@ -8,7 +8,7 @@ import { GraduationCap, Newspaper, CalendarDays, ArrowRight } from 'lucide-react
 const quickTags = [
   { label: 'Carrera', href: '/carreras/tecnicatura-superior-en-desarrollo-de-software', icon: GraduationCap },
   { label: 'Noticias', href: '/noticias', icon: Newspaper },
-  { label: 'Eventos', href: '/eventos', icon: CalendarDays },
+  { label: 'Eventos', href: '/agenda', icon: CalendarDays },
 ]
 
 const trustBadges = [

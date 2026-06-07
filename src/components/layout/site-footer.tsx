@@ -9,7 +9,7 @@ const footerLinks = [
       {label: 'Institucional', href: '/institucional'},
       {label: 'Carreras', href: '/carreras'},
       {label: 'Noticias', href: '/noticias'},
-      {label: 'Eventos', href: '/eventos'},
+      {label: 'Eventos', href: '/agenda'},
       {label: 'Proyectos', href: '/proyectos'},
     ],
   },

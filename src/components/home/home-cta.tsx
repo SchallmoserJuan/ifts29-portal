@@ -32,7 +32,7 @@ const quickLinks = [
     icon: CalendarDays,
     title: 'Eventos',
     description: 'Charlas, talleres, jornadas y actividades.',
-    href: '/eventos',
+    href: '/agenda',
   },
   {
     icon: Mail,

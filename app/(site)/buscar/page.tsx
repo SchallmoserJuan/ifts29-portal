@@ -34,7 +34,7 @@ const sitePages: SitePage[] = [
   { title: 'Tecnicatura en Desarrollo de Software', description: 'Plan de estudios, duración y modalidad', href: '/carreras/tecnicatura-superior-en-desarrollo-de-software', keywords: ['tecnicatura', 'desarrollo', 'software', 'programación', 'plan de estudios'], icon: GraduationCap },
   { title: 'Horarios de cursado', description: 'Horarios y calendario académico', href: '/carreras/horarios', keywords: ['horarios', 'cursado', 'calendario', 'turnos'], icon: CalendarDays },
   { title: 'Noticias', description: 'Novedades y comunicaciones del instituto', href: '/noticias', keywords: ['noticias', 'novedades', 'comunicados', 'actualidad'], icon: Newspaper },
-  { title: 'Eventos', description: 'Charlas, talleres y actividades', href: '/eventos', keywords: ['eventos', 'actividades', 'charlas', 'talleres', 'jornadas'], icon: CalendarDays },
+  { title: 'Eventos', description: 'Charlas, talleres y actividades', href: '/agenda', keywords: ['eventos', 'actividades', 'charlas', 'talleres', 'jornadas'], icon: CalendarDays },
   { title: 'Agenda académica', description: 'Calendario de actividades institucionales', href: '/agenda', keywords: ['agenda', 'calendario', 'actividades', 'cronograma'], icon: CalendarDays },
   { title: 'Proyectos de estudiantes', description: 'Trabajos prácticos y proyectos de alumnos', href: '/proyectos', keywords: ['proyectos', 'trabajos', 'alumnos', 'estudiantes', 'prácticas'], icon: Code2 },
   { title: 'Becas', description: 'Programas de financiamiento y becas', href: '/becas', keywords: ['becas', 'financiamiento', 'progresar', 'beca'], icon: Award },
@@ -274,7 +274,7 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
                 {eventResults.map((event) => (
                   <Link
                     key={event.id}
-                    href="/eventos"
+                    href="/agenda"
                     className="block rounded-lg border border-slate-200 bg-white p-6 transition hover:border-[#28c2f3]/50 hover:shadow-md"
                   >
                     <div className="flex items-center gap-2 text-xs text-slate-400">
@@ -454,7 +454,7 @@ function EmptySearchState({
                   {latestEvents.map((item) => (
                     <Link
                       key={item.id}
-                      href="/eventos"
+                      href="/agenda"
                       className="block rounded-lg border border-slate-200 bg-white p-4 transition hover:border-[#28c2f3]/50 hover:shadow-sm"
                     >
                       {item.title}

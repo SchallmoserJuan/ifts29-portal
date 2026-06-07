@@ -57,7 +57,7 @@ const allSuggestions: SearchSuggestion[] = [
   { label: 'Noticias del instituto', href: '/noticias', category: 'Noticias', icon: Newspaper },
 
   // Eventos
-  { label: 'Eventos y actividades', href: '/eventos', category: 'Eventos', icon: MapPin },
+  { label: 'Eventos y actividades', href: '/agenda', category: 'Eventos', icon: MapPin },
   { label: 'Agenda académica', href: '/agenda', category: 'Eventos', icon: CalendarDays },
 
   // Proyectos

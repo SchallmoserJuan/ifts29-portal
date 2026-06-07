@@ -11,7 +11,7 @@ export function EventsSection({ events }: { events: EventItem[] }) {
       <div className="mx-auto w-full max-w-7xl px-6 sm:px-8 lg:px-12">
         <SectionHeader
           title="Próximos eventos"
-          href="/eventos"
+          href="/agenda"
           linkText="Ver todos los eventos"
           description="Descubrí las actividades, charlas y workshops que tenemos preparados para la comunidad tecnologica."
         />
