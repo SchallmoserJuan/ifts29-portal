@@ -9,6 +9,11 @@ export default defineConfig({
     globals: true,
     environment: 'jsdom',
     setupFiles: ['./src/test/setup.ts'],
+    reporters: [
+      'verbose',
+      ['html', {outputFile: './test-report/index.html'}],
+      ['json', {outputFile: './test-results.json'}],
+    ],
     include: ['src/**/*.{test,spec}.{ts,tsx}'],
     exclude: ['node_modules', '.next', 'src/scripts'],
     environmentOptions: {
@@ -18,7 +23,8 @@ export default defineConfig({
     },
     coverage: {
       provider: 'v8',
-      reporter: ['text', 'lcov'],
+      reporter: ['text', 'lcov', 'html', 'json-summary'],
+      reportsDirectory: './coverage',
       include: ['src/**/*.{ts,tsx}'],
       exclude: [
         'src/test/**',
@@ -26,6 +32,11 @@ export default defineConfig({
         'src/payload-types.ts',
         'src/**/*.d.ts',
       ],
+      thresholds: {
+        'src/lib/**': {lines: 37, statements: 37, functions: 35, branches: 35},
+        'src/context/**': {lines: 60, statements: 60, functions: 60, branches: 60},
+        'src/fields/**': {lines: 60, statements: 60, functions: 60, branches: 60},
+      },
     },
   },
   resolve: {
