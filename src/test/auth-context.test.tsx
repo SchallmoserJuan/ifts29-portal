@@ -32,6 +32,21 @@ function TestConsumer() {
   )
 }
 
+function SetUserConsumer() {
+  const {user, setUser} = useAuth()
+  return (
+    <div>
+      <span data-testid="user">{user ? user.email : 'null'}</span>
+      <button
+        onClick={() => setUser({id: 2, email: 'student@ifts29.edu.ar', dni: '123', role: 'student', status: 'approved'})}
+        data-testid="set-user"
+      >
+        set user
+      </button>
+    </div>
+  )
+}
+
 describe('AuthProvider', () => {
   it('starts with isLoading true before the fetch resolves', async () => {
     fetchMock.mockReturnValue(new Promise(() => {}))
@@ -85,6 +100,36 @@ describe('AuthProvider', () => {
     expect(getByTestId('user').textContent).toBe('null')
   })
 
+  it('sets user to null when the fetch returns a non-200 status', async () => {
+    fetchMock.mockResolvedValue(new Response(null, {status: 401}))
+
+    const {getByTestId} = render(
+      <AuthProvider>
+        <TestConsumer />
+      </AuthProvider>,
+    )
+
+    await waitFor(() => {
+      expect(getByTestId('loading').textContent).toBe('false')
+    })
+    expect(getByTestId('user').textContent).toBe('null')
+  })
+
+  it('sets user to null and isLoading false when the fetch throws', async () => {
+    fetchMock.mockRejectedValue(new Error('Network error'))
+
+    const {getByTestId} = render(
+      <AuthProvider>
+        <TestConsumer />
+      </AuthProvider>,
+    )
+
+    await waitFor(() => {
+      expect(getByTestId('loading').textContent).toBe('false')
+    })
+    expect(getByTestId('user').textContent).toBe('null')
+  })
+
   it('clears user after logout is called', async () => {
     fetchMock.mockResolvedValueOnce(
       new Response(JSON.stringify({user: {id: 1, email: 'admin@ifts29.edu.ar', role: 'admin'}}), {
@@ -109,6 +154,58 @@ describe('AuthProvider', () => {
 
     await waitFor(() => {
       expect(getByTestId('user').textContent).toBe('null')
+    })
+  })
+
+  it('clears user after logout when the logout fetch throws', async () => {
+    fetchMock.mockResolvedValueOnce(
+      new Response(JSON.stringify({user: {id: 1, email: 'admin@ifts29.edu.ar', role: 'admin'}}), {
+        status: 200,
+        headers: {'Content-Type': 'application/json'},
+      }),
+    )
+
+    fetchMock.mockRejectedValueOnce(new Error('Logout failed'))
+
+    const {getByTestId} = render(
+      <AuthProvider>
+        <TestConsumer />
+      </AuthProvider>,
+    )
+
+    await waitFor(() => {
+      expect(getByTestId('user').textContent).toBe('admin@ifts29.edu.ar')
+    })
+
+    getByTestId('logout').click()
+
+    await waitFor(() => {
+      expect(getByTestId('user').textContent).toBe('null')
+    })
+  })
+
+  it('setUser updates the user and stops loading', async () => {
+    fetchMock.mockResolvedValue(
+      new Response(JSON.stringify({user: null}), {
+        status: 200,
+        headers: {'Content-Type': 'application/json'},
+      }),
+    )
+
+    const {getByTestId} = render(
+      <AuthProvider>
+        <SetUserConsumer />
+      </AuthProvider>,
+    )
+
+    await waitFor(() => {
+      expect(getByTestId('user').textContent).toBe('null')
+    })
+
+    getByTestId('set-user').click()
+
+    await waitFor(() => {
+      expect(getByTestId('user').textContent).toBe('student@ifts29.edu.ar')
     })
   })
 })

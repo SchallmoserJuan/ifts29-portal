@@ -41,6 +41,12 @@ describe('sendReplyEmail', () => {
     const result = await sendReplyEmail('ana@example.com', contact, 'Gracias.')
     expect(result).toBe(false)
   })
+
+  it('parses JSON response when the body is not plain text OK', async () => {
+    fetchMock.mockResolvedValueOnce(new Response(JSON.stringify({success: true}), {status: 200}))
+    const result = await sendReplyEmail('ana@example.com', contact, 'Gracias.')
+    expect(result).toBe(true)
+  })
 })
 
 describe('sendNewContactNotification', () => {
