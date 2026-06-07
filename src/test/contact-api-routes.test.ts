@@ -383,7 +383,7 @@ describe('POST /api/contacts/[id]/reply', () => {
 describe('GET /api/contacts', () => {
   it('retorna 400 indicando que se use /api/contacts/[id]', async () => {
     const {GET} = await import('@/app/api/contacts/route')
-    const res = await GET()
+    const res = await GET(new Request('http://localhost:3000/api/contacts'))
     expect(res.status).toBe(400)
     const body = await res.json()
     expect(body.error).toContain('/api/contacts/[id]')
@@ -393,7 +393,7 @@ describe('GET /api/contacts', () => {
 describe('POST /api/contacts', () => {
   it('retorna 400 indicando que se use /api/contacts/[id]/reply', async () => {
     const {POST} = await import('@/app/api/contacts/route')
-    const res = await POST()
+    const res = await POST(new Request('http://localhost:3000/api/contacts'))
     expect(res.status).toBe(400)
     const body = await res.json()
     expect(body.error).toContain('/api/contacts/[id]/reply')
