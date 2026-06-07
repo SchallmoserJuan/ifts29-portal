@@ -73,3 +73,9 @@ La documentación visual del sistema se encuentra en [`documents/Diagramas.pdf`]
 | 🔗 Entidad-Relación | Modelo de datos y relaciones |
 
 Para visualizar los diagramas, abrir el archivo PDF con cualquier visor de documentos.
+
+---
+
+## Mantenimiento
+
+- [Plan de mantenimiento del portal](docs/maintenance.md) — actualizaciones, backups, monitoreo, seguridad y procedimiento para cambios evolutivos.
