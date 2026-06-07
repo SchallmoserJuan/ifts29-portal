@@ -6,7 +6,7 @@
   "main": "package.json",
   "license": "MIT",
   "scripts": {
-    "dev": "NODE_NO_WARNINGS=1 next dev",
+    "dev": "next dev",
     "build": "NODE_NO_WARNINGS=1 next build --webpack",
     "start": "next start",
     "lint": "eslint .",
