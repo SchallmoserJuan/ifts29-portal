@@ -5,6 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight, Clock, MapPin, FileText } from 'lucide-react'
 import type { CareerItem } from '@/src/types/content'
+import { trackCareerClick } from '@/src/lib/analytics'
 
 const FALLBACK_IMAGE =
   'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=1800&q=80'
@@ -27,6 +28,7 @@ export function CareerCard({ career, featured = false }: CareerCardProps) {
     >
       <Link
         href={`/carreras/${career.slug}`}
+        onClick={() => trackCareerClick(career.name)}
         className="group block overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition-all duration-500 hover:shadow-xl hover:-translate-y-1"
       >
         <div

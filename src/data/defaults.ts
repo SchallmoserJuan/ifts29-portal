@@ -554,7 +554,7 @@ export const defaultCompanies: CompanyItem[] = [
   {
     id: 'default-company-2',
     name: 'DataSystems SA',
-    description: 'Compania especializada en soluciones deBig Data e inteligencia empresarial.',
+    description: 'Compania especializada en soluciones de Big Data e inteligencia empresarial.',
     practicesArea: 'Analisis de Datos y Machine Learning',
     website: 'https://datasystems.com.ar',
     contactEmail: 'empleo@datasystems.com.ar',

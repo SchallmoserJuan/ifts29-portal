@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect, useCallback, useMemo } from 'react'
 import { useRouter } from 'next/navigation'
 import { AnimatePresence, motion } from 'framer-motion'
+import {trackSearch} from '@/src/lib/analytics'
 import {
   Search,
   ArrowRight,
@@ -58,7 +59,7 @@ const allSuggestions: SearchSuggestion[] = [
 
   // Eventos
   { label: 'Eventos y actividades', href: '/eventos', category: 'Eventos', icon: MapPin },
-  { label: 'Agenda académica', href: '/agenda', category: 'Eventos', icon: CalendarDays },
+  { label: 'Eventos académicos', href: '/eventos', category: 'Eventos', icon: CalendarDays },
 
   // Proyectos
   { label: 'Proyectos de estudiantes', href: '/proyectos', category: 'Proyectos', icon: Code2 },
@@ -122,6 +123,7 @@ export function SearchBar() {
     (e: React.FormEvent) => {
       e.preventDefault()
       if (query.trim()) {
+        trackSearch(query.trim())
         router.push(`/buscar?q=${encodeURIComponent(query.trim())}`)
         setIsOpen(false)
         setIsFocused(false)
