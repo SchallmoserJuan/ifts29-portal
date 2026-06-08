@@ -30,6 +30,13 @@ export type ArticulationItem = {
 export type AuthorityItem = {
   name: string
   role: string
+  bio?: string
+  image?: string | {url: string; alt?: string}
+}
+
+export type MilestoneItem = {
+  year: string
+  text: string
 }
 
 export type ScholarshipItem = {
@@ -176,6 +183,7 @@ export type InstitutionalContentData = {
   vision: string
   history: unknown
   authorities: AuthorityItem[]
+  milestones?: MilestoneItem[]
 }
 
 export type EventItem = {

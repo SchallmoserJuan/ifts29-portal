@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { trackContactFormSubmit } from "@/src/lib/analytics";
 
 export function ContactForm() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
@@ -21,6 +22,7 @@ export function ContactForm() {
 
       if (!response.ok) throw new Error();
       setStatus("success");
+      trackContactFormSubmit();
       (e.target as HTMLFormElement).reset();
     } catch (err) {
       setStatus("error");

@@ -2,10 +2,7 @@
 
 import {useEffect} from 'react'
 import {motion} from 'framer-motion'
-import Link from 'next/link'
 import {useHero} from '../layout/hero-context'
-
-const easing: [number, number, number, number] = [0.22, 1, 0.36, 1]
 
 export function InstitutionalHero() {
   const {setHasImageHero} = useHero()
@@ -17,7 +14,7 @@ export function InstitutionalHero() {
 
   return (
     <section className="relative flex min-h-[65vh] flex-col justify-end overflow-hidden">
-      <div className="absolute inset-0 bg-cover bg-center bg-[#072c57]" />
+      <div className="absolute inset-0 bg-cover bg-center bg-[url('https://images.unsplash.com/photo-1523050854058-8df90110df7?auto=format&fit=crop&w=1920&q=80')] bg-[#072c57]" />
 
       <div className="relative z-10 mx-auto w-full max-w-[1400px] px-6 pb-20 pt-40 sm:px-10 md:pb-28 md:pt-48">
         <motion.div className="max-w-4xl">

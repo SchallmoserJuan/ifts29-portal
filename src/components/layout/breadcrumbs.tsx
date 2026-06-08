@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { ChevronRight } from 'lucide-react'
 import { useHero } from './hero-context'
 
 export function Breadcrumbs() {
@@ -32,7 +33,7 @@ export function Breadcrumbs() {
 
           return (
             <div key={href} className="flex items-center gap-2">
-              <span>{'>'}</span>
+              <ChevronRight className="h-3 w-3 text-white/40" />
 
               <Link href={href} className="navbar-underline hover:underline">
                 {label}

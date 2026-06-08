@@ -3,6 +3,7 @@ import type { ReactNode } from 'react'
 import { HeroProvider } from './hero-context'
 import { SiteFooter } from './site-footer'
 import { SiteHeader } from './site-header'
+import { ScrollToTop } from '../ui/scroll-to-top'
 
 export async function PageShell({ children }: { children: ReactNode }) {
   return (
@@ -14,6 +15,7 @@ export async function PageShell({ children }: { children: ReactNode }) {
       </main>
 
       <SiteFooter />
+      <ScrollToTop />
     </HeroProvider>
   )
 }

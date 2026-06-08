@@ -45,6 +45,36 @@ export const InstitutionalContent: GlobalConfig = {
           type: 'text',
           required: true,
         },
+        {
+          name: 'bio',
+          label: 'Biografia',
+          type: 'textarea',
+        },
+        {
+          name: 'image',
+          label: 'Foto',
+          type: 'upload',
+          relationTo: 'media',
+        },
+      ],
+    },
+    {
+      name: 'milestones',
+      label: 'Hitos historicos',
+      type: 'array',
+      fields: [
+        {
+          name: 'year',
+          label: 'Año',
+          type: 'text',
+          required: true,
+        },
+        {
+          name: 'text',
+          label: 'Descripcion',
+          type: 'text',
+          required: true,
+        },
       ],
     },
   ],

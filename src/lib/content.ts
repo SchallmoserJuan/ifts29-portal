@@ -34,6 +34,10 @@ export const getInstitutionalContent = cache(async () => {
         content?.authorities && content.authorities.length > 0
           ? content.authorities
           : defaultInstitutional.authorities,
+      milestones:
+        content?.milestones && content.milestones.length > 0
+          ? content.milestones
+          : defaultInstitutional.milestones,
     } as InstitutionalContentData
   } catch {
     return defaultInstitutional

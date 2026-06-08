@@ -85,22 +85,35 @@ export default async function EventosPage() {
               </div>
             </div>
 
-            <div className="rounded-2xl bg-[#072c57] p-8 text-white lg:p-10">
-              <p className="text-sm font-semibold uppercase tracking-wider text-[#28c2f3]">
-                Próximo evento destacado
-              </p>
-              <h3 className="mt-3 text-2xl font-semibold">
-                Jornada de Puertas Abiertas 2026
-              </h3>
-              <p className="mt-3 text-white/70">
-                Vení a conocer nuestras instalaciones, conversá con docentes y estudiantes, y descubrí
-                todo lo que ofrece la Tecnicatura en Desarrollo de Software.
-              </p>
-              <div className="mt-6 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm text-white">
-                <span className="h-2 w-2 rounded-full bg-[#28c2f3]" />
-                Presencial — 15 de mayo de 2026
+            {upcomingEvents.length > 0 ? (
+              <div className="rounded-2xl bg-[#072c57] p-8 text-white lg:p-10">
+                <p className="text-sm font-semibold uppercase tracking-wider text-[#28c2f3]">
+                  Próximo evento destacado
+                </p>
+                <h3 className="mt-3 text-2xl font-semibold">{upcomingEvents[0].title}</h3>
+                <p className="mt-3 text-white/70">{upcomingEvents[0].description}</p>
+                <div className="mt-6 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm text-white">
+                  <span className="h-2 w-2 rounded-full bg-[#28c2f3]" />
+                  {upcomingEvents[0].location} —{' '}
+                  {new Date(upcomingEvents[0].date).toLocaleDateString('es-AR', {
+                    day: 'numeric',
+                    month: 'long',
+                    year: 'numeric',
+                  })}
+                </div>
               </div>
-            </div>
+            ) : (
+              <div className="rounded-2xl bg-[#072c57] p-8 text-white lg:p-10">
+                <p className="text-sm font-semibold uppercase tracking-wider text-[#28c2f3]">
+                  Sin eventos próximos
+                </p>
+                <h3 className="mt-3 text-2xl font-semibold">¡Próximamente!</h3>
+                <p className="mt-3 text-white/70">
+                  Estamos organizando nuevas actividades. Volvé pronto para conocer los próximos
+                  eventos del IFTS 29.
+                </p>
+              </div>
+            )}
           </div>
         </div>
       </section>
