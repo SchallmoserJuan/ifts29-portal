@@ -20,6 +20,11 @@ export const defaultInstitutional: InstitutionalContentData = {
     { name: 'Equipo Directivo IFTS 29', role: 'Conduccion institucional' },
     { name: 'Coordinacion Academica', role: 'Gestion de oferta y contenidos' },
   ],
+  milestones: [
+    {year: '2019', text: 'Fundacion del instituto con la primera cohorte de estudiantes'},
+    {year: '2021', text: 'Expansion de la oferta academica y nueva sede equipada'},
+    {year: '2024', text: 'Reconocimiento por excelencia en formacion tecnica a distancia'},
+  ],
 }
 
 export const defaultCareers: CareerItem[] = [
@@ -30,7 +35,7 @@ export const defaultCareers: CareerItem[] = [
     summary:
       'Formacion de excelencia orientada al desarrollo de software, arquitectura de sistemas, bases de datos y practicas profesionalizantes en el ecosistema tecnologico actual.',
     duration: '3 años',
-    modality: 'Presencial',
+    modality: 'A distancia',
     resolution: 'Res. M.E.N. N° 1234/2023',
     requirements: [
       { item: 'Titulo secundario completo' },
@@ -549,7 +554,7 @@ export const defaultCompanies: CompanyItem[] = [
   {
     id: 'default-company-2',
     name: 'DataSystems SA',
-    description: 'Compania especializada en soluciones deBig Data e inteligencia empresarial.',
+    description: 'Compania especializada en soluciones de Big Data e inteligencia empresarial.',
     practicesArea: 'Analisis de Datos y Machine Learning',
     website: 'https://datasystems.com.ar',
     contactEmail: 'empleo@datasystems.com.ar',

@@ -1030,6 +1030,15 @@ export interface InstitutionalContent {
     | {
         name: string;
         role: string;
+        bio?: string | null;
+        image?: (number | null) | Media;
+        id?: string | null;
+      }[]
+    | null;
+  milestones?:
+    | {
+        year: string;
+        text: string;
         id?: string | null;
       }[]
     | null;
@@ -1123,6 +1132,15 @@ export interface InstitutionalContentSelect<T extends boolean = true> {
     | {
         name?: T;
         role?: T;
+        bio?: T;
+        image?: T;
+        id?: T;
+      };
+  milestones?:
+    | T
+    | {
+        year?: T;
+        text?: T;
         id?: T;
       };
   updatedAt?: T;
