@@ -321,6 +321,11 @@ const institutionalData = {
     { name: 'Equipo Directivo IFTS 29', role: 'Conduccion institucional' },
     { name: 'Coordinacion Academica', role: 'Gestion de oferta y contenidos' },
   ],
+  milestones: [
+    {year: '2019', text: 'Fundacion del instituto con la primera cohorte de estudiantes'},
+    {year: '2021', text: 'Expansion de la oferta academica y nueva sede equipada'},
+    {year: '2024', text: 'Reconocimiento por excelencia en formacion tecnica a distancia'},
+  ],
 }
 
 // ============================================================

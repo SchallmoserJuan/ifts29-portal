@@ -24,7 +24,7 @@ export default function InscripcionesPage() {
     <PageShell>
       <PageHero
         eyebrow="Admisión"
-        title="Inscripciones 2026"
+        title={`Inscripciones ${new Date().getFullYear()}`}
         description="Proceso de ingreso a la Tecnicatura Superior en Desarrollo de Software. Educación pública, gratuita y a distancia."
       />
 

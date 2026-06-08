@@ -3,14 +3,19 @@
 import Image from 'next/image'
 import {AnimatedSection} from '../ui/animated-section'
 import {SectionLabel} from '../ui/section-label'
+import type {MilestoneItem} from '@/src/types/content'
 
-const milestones = [
+interface Props {
+  milestones?: MilestoneItem[]
+}
+
+const DEFAULT_MILESTONES: MilestoneItem[] = [
   {year: '2019', text: 'Fundación del instituto con la primera cohorte de estudiantes'},
   {year: '2021', text: 'Expansión de la oferta académica y nueva sede equipada'},
   {year: '2024', text: 'Reconocimiento por excelencia en formación técnica a distancia'},
 ]
 
-export function HistorySection() {
+export function HistorySection({milestones = DEFAULT_MILESTONES}: Props) {
   return (
     <section id="historia" className="bg-white py-24 md:py-32">
       <div className="mx-auto grid w-full max-w-[1400px] gap-16 px-6 sm:px-10 lg:grid-cols-[1.2fr_1fr] lg:gap-20">
@@ -51,7 +56,7 @@ export function HistorySection() {
         </AnimatedSection>
 
         <AnimatedSection delay={0.2} className="relative">
-          <div className="aspect-[3/4] overflow-hidden rounded-sm bg-slate-200 lg:mt-12">
+          <div className="relative aspect-[3/4] overflow-hidden rounded-sm bg-slate-200 lg:mt-12">
             <Image
               src="https://images.unsplash.com/photo-1653990603052-17a7198a9a99?q=80&w=705&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
               alt="Estudiantes en ceremonia de graduación"
