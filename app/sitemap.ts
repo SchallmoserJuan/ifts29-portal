@@ -30,7 +30,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       collection: 'careers',
       limit: 50,
     })
-    const careerPages: MetadataRoute.Sitemap = careers.docs.map((c: Record<string, unknown>) => ({
+    const careerPages: MetadataRoute.Sitemap = careers.docs.map((c: any) => ({
       url: `${baseUrl}/carreras/${c.slug}`,
       lastModified: c.updatedAt ? new Date(c.updatedAt as string) : new Date(),
       changeFrequency: 'monthly' as const,
@@ -42,7 +42,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       where: {status: {equals: 'published'}},
       limit: 100,
     })
-    const newsPages: MetadataRoute.Sitemap = news.docs.map((n: Record<string, unknown>) => ({
+    const newsPages: MetadataRoute.Sitemap = news.docs.map((n: any) => ({
       url: `${baseUrl}/noticias/${n.slug}`,
       lastModified: n.updatedAt ? new Date(n.updatedAt as string) : new Date(),
       changeFrequency: 'weekly' as const,
