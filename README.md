@@ -1,3 +1,6 @@
+<img width="1983" height="793" alt="image" src="https://github.com/user-attachments/assets/e1918f2d-4910-4b95-b524-65545e085d9f" />
+
+
 # Portal IFTS 29
 
 Portal institucional del Instituto de Formacion Tecnica Superior N 29, desarrollado como proyecto integrador de la carrera de Desarrollo de Software. Implementa una arquitectura Headless CMS que permite al personal de la institucion gestionar contenidos, carreras, noticias y eventos sin intervencion del equipo de desarrollo.
