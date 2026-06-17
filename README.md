@@ -11,7 +11,42 @@ Portal institucional del Instituto de Formacion Tecnica Superior N 29, desarroll
 
 ---
 
-## Stack tecnologico
+## Índice
+
+1. [Portal IFTS 29](#portal-ifts-29)
+2. [Stack tecnológico](#stack-tecnológico)
+3. [Arquitectura](#arquitectura)
+4. [Estructura del proyecto](#estructura-del-proyecto)
+5. [Variables de entorno](#variables-de-entorno)
+6. [Scripts disponibles](#scripts-disponibles)
+7. [Rutas principales](#rutas-principales)
+
+   * [Rutas públicas](#rutas-públicas)
+   * [Rutas privadas (requieren autenticación)](#rutas-privadas-requieren-autenticación)
+   * [Panel de administración](#panel-de-administración)
+8. [Roles de usuario](#roles-de-usuario)
+9. [Modelo de datos](#modelo-de-datos)
+
+   * [Colecciones (11)](#colecciones-11)
+   * [Globales (3)](#globales-3)
+10. [Configuración inicial](#configuración-inicial)
+
+    * [Requisitos previos](#requisitos-previos)
+    * [Pasos](#pasos)
+11. [Documentación](#documentación)
+12. [Flujo de trabajo](#flujo-de-trabajo)
+
+    * [Ramas](#ramas)
+    * [Commits](#commits)
+    * [Pull Requests](#pull-requests)
+13. [Equipo](#equipo)
+14. [Mantenimiento](#mantenimiento)
+15. [Licencia](#licencia)
+
+
+---
+
+## Stack tecnológico
 
 | Capa | Tecnologia | Version | Proposito |
 |------|------------|---------|-----------|
@@ -148,7 +183,7 @@ EMAILJS_TEMPLATE_ID_NOTIFICATION=
 
 ## Rutas principales
 
-### Rutas publicas
+## Rutas públicas
 
 | Ruta | Contenido |
 |------|-----------|
@@ -161,14 +196,14 @@ EMAILJS_TEMPLATE_ID_NOTIFICATION=
 | `/contacto` | Formulario de contacto |
 | `/login` | Inicio de sesion |
 
-### Rutas privadas (requieren autenticacion)
+### Rutas privadas (requieren autenticación)
 
 | Ruta | Acceso |
 |------|--------|
 | `/portal` | Dashboard segun rol |
 | `/portal/biblioteca` | Biblioteca virtual — estudiantes y docentes |
 
-### Panel de administracion
+### Panel de administración
 
 | Ruta | Acceso |
 |------|--------|
@@ -219,7 +254,7 @@ La documentacion detallada de cada coleccion y sus campos se encuentra en
 
 ---
 
-## Configuracion inicial
+## Configuración inicial
 
 ### Requisitos previos
 
@@ -269,7 +304,7 @@ bun run seed:all
 
 ---
 
-## Documentacion
+## Documentación
 
 | Documento | Descripcion |
 |-----------|-------------|
