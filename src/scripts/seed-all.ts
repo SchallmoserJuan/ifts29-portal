@@ -19,7 +19,7 @@
 
 import 'dotenv/config'
 import { getPayload } from 'payload'
-import config from '@payload-config'
+import config from '../../payload.config'
 import { scholarshipsData, becasPageData } from './seed-becas'
 
 const CAREER_SLUG = 'tecnicatura-superior-en-desarrollo-de-software'

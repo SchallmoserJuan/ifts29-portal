@@ -1,29 +1,29 @@
-import type { Access, Where } from 'payload'
+import type {Access, Where} from 'payload'
 
-import type { AppUser } from '@/src/types/app'
+import type {AppUser} from '@/src/types/app'
 
 export const isAdmin = (user?: Partial<AppUser> | null) => user?.role === 'admin'
 export const isTeacher = (user?: Partial<AppUser> | null) => user?.role === 'teacher'
 export const isStudent = (user?: Partial<AppUser> | null) => user?.role === 'student'
 export const isStaff = (user?: Partial<AppUser> | null) => isAdmin(user) || isTeacher(user)
 
-export const canAccessNotifications: Access = ({ req }) => {
+export const canAccessNotifications: Access = ({req}) => {
   const user = req.user as Partial<AppUser> | null
   return isStaff(user)
 }
 
-export const canAccessAdmin = ({ req }: { req: { user?: unknown } }) =>
+export const canAccessAdmin = ({req}: {req: {user?: unknown}}) =>
   isStaff(req.user as Partial<AppUser> | null)
 
-export const canManageUsers: Access = ({ req }) => isAdmin(req.user as Partial<AppUser> | null)
+export const canManageUsers: Access = ({req}) => isAdmin(req.user as Partial<AppUser> | null)
 
-export const canManageContent: Access = ({ req }) => isStaff(req.user as Partial<AppUser> | null)
+export const canManageContent: Access = ({req}) => isStaff(req.user as Partial<AppUser> | null)
 
-export const canDeleteContent: Access = ({ req }) => isStaff(req.user as Partial<AppUser> | null)
+export const canDeleteContent: Access = ({req}) => isStaff(req.user as Partial<AppUser> | null)
 
 export const publicRead: Access = () => true
 
-export const publishedOnlyOrStaff: Access = ({ req }) => {
+export const publishedOnlyOrStaff: Access = ({req}) => {
   const user = req.user as Partial<AppUser> | null
 
   if (isStaff(user)) {
@@ -37,7 +37,7 @@ export const publishedOnlyOrStaff: Access = ({ req }) => {
   } satisfies Where
 }
 
-export const documentReadAccess: Access = ({ req }) => {
+export const documentReadAccess: Access = ({req}) => {
   const user = req.user as Partial<AppUser> | null
 
   if (isStaff(user)) {
@@ -68,7 +68,7 @@ export const documentReadAccess: Access = ({ req }) => {
   } as Where
 }
 
-export const selfOrAdminRead: Access = ({ req }) => {
+export const selfOrAdminRead: Access = ({req}) => {
   const user = req.user as Partial<AppUser> | null
 
   if (!user) {
@@ -88,7 +88,7 @@ export const selfOrAdminRead: Access = ({ req }) => {
 
 export const selfOrAdminUpdate: Access = selfOrAdminRead
 
-export const allowFirstUserOrAdmin: Access = async ({ req }) => {
+export const allowFirstUserOrAdmin: Access = async ({req}) => {
   const user = req.user as Partial<AppUser> | null
 
   if (isAdmin(user)) {
