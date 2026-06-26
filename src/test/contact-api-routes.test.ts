@@ -383,7 +383,7 @@ describe('POST /api/contacts/[id]/reply', () => {
 describe('GET /api/contacts', () => {
   it('retorna 400 indicando que se use /api/contacts/[id]', async () => {
     const {GET} = await import('@/app/api/contacts/route')
-    const req = new Request('http://localhost', {headers: {'x-forwarded-for': '127.0.0.1'}})
+const req = new Request('http://localhost', {headers: {'x-forwarded-for': '127.0.0.1'}})
     const res = await GET(req)
     expect(res.status).toBe(400)
     const body = await res.json()
@@ -394,7 +394,7 @@ describe('GET /api/contacts', () => {
 describe('POST /api/contacts', () => {
   it('retorna 400 indicando que se use /api/contacts/[id]/reply', async () => {
     const {POST} = await import('@/app/api/contacts/route')
-    const req = new Request('http://localhost', {headers: {'x-forwarded-for': '127.0.0.1'}})
+const req = new Request('http://localhost', {headers: {'x-forwarded-for': '127.0.0.1'}})
     const res = await POST(req)
     expect(res.status).toBe(400)
     const body = await res.json()

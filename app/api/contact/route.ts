@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server'
 
 import { getPayloadClient } from '@/src/lib/payload'
 import { rateLimitByIP } from '@/src/lib/rate-limit'
+import { sendNewContactNotification } from '@/src/lib/email'
 
 export async function POST(req: Request) {
   const limit = rateLimitByIP(req, 20, 15 * 60 * 1000)
@@ -70,6 +71,13 @@ export async function POST(req: Request) {
       console.log('[contact API] Notification created:', notification.id)
     } catch (notifyError) {
       console.error('[contact API] Error creating notification:', notifyError)
+    }
+
+    try {
+      await sendNewContactNotification({nombre, email, asunto, mensaje})
+      console.log('[contact API] Email notification sent')
+    } catch (emailError) {
+      console.error('[contact API] Error sending email notification:', emailError)
     }
 
     return NextResponse.json({ success: true, contactId: contact.id })

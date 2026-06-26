@@ -6,12 +6,6 @@ export function trackCareerClick(careerName: string) {
   })
 }
 
-export function trackDocumentDownload(documentName: string) {
-  sendEvent('document_download', {
-    document_name: documentName,
-  })
-}
-
 export function trackSearch(searchTerm: string) {
   sendEvent('search', {
     search_term: searchTerm,

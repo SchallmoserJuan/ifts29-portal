@@ -34,6 +34,10 @@ export const getInstitutionalContent = cache(async () => {
         content?.authorities && content.authorities.length > 0
           ? content.authorities
           : defaultInstitutional.authorities,
+      milestones:
+        content?.milestones && content.milestones.length > 0
+          ? content.milestones
+          : defaultInstitutional.milestones,
     } as InstitutionalContentData
   } catch {
     return defaultInstitutional
@@ -92,6 +96,34 @@ export const getNewsList = cache(async () => {
     return (result.docs.length > 0 ? result.docs : defaultNews) as NewsItem[]
   } catch {
     return defaultNews
+  }
+})
+
+export const getNewsListPaginated = cache(async (page = 1, limit = 9) => {
+  const payload = await getPayloadClient()
+
+  try {
+    const result = await payload.find({
+      collection: 'news',
+      depth: 1,
+      limit,
+      page,
+      sort: '-publishedAt',
+    })
+
+    return {
+      docs: (result.docs.length > 0 ? result.docs : defaultNews) as NewsItem[],
+      totalDocs: result.totalDocs,
+      totalPages: result.totalPages,
+      page: result.page,
+    }
+  } catch {
+    return {
+      docs: defaultNews,
+      totalDocs: defaultNews.length,
+      totalPages: 1,
+      page: 1,
+    }
   }
 })
 

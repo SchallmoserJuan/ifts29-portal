@@ -6,7 +6,10 @@ import { rateLimitByIP } from '@/src/lib/rate-limit'
 const CAREER_SLUG = 'tecnicatura-superior-en-desarrollo-de-software'
 
 export async function POST(request: Request) {
-  const limit = rateLimitByIP(request, 5, 15 * 60 * 1000)
+  const isDev = process.env.NODE_ENV === 'development'
+  const maxRequests = isDev ? 50 : (Number(process.env.REGISTER_RATE_LIMIT_MAX) || 5)
+  const windowMs = isDev ? 60_000 : (Number(process.env.REGISTER_RATE_LIMIT_WINDOW_MS) || 15 * 60_000)
+  const limit = rateLimitByIP(request, maxRequests, windowMs)
   if (!limit.success) {
     return NextResponse.json(
       { error: 'Demasiadas solicitudes. Intenta de nuevo mas tarde.' },
@@ -21,7 +24,7 @@ export async function POST(request: Request) {
 
   try {
     const body = await request.json()
-    const { dni, email, password, confirmPassword, firstName, lastName } = body
+    const { dni, email, password, firstName, lastName } = body
 
     const errors: Record<string, string> = {}
 
@@ -33,12 +36,8 @@ export async function POST(request: Request) {
       errors.email = 'Email invalido'
     }
 
-    if (!password || password.length < 6) {
+    if (!password || password.trim().length < 6) {
       errors.password = 'La contrasena debe tener al menos 6 caracteres'
-    }
-
-    if (password !== confirmPassword) {
-      errors.confirmPassword = 'Las contrasenas no coinciden'
     }
 
     if (!firstName?.trim()) {
@@ -95,7 +94,7 @@ export async function POST(request: Request) {
       overrideAccess: true,
       data: {
         email: email.toLowerCase(),
-        password,
+        password: password.trim(),
         dni,
         firstName: firstName.trim(),
         lastName: lastName.trim(),

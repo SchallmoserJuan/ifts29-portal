@@ -1,68 +1,56 @@
-import type { MetadataRoute } from 'next'
+import type {MetadataRoute} from 'next'
 
-import { getPayloadClient } from '@/src/lib/payload'
-
-const BASE_URL = 'https://ifts29.edu.ar'
-
-export const revalidate = 3600
+import {getPayloadClient} from '@/src/lib/payload'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const staticRoutes: MetadataRoute.Sitemap = [
-    { url: `${BASE_URL}/`, changeFrequency: 'daily', priority: 1 },
-    { url: `${BASE_URL}/carreras`, changeFrequency: 'weekly', priority: 0.9 },
-    { url: `${BASE_URL}/noticias`, changeFrequency: 'daily', priority: 0.9 },
-    { url: `${BASE_URL}/eventos`, changeFrequency: 'weekly', priority: 0.8 },
-    { url: `${BASE_URL}/institucional`, changeFrequency: 'monthly', priority: 0.8 },
-    { url: `${BASE_URL}/proyectos`, changeFrequency: 'monthly', priority: 0.7 },
-    { url: `${BASE_URL}/empresas`, changeFrequency: 'monthly', priority: 0.6 },
-    { url: `${BASE_URL}/contacto`, changeFrequency: 'yearly', priority: 0.6 },
-    { url: `${BASE_URL}/inscripciones`, changeFrequency: 'yearly', priority: 0.6 },
-    { url: `${BASE_URL}/becas`, changeFrequency: 'yearly', priority: 0.6 },
-    { url: `${BASE_URL}/documentacion`, changeFrequency: 'monthly', priority: 0.7 },
-    { url: `${BASE_URL}/buscar`, changeFrequency: 'monthly', priority: 0.5 },
-    { url: `${BASE_URL}/accesibilidad`, changeFrequency: 'yearly', priority: 0.3 },
-    { url: `${BASE_URL}/privacidad`, changeFrequency: 'yearly', priority: 0.3 },
-    { url: `${BASE_URL}/cookies`, changeFrequency: 'yearly', priority: 0.3 },
-    { url: `${BASE_URL}/legal`, changeFrequency: 'yearly', priority: 0.3 },
-    { url: `${BASE_URL}/carreras/horarios`, changeFrequency: 'monthly', priority: 0.6 },
-  ]
+  const baseUrl = 'https://ifts29.edu.ar'
 
-  let careerRoutes: MetadataRoute.Sitemap = []
-  let newsRoutes: MetadataRoute.Sitemap = []
+  const staticPages: MetadataRoute.Sitemap = [
+    {url: baseUrl, lastModified: new Date(), changeFrequency: 'weekly', priority: 1},
+    {url: `${baseUrl}/institucional`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8},
+    {url: `${baseUrl}/carreras`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9},
+    {url: `${baseUrl}/inscripciones`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.9},
+    {url: `${baseUrl}/becas`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8},
+    {url: `${baseUrl}/noticias`, lastModified: new Date(), changeFrequency: 'daily', priority: 0.8},
+    {url: `${baseUrl}/eventos`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.7},
+    {url: `${baseUrl}/proyectos`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.7},
+    {url: `${baseUrl}/empresas`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.6},
+    {url: `${baseUrl}/contacto`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.6},
+    {url: `${baseUrl}/documentacion`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7},
+    {url: `${baseUrl}/privacidad`, lastModified: new Date(), changeFrequency: 'yearly', priority: 0.3},
+    {url: `${baseUrl}/accesibilidad`, lastModified: new Date(), changeFrequency: 'yearly', priority: 0.3},
+    {url: `${baseUrl}/cookies`, lastModified: new Date(), changeFrequency: 'yearly', priority: 0.3},
+    {url: `${baseUrl}/legal`, lastModified: new Date(), changeFrequency: 'yearly', priority: 0.3},
+  ]
 
   try {
     const payload = await getPayloadClient()
 
-    const [careersResult, newsResult] = await Promise.all([
-      payload.find({
-        collection: 'careers',
-        where: { status: { equals: 'published' } },
-        limit: 100,
-      }),
-      payload.find({
-        collection: 'news',
-        where: { status: { equals: 'published' } },
-        limit: 100,
-      }),
-    ])
-
-    careerRoutes = careersResult.docs.map((career) => ({
-      url: `${BASE_URL}/carreras/${(career as { slug: string }).slug}`,
-      lastModified: career.updatedAt ? new Date(career.updatedAt) : new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.8,
+    const careers = await payload.find({
+      collection: 'careers',
+      limit: 50,
+    })
+    const careerPages: MetadataRoute.Sitemap = careers.docs.map((c: any) => ({
+      url: `${baseUrl}/carreras/${c.slug}`,
+      lastModified: c.updatedAt ? new Date(c.updatedAt as string) : new Date(),
+      changeFrequency: 'monthly' as const,
+      priority: 0.85,
     }))
 
-    newsRoutes = newsResult.docs.map((item) => ({
-      url: `${BASE_URL}/noticias/${(item as { slug: string }).slug}`,
-      lastModified: item.updatedAt ? new Date(item.updatedAt) : new Date(),
-      changeFrequency: 'weekly',
+    const news = await payload.find({
+      collection: 'news',
+      where: {status: {equals: 'published'}},
+      limit: 100,
+    })
+    const newsPages: MetadataRoute.Sitemap = news.docs.map((n: any) => ({
+      url: `${baseUrl}/noticias/${n.slug}`,
+      lastModified: n.updatedAt ? new Date(n.updatedAt as string) : new Date(),
+      changeFrequency: 'weekly' as const,
       priority: 0.7,
     }))
-  } catch {
-    // Durante el build en Vercel la DB local puede no estar disponible.
-    // Retornamos solo rutas estaticas; en produccion ISR revalida cada hora.
-  }
 
-  return [...staticRoutes, ...careerRoutes, ...newsRoutes]
+    return [...staticPages, ...careerPages, ...newsPages]
+  } catch {
+    return staticPages
+  }
 }

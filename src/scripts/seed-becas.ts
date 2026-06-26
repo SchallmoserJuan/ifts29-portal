@@ -11,7 +11,7 @@ import 'dotenv/config'
 import { getPayload } from 'payload'
 import config from '@payload-config'
 
-const scholarshipsData = [
+export const scholarshipsData = [
   {
     title: 'Progresar',
     slug: 'progresar',
@@ -70,7 +70,7 @@ const scholarshipsData = [
   },
 ]
 
-const becasPageData = {
+export const becasPageData = {
   pageTitle: 'Becas y Programas de Apoyo',
   pageSubtitle: 'Información sobre becas disponibles para estudiantes del IFTS N° 29',
   scholarshipsTitle: 'Programas Disponibles',
@@ -259,7 +259,7 @@ const becasPageData = {
   contactText: '¿Tenés dudas sobre alguna beca o necesitás ayuda con el proceso de inscripción? Escribinos y te asesoramos.',
 }
 
-async function seedScholarships(payload: Awaited<ReturnType<typeof getPayload>>) {
+export async function seedScholarships(payload: Awaited<ReturnType<typeof getPayload>>) {
   console.log('\n[Seed] Becas...')
 
   for (const item of scholarshipsData) {
@@ -286,7 +286,7 @@ async function seedScholarships(payload: Awaited<ReturnType<typeof getPayload>>)
   }
 }
 
-async function seedBecasPage(payload: Awaited<ReturnType<typeof getPayload>>) {
+export async function seedBecasPage(payload: Awaited<ReturnType<typeof getPayload>>) {
   console.log('\n[Seed] Página de Becas (global)...')
 
   try {
@@ -300,7 +300,7 @@ async function seedBecasPage(payload: Awaited<ReturnType<typeof getPayload>>) {
   }
 }
 
-async function seed() {
+async function run() {
   console.log('======================================')
   console.log('  SEED BECAS — IFTS 29 Portal')
   console.log('======================================')
@@ -315,11 +315,15 @@ async function seed() {
   console.log('======================================')
 }
 
-seed()
-  .then(() => {
-    process.exit(0)
-  })
-  .catch((err) => {
-    console.error('\nError fatal en seed:', err)
-    process.exit(1)
-  })
+const isMainModule = process.argv[1]?.includes('seed-becas')
+
+if (isMainModule) {
+  run()
+    .then(() => {
+      process.exit(0)
+    })
+    .catch((err) => {
+      console.error('\nError fatal en seed:', err)
+      process.exit(1)
+    })
+}

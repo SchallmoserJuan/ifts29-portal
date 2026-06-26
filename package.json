@@ -6,8 +6,8 @@
   "main": "package.json",
   "license": "MIT",
   "scripts": {
-    "dev": "cross-env NODE_NO_WARNINGS=1 next dev",
-    "build": "cross-env NODE_NO_WARNINGS=1 next build --webpack",
+"dev": "cross-env NODE_NO_WARNINGS=1 next dev",
+    "build": "cross-env NODE_NO_WARNINGS=1 next build --webpack"
     "start": "next start",
     "lint": "eslint .",
     "payload": "cross-env NODE_NO_WARNINGS=1 payload",
@@ -33,7 +33,6 @@
   ],
   "dependencies": {
     "@base-ui/react": "^1.4.1",
-    "@emailjs/browser": "^4.4.1",
     "@fontsource/dm-sans": "^5.2.8",
     "@fontsource/playfair-display": "^5.2.8",
     "@payloadcms/db-sqlite": "^3.85.0",
@@ -53,7 +52,6 @@
     "payload": "3.85.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
-    "resend": "^6.12.3",
     "shadcn": "^4.7.0",
     "sharp": "^0.34.5",
     "tailwind-merge": "^3.5.0",
