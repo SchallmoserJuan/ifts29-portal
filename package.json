@@ -6,8 +6,8 @@
   "main": "package.json",
   "license": "MIT",
   "scripts": {
-"dev": "cross-env NODE_NO_WARNINGS=1 next dev",
-    "build": "cross-env NODE_NO_WARNINGS=1 next build --webpack"
+    "dev": "cross-env NODE_NO_WARNINGS=1 next dev",
+    "build": "cross-env NODE_NO_WARNINGS=1 next build --webpack",
     "start": "next start",
     "lint": "eslint .",
     "payload": "cross-env NODE_NO_WARNINGS=1 payload",

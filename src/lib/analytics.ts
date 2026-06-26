@@ -15,3 +15,9 @@ export function trackSearch(searchTerm: string) {
 export function trackContactFormSubmit() {
   sendEvent('contact_form_submit')
 }
+
+export function trackDocumentDownload(documentName: string) {
+  sendEvent('document_download', {
+    document_name: documentName,
+  })
+}
